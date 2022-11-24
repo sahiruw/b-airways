@@ -14,7 +14,7 @@ const isLogged = (req, res) => {
   );
   if (user == null) return res.json({ status: 0 });
   db.query(
-    `SELECT username FROM member WHERE id = ${12}`,
+    `SELECT username FROM member WHERE ID = ${user.id}`,
     
     [user.id],
     (err, result) => {
