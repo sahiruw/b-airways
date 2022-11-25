@@ -13,7 +13,6 @@ const login = async (req, res) => {
       if (!chkuser[0] || !(await bcrypt.compare(password, chkuser[0].password))) {
         return res.json({ status: 0, message: "USer is not registered!" });
       }
-      console.log(chkuser[0].ID)
       const token = jwt.sign({ id: chkuser[0].ID }, process.env.JWT_SECRET, {
         expiresIn: process.env.JWT_EXPIRES,
       });

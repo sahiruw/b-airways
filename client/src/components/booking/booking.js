@@ -1,7 +1,7 @@
 import React from "react";
-import carImage from "../images/4.jpg"
+import carImage from "../../images/4.jpg"
 
-function HomeScreen() {
+function Booking() {
   return (
     <div>
       <div className="container-fluid" id="section1">
@@ -13,4 +13,4 @@ function HomeScreen() {
   );
 }
 
-export default HomeScreen;
+export default Booking;

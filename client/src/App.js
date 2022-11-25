@@ -4,7 +4,7 @@ import { createBrowserRouter, RouterProvider, Link } from "react-router-dom";
 import HomeScreen from "./screens/HomeScreen";
 import Register from "./components/register";
 import LogIn from "./components/login"
-
+import Booking from "./components/booking/booking"
 
 
 const router = createBrowserRouter([
@@ -21,6 +21,11 @@ const router = createBrowserRouter([
     path: "login",
     element: <LogIn />,
   },
+  {
+    path: "booking/:id",
+    element: <Booking />,
+  }
+
 ]);
 
 function App() {
