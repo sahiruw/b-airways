@@ -61,6 +61,7 @@ const Register = () => {
 
 };
 
+
   return (
 
     <div className="shadow-lg p-3 mb-5 bg-white rounded" style={style_card}>
