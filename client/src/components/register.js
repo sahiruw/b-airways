@@ -50,9 +50,21 @@ const Register = () => {
       })
     );
   };
+  const style_card = {
+    marginTop : 30,
+    width : 935,
+    marginLeft : 300,
+    marginRight : 300,
+    height : 650,
+    paddingTop : 20
+    
+
+};
 
   return (
-    <form>
+
+    <div className="shadow-lg p-3 mb-5 bg-white rounded" style={style_card}>
+      <form style={{padding:10,marginLeft:400,margin:100,width:700}}>
       <h3>Sign Up</h3>
       <div
         class={`alert alert-${alert.atype}`}
@@ -122,7 +134,8 @@ const Register = () => {
       <div className="d-grid">
         <button
           type="submit"
-          className="btn btn-primary"
+          className="btn btn-outline-primary"
+          style={{marginTop:10}}
           onClick={(e) => submit(e)}
         >
           Sign Up
@@ -132,6 +145,9 @@ const Register = () => {
         Already registered <a href="/login">sign in?</a>
       </p>
     </form>
+    </div>
+    
+    
   );
 };
 
