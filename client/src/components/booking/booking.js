@@ -1,14 +1,26 @@
 import React from "react";
-import carImage from "../../images/4.jpg"
 
 function Booking() {
+  const submit = (e) => {
+    e.preventDefault();
+    let id = 12;
+    let username = "sahiruw";
+    fetch("/api/getuser")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data)
+      });
+  };
+
   return (
     <div>
-      <div className="container-fluid" id="section1">
-        <div className="row">
-        <img src={carImage} alt="" className="rounded mx-auto d-block" />
-        </div>
-      </div>
+      <button
+        type="submit"
+        className="btn btn-primary"
+        onClick={(e) => submit(e)}
+      >
+        Fuck you
+      </button>
     </div>
   );
 }
