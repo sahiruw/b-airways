@@ -12,6 +12,7 @@ function Booking() {
       });
   };
 
+  
   return (
     <div>
       <button
