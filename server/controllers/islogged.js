@@ -1,6 +1,7 @@
 const db = require("../routes/db-config");
 const jwt = require("jsonwebtoken");
 
+
 const isLogged = (req, res) => {
   if (!req.cookies.loguser) return res.json({ status: 0 });
 

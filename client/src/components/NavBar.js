@@ -65,7 +65,7 @@ function NavBar() {
               <>
                 {" "}
                 <li className="nav-item active">
-                  <a href="/login" className="nav-link">
+                  <a href="/" className="nav-link">
                     {loggedUser}
                   </a>
                 </li>
