@@ -1,15 +1,33 @@
 import React from "react";
+import {useState, useEffect} from "react";
 
 function Booking() {
+
+  const [loggedUser, setLoggeduser] = useState(null);
+
+  useEffect(() => {
+    fetch("/api/isLogged")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.status) {
+          setLoggeduser(data.user);
+        } else {
+          setLoggeduser(null);
+        }
+      });
+  });
+
+
   const submit = (e) => {
     e.preventDefault();
-    let id = 12;
-    let username = "sahiruw";
-    fetch("/api/getuser")
+    
+    fetch("/api/getuser?username=" + loggedUser)
       .then((res) => res.json())
       .then((data) => {
         console.log(data)
       });
+      
   };
 
   

@@ -16,6 +16,7 @@ function NavBar() {
       });
   });
 
+
   const logout = (e) => {
     e.preventDefault();
 
@@ -29,7 +30,7 @@ function NavBar() {
   return (
     <div>
       <nav className="navbar navbar-expand-lg ">
-        <a className="navbar-brand" href="#">
+        <a className="navbar-brand" href="/">
           B-Airways
         </a>
         <button

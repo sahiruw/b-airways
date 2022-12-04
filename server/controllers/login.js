@@ -1,33 +1,34 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const db = require("../routes/db-config");
+const user = require("../models/userModel");
 
 const login = async (req, res) => {
   const { username, password } = req.body;
 
-  db.query(
-    `SELECT * FROM member where username = '${username}'`,
-    [username],
-    async (stop, chkuser) => {
-      if (stop) throw stop;
-      if (!chkuser[0] || !(await bcrypt.compare(password, chkuser[0].password))) {
-        return res.json({ status: 0, message: "USer is not registered!" });
-      }
-      const token = jwt.sign({ id: chkuser[0].ID }, process.env.JWT_SECRET, {
-        expiresIn: process.env.JWT_EXPIRES,
-      });
-      const cookieOptions = {
-        expiresIn: new Date(
-          Date.now() * process.env.COOKIE_EXPIRES * 24 * 60 * 60 * 1000
-        ),
-        httponly: true,
-      };
+  const userData = await user.getUserbyUsername(username);
 
-      res.cookie('loguser', token, cookieOptions)
+  if (!userData[0]) return res.json({ status: 0 , message: "User is not registered!"});
 
-      return res.json({status:1,message:"USer has been logged in! " + chkuser[0].ID})
-    }
-  );
+  if (!(await bcrypt.compare(password, userData[0].password))) return res.json({ status: 0 , message: "Incorrect Password!"});
+
+  const token = jwt.sign({ id: userData[0].ID }, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_EXPIRES,
+  });
+  const cookieOptions = {
+    expiresIn: new Date(
+      Date.now() * process.env.COOKIE_EXPIRES * 24 * 60 * 60 * 1000
+    ),
+    httponly: true,
+  };
+
+  res.cookie("loguser", token, cookieOptions);
+
+  return res.json({
+    status: 1,
+    message: "USer has been logged in! " + userData[0].ID,
+  });
+
 };
 
-module.exports = login
+module.exports = login;

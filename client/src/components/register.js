@@ -1,7 +1,18 @@
 import React, { Component } from "react";
-import { useState } from "react";
+import { useState ,useEffect} from "react";
 
 const Register = () => {
+
+  useEffect(() => {
+    fetch("/api/isLogged")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.status) {
+          document.location.replace('/')
+        }
+      });
+  });
+
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
