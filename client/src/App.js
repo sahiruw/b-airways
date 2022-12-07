@@ -5,6 +5,7 @@ import HomeScreen from "./screens/HomeScreen";
 import Register from "./components/register";
 import LogIn from "./components/login"
 import Booking from "./components/booking/booking"
+import Show from "./components/searchFlight"
 
 
 const router = createBrowserRouter([
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
   {
     path: "booking/:id",
     element: <Booking />,
+  },
+  {
+    path : "flights",
+    element : <Show />
   }
 
 ]);
