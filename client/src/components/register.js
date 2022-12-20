@@ -79,7 +79,7 @@ const Register = () => {
       <form style={{padding:10,marginLeft:400,margin:100,width:700}}>
       <h3>Sign Up</h3>
       <div
-        class={`alert alert-${alert.atype}`}
+        className={`alert alert-${alert.atype}`}
         role="alert"
         style={alert.aalert}
       >
