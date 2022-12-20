@@ -14,6 +14,7 @@ const isLogged =  async (req, res) => {
     }
   ); 
 
+  
   if (currentUser == null) return res.json({ status: 0 });
 
 
@@ -24,5 +25,6 @@ const isLogged =  async (req, res) => {
     return res.json({ status: 1, user: currentUserData[0].username });
   }
 };
+
 
 module.exports = isLogged;
