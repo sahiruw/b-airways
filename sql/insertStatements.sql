@@ -60,39 +60,50 @@ INSERT INTO member_category (category_type, min_booking, discount_precentage) VA
 INSERT INTO member_category (category_type, min_booking, discount_precentage) VALUES ('frequent', 5, 0.15);
 INSERT INTO member_category (category_type, min_booking, discount_precentage) VALUES ('general', 0, 0.1);
 
-INSERT INTO customer (ID, type) VALUES (1, 'guest');
-INSERT INTO customer (ID, type) VALUES (2, 'member');
-INSERT INTO customer (ID, type) VALUES (3, 'guest');
-INSERT INTO customer (ID, type) VALUES (4, 'member');
-INSERT INTO customer (ID, type) VALUES (5, 'guest');
+INSERT INTO customer (type) VALUES
+("member"),
+("member"),
+("member"),
+("member"),
+("member"),
+("member"),
+("member"),
+("guest"),
+("guest"),
+("member"),
+("member"),
+("guest"),
+("guest"),
+("guest"),
+("member");
 
-INSERT INTO member (firstname, lastname, password, mem_cat_id, dob, country, tele_no) VALUES ('Alice', 'Smith', 'password1', 1, '1990-01-01', 'United States', '123-456-7890');
-INSERT INTO member (firstname, lastname, password, mem_cat_id, dob, country, tele_no) VALUES ('Bob', 'Johnson', 'password2', 1, '1991-02-01', 'Canada', '234-567-8901');
-INSERT INTO member (firstname, lastname, password, mem_cat_id, dob, country, tele_no) VALUES ('Charlie', 'Williams', 'password3', 1, '1992-03-01', 'United Kingdom', '345-678-9012');
-INSERT INTO member (firstname, lastname, password, mem_cat_id, dob, country, tele_no) VALUES ('David', 'Jones', 'password4', 1, '1993-04-01', 'Australia', '456-789-0123');
-INSERT INTO member (firstname, lastname, password, mem_cat_id, dob, country, tele_no) VALUES ('Emily', 'Brown', 'password5', 1, '1994-05-01', 'United States', '567-890-1234');
-INSERT INTO member (firstname, lastname, password, mem_cat_id, dob, country, tele_no) VALUES ('Frank', 'Davis', 'password6', 1, '1995-06-01', 'Canada', '678-901-2345');
-INSERT INTO member (firstname, lastname, password, mem_cat_id, dob, country, tele_no) VALUES ('Gary', 'Miller', 'password7', 1, '1996-07-01', 'United Kingdom', '789-012-3456');
-INSERT INTO member (firstname, lastname, password, mem_cat_id, dob, country, tele_no) VALUES ('Helen', 'Wilson', 'password8', 1, '1997-08-01', 'Australia', '890-123-4567');
-INSERT INTO member (firstname, lastname, password, mem_cat_id, dob, country, tele_no) VALUES ('Ivan', 'Moore', 'password9', 1, '1998-09-01', 'United States', '901-234-5678');
-INSERT INTO member (firstname, lastname, password, mem_cat_id, dob, country, tele_no) VALUES ('John', 'Taylor', 'password10', 1, '1999-10-01', 'Canada', '012-345-6789');
+INSERT INTO member (ID, firstname, lastname, password, mem_cat_id, dob, country, tele_no) VALUES (1, 'Alice', 'Smith', 'password1', 1, '1990-01-01', 'United States', '123-456-7890');
+INSERT INTO member (ID, firstname, lastname, password, mem_cat_id, dob, country, tele_no) VALUES (10, 'Bob', 'Johnson', 'password2', 1, '1991-02-01', 'Canada', '234-567-8901');
+INSERT INTO member (ID, firstname, lastname, password, mem_cat_id, dob, country, tele_no) VALUES (2, 'Charlie', 'Williams', 'password3', 1, '1992-03-01', 'United Kingdom', '345-678-9012');
+INSERT INTO member (ID, firstname, lastname, password, mem_cat_id, dob, country, tele_no) VALUES (3, 'David', 'Jones', 'password4', 1, '1993-04-01', 'Australia', '456-789-0123');
+INSERT INTO member (ID, firstname, lastname, password, mem_cat_id, dob, country, tele_no) VALUES (4, 'Emily', 'Brown', 'password5', 1, '1994-05-01', 'United States', '567-890-1234');
+INSERT INTO member (ID, firstname, lastname, password, mem_cat_id, dob, country, tele_no) VALUES (11, 'Frank', 'Davis', 'password6', 1, '1995-06-01', 'Canada', '678-901-2345');
+INSERT INTO member (ID, firstname, lastname, password, mem_cat_id, dob, country, tele_no) VALUES (5, 'Gary', 'Miller', 'password7', 1, '1996-07-01', 'United Kingdom', '789-012-3456');
+INSERT INTO member (ID, firstname, lastname, password, mem_cat_id, dob, country, tele_no) VALUES (15, 'Helen', 'Wilson', 'password8', 1, '1997-08-01', 'Australia', '890-123-4567');
+INSERT INTO member (ID, firstname, lastname, password, mem_cat_id, dob, country, tele_no) VALUES (6, 'Ivan', 'Moore', 'password9', 1, '1998-09-01', 'United States', '901-234-5678');
+INSERT INTO member (ID, firstname, lastname, password, mem_cat_id, dob, country, tele_no) VALUES (7, 'John', 'Taylor', 'password10', 1, '1999-10-01', 'Canada', '012-345-6789');
 
-INSERT INTO guest (name, dob, country, tele_no) VALUES ('John Smith', '1980-01-01', 'United States', '123-456-7890');
-INSERT INTO guest (name, dob, country, tele_no) VALUES ('Jane Doe', '1981-02-01', 'Canada', '234-567-8901');
-INSERT INTO guest (name, dob, country, tele_no) VALUES ('Bob Johnson', '1982-03-01', 'United Kingdom', '345-678-9012');
-INSERT INTO guest (name, dob, country, tele_no) VALUES ('Alice Williams', '1983-04-01', 'Australia', '456-789-0123');
-INSERT INTO guest (name, dob, country, tele_no) VALUES ('Mike Brown', '1984-05-01', 'United States', '567-890-1234');
+INSERT INTO guest (ID, name, dob, country, tele_no) VALUES (8, 'John Smith', '1980-01-01', 'United States', '123-456-7890');
+INSERT INTO guest (ID, name, dob, country, tele_no) VALUES (9, 'Jane Doe', '1981-02-01', 'Canada', '234-567-8901');
+INSERT INTO guest (ID, name, dob, country, tele_no) VALUES (12, 'Bob Johnson', '1982-03-01', 'United Kingdom', '345-678-9012');
+INSERT INTO guest (ID, name, dob, country, tele_no) VALUES (13, 'Alice Williams', '1983-04-01', 'Australia', '456-789-0123');
+INSERT INTO guest (ID, name, dob, country, tele_no) VALUES (14, 'Mike Brown', '1984-05-01', 'United States', '567-890-1234');
 
-INSERT INTO flight (aircraft_ID, path_iD, date, departure_time, arrival_time, status, cost) VALUES (1, 1, '2022-01-01', '08:00:00', '10:00:00', 'Scheduled', 500.0);
-INSERT INTO flight (aircraft_ID, path_iD, date, departure_time, arrival_time, status, cost) VALUES (2, 2, '2022-01-02', '09:00:00', '11:00:00', 'Scheduled', 600.0);
-INSERT INTO flight (aircraft_ID, path_iD, date, departure_time, arrival_time, status, cost) VALUES (3, 3, '2022-01-03', '10:00:00', '12:00:00', 'Scheduled', 700.0);
-INSERT INTO flight (aircraft_ID, path_iD, date, departure_time, arrival_time, status, cost) VALUES (4, 4, '2022-01-04', '11:00:00', '13:00:00', 'Scheduled', 800.0);
-INSERT INTO flight (aircraft_ID, path_iD, date, departure_time, arrival_time, status, cost) VALUES (5, 5, '2022-01-05', '12:00:00', '14:00:00', 'Scheduled', 900.0);
-INSERT INTO flight (aircraft_ID, path_iD, date, departure_time, arrival_time, status, cost) VALUES (6, 6, '2022-01-06', '13:00:00', '15:00:00', 'Scheduled', 1000.0);
-INSERT INTO flight (aircraft_ID, path_iD, date, departure_time, arrival_time, status, cost) VALUES (7, 7, '2022-01-07', '14:00:00', '16:00:00', 'Scheduled', 1100.0);
-INSERT INTO flight (aircraft_ID, path_iD, date, departure_time, arrival_time, status, cost) VALUES (8, 8, '2022-01-08', '15:00:00', '17:00:00', 'Scheduled', 1200.0);
-INSERT INTO flight (aircraft_ID, path_iD, date, departure_time, arrival_time, status, cost) VALUES (9, 9, '2022-01-09', '16:00:00', '18:00:00', 'Scheduled', 1300.0);
-INSERT INTO flight (aircraft_ID, path_iD, date, departure_time, arrival_time, status, cost) VALUES (10, 10, '2022-01-10', '17:00:00', '19:00:00', 'Scheduled', 1400.0);
+INSERT INTO flight (aircraft_ID, path_iD, departure_time, arrival_time, status, cost) VALUES (1, 1, '2022-01-01 08:00:00', '2022-01-01 10:00:00', 'Scheduled', 500.0);
+INSERT INTO flight (aircraft_ID, path_iD, departure_time, arrival_time, status, cost) VALUES (2, 2, '2022-01-02 09:00:00', '2022-01-02 11:00:00', 'Scheduled', 600.0);
+INSERT INTO flight (aircraft_ID, path_iD, departure_time, arrival_time, status, cost) VALUES (3, 3, '2022-01-03 10:00:00', '2022-01-03 12:00:00', 'Scheduled', 700.0);
+INSERT INTO flight (aircraft_ID, path_iD, departure_time, arrival_time, status, cost) VALUES (4, 4, '2022-01-04 11:00:00', '2022-01-04 13:00:00', 'Scheduled', 800.0);
+INSERT INTO flight (aircraft_ID, path_iD, departure_time, arrival_time, status, cost) VALUES (5, 5, '2022-01-05 12:00:00', '2022-01-05 14:00:00', 'Scheduled', 900.0);
+INSERT INTO flight (aircraft_ID, path_iD, departure_time, arrival_time, status, cost) VALUES (6, 6, '2022-01-06 13:00:00', '2022-01-06 15:00:00', 'Scheduled', 1000.0);
+INSERT INTO flight (aircraft_ID, path_iD, departure_time, arrival_time, status, cost) VALUES (2, 7, '2022-01-07 14:00:00', '2022-01-07 16:00:00', 'Scheduled', 1100.0);
+INSERT INTO flight (aircraft_ID, path_iD, departure_time, arrival_time, status, cost) VALUES (3, 8, '2022-01-08 15:00:00', '2022-01-08 17:00:00', 'Scheduled', 1200.0);
+INSERT INTO flight (aircraft_ID, path_iD, departure_time, arrival_time, status, cost) VALUES (1, 9, '2022-01-09 16:00:00', '2022-01-09 18:00:00', 'Scheduled', 1300.0);
+INSERT INTO flight (aircraft_ID, path_iD, departure_time, arrival_time, status, cost) VALUES (4, 10, '2022-01-10 17:00:00', '2022-01-10 19:00:00', 'Scheduled', 1400.0);
 
 INSERT INTO flight_history (flight_ID, Departure_time, Arrival_time) VALUES (1, '2022-01-01 08:00:00', '2022-01-01 10:00:00');
 INSERT INTO flight_history (flight_ID, Departure_time, Arrival_time) VALUES (2, '2022-01-02 09:00:00', '2022-01-02 11:00:00');
@@ -110,17 +121,17 @@ INSERT INTO delayed_flights (flight_ID, Reason, new_arrival, new_departure) VALU
 INSERT INTO delayed_flights (flight_ID, Reason, new_arrival, new_departure) VALUES (2, 'Weather conditions', '2022-01-02 11:30:00', '2022-01-02 09:30:00');
 INSERT INTO delayed_flights (flight_ID, Reason, new_arrival, new_departure) VALUES (3, 'Air traffic control delay', '2022-01-03 12:30:00', '2022-01-03 10:30:00');
 INSERT INTO delayed_flights (flight_ID, Reason, new_arrival, new_departure) VALUES (4, 'Crew availability', '2022-01-04 13:30:00', '2022-01-04 11:30:00');
-INSERT INTO delayed_flights (flight_ID, Reason, new_arrival, new_departure) VALUES (5, 'Aircraft maintenance', '2022-01-05 14:30:00', '2022-01-05:30:00');
+INSERT INTO delayed_flights (flight_ID, Reason, new_arrival, new_departure) VALUES (5, 'Aircraft maintenance', '2022-01-05 14:30:00', '2022-01-05 15:30:00');
 
-INSERT INTO booking (booked_ID, flight_ID, datetime, status) VALUES (2, 2, '2022-01-02 08:00:00', 'Booked');
-INSERT INTO booking (booked_ID, flight_ID, datetime, status) VALUES (3, 3, '2022-01-03 09:00:00', 'Booked');
-INSERT INTO booking (booked_ID, flight_ID, datetime, status) VALUES (4, 4, '2022-01-04 10:00:00', 'Booked');
-INSERT INTO booking (booked_ID, flight_ID, datetime, status) VALUES (5, 5, '2022-01-05 11:00:00', 'Booked');
-INSERT INTO booking (booked_ID, flight_ID, datetime, status) VALUES (6, 6, '2022-01-06 12:00:00', 'Booked');
-INSERT INTO booking (booked_ID, flight_ID, datetime, status) VALUES (7, 7, '2022-01-07 13:00:00', 'Booked');
-INSERT INTO booking (booked_ID, flight_ID, datetime, status) VALUES (8, 8, '2022-01-08 14:00:00', 'Booked');
-INSERT INTO booking (booked_ID, flight_ID, datetime, status) VALUES (9, 9, '2022-01-09 15:00:00', 'Booked');
-INSERT INTO booking (booked_ID, flight_ID, datetime, status) VALUES (10, 10, '2022-01-10 16:00:00', 'Booked');
+INSERT INTO booking (booked_ID, flight_ID, booked_time, status) VALUES (2, 2, '2022-01-02 08:00:00', 'Booked');
+INSERT INTO booking (booked_ID, flight_ID, booked_time, status) VALUES (3, 3, '2022-01-03 09:00:00', 'Booked');
+INSERT INTO booking (booked_ID, flight_ID, booked_time, status) VALUES (4, 4, '2022-01-04 10:00:00', 'Booked');
+INSERT INTO booking (booked_ID, flight_ID, booked_time, status) VALUES (5, 5, '2022-01-05 11:00:00', 'Booked');
+INSERT INTO booking (booked_ID, flight_ID, booked_time, status) VALUES (6, 6, '2022-01-06 12:00:00', 'Booked');
+INSERT INTO booking (booked_ID, flight_ID, booked_time, status) VALUES (7, 7, '2022-01-07 13:00:00', 'Booked');
+INSERT INTO booking (booked_ID, flight_ID, booked_time, status) VALUES (8, 8, '2022-01-08 14:00:00', 'Booked');
+INSERT INTO booking (booked_ID, flight_ID, booked_time, status) VALUES (9, 9, '2022-01-09 15:00:00', 'Booked');
+INSERT INTO booking (booked_ID, flight_ID, booked_time, status) VALUES (10, 10, '2022-01-10 16:00:00', 'Booked');
 
 INSERT INTO Cancelled_Booking (Booking_ID, Reason, time) VALUES (1, 'Customer request', '2022-01-01 07:30:00');
 INSERT INTO Cancelled_Booking (Booking_ID, Reason, time) VALUES (2, 'Flight cancelled', '2022-01-02 08:30:00');

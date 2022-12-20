@@ -11,14 +11,9 @@ import {
 
 import HomeScreen from "./screens/HomeScreen";
 import Register from "./components/register";
-<<<<<<< HEAD
-import LogIn from "./components/login";
-import Booking from "./components/booking/booking";
-=======
 import LogIn from "./components/login"
 import Booking from "./components/booking/booking"
 import Show from "./components/searchFlight"
->>>>>>> c0181f0d1c13dddd07ee83f34b96d772b192f80e
 
 // const router = createBrowserRouter([
 //   {
@@ -26,22 +21,7 @@ import Show from "./components/searchFlight"
 //     element: <HomeScreen />,
 //   },
 
-<<<<<<< HEAD
-//   {
-//     path: "register",
-//     element: <Register />,
-//   },
-//   {
-//     path: "login",
-//     element: <LogIn />,
-//   },
-//   {
-//     path: "booking/:id",
-//     element: <Booking />,
-//   },
-// ]);
-=======
-const router = createBrowserRouter([
+const router   = createBrowserRouter([
   {
     path: "/",
     element: <HomeScreen />,
@@ -65,7 +45,6 @@ const router = createBrowserRouter([
   }
 
 ]);
->>>>>>> c0181f0d1c13dddd07ee83f34b96d772b192f80e
 
 function App() {
   return (

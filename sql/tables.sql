@@ -31,7 +31,7 @@ CREATE TABLE location (
 
 CREATE TABLE airport (
   code char(3),
-  name varchar(10),
+  name varchar(100),
   location_id int,
   PRIMARY KEY (code),
   FOREIGN KEY (location_id) REFERENCES location (location_id)
@@ -67,14 +67,14 @@ CREATE TABLE member_category (
 );
 
 CREATE TABLE customer (
-  ID int,
+  ID int AUTO_INCREMENT,
   type enum("guest","member"),
   PRIMARY KEY (ID)
 );
 
 
 CREATE TABLE member (
-  ID int AUTO_INCREMENT,
+  ID int,
   firstname varchar(10),
   lastname varchar(10),
   password varchar(10),
@@ -88,7 +88,7 @@ CREATE TABLE member (
 );
 
 CREATE TABLE guest (
-  ID int AUTO_INCREMENT,
+  ID int,
   name varchar(15),
   dob date,
   country varchar(15),
@@ -97,14 +97,14 @@ CREATE TABLE guest (
   FOREIGN KEY (ID) REFERENCES customer(ID)
 );
 
+
 CREATE TABLE flight (
   ID int AUTO_INCREMENT,
   aircraft_ID int,
   path_iD int,
-  date datetime,
   departure_time datetime,
   arrival_time datetime,
-  status enum("Shceduled","Departed","Arrived","Cancelled","Delayed"),
+  status enum("Scheduled", "Departed","Arrived","Cancelled","Delayed"),
   cost float,
   PRIMARY KEY (ID),
   FOREIGN KEY (path_iD) REFERENCES Paths(ID),
@@ -113,7 +113,7 @@ CREATE TABLE flight (
 
 CREATE TABLE flight_history (
   flight_ID int,
-  Departure time datetime,
+  Departure_time datetime,
   Arrival_time datetime,
   PRIMARY KEY (flight_ID),
   FOREIGN KEY (flight_ID) REFERENCES  flight(ID)
@@ -142,7 +142,7 @@ CREATE TABLE booking (
   ID int AUTO_INCREMENT,
   booked_ID int,
   flight_ID int,
-  datetime int,
+  booked_time datetime,
   status enum("Booked","Completed","Cancelled"),
   PRIMARY KEY (ID),
   FOREIGN KEY (flight_ID) REFERENCES flight(ID)
