@@ -83,3 +83,59 @@ INSERT INTO guest (name, dob, country, tele_no) VALUES ('Bob Johnson', '1982-03-
 INSERT INTO guest (name, dob, country, tele_no) VALUES ('Alice Williams', '1983-04-01', 'Australia', '456-789-0123');
 INSERT INTO guest (name, dob, country, tele_no) VALUES ('Mike Brown', '1984-05-01', 'United States', '567-890-1234');
 
+INSERT INTO flight (aircraft_ID, path_iD, date, departure_time, arrival_time, status, cost) VALUES (1, 1, '2022-01-01', '08:00:00', '10:00:00', 'Scheduled', 500.0);
+INSERT INTO flight (aircraft_ID, path_iD, date, departure_time, arrival_time, status, cost) VALUES (2, 2, '2022-01-02', '09:00:00', '11:00:00', 'Scheduled', 600.0);
+INSERT INTO flight (aircraft_ID, path_iD, date, departure_time, arrival_time, status, cost) VALUES (3, 3, '2022-01-03', '10:00:00', '12:00:00', 'Scheduled', 700.0);
+INSERT INTO flight (aircraft_ID, path_iD, date, departure_time, arrival_time, status, cost) VALUES (4, 4, '2022-01-04', '11:00:00', '13:00:00', 'Scheduled', 800.0);
+INSERT INTO flight (aircraft_ID, path_iD, date, departure_time, arrival_time, status, cost) VALUES (5, 5, '2022-01-05', '12:00:00', '14:00:00', 'Scheduled', 900.0);
+INSERT INTO flight (aircraft_ID, path_iD, date, departure_time, arrival_time, status, cost) VALUES (6, 6, '2022-01-06', '13:00:00', '15:00:00', 'Scheduled', 1000.0);
+INSERT INTO flight (aircraft_ID, path_iD, date, departure_time, arrival_time, status, cost) VALUES (7, 7, '2022-01-07', '14:00:00', '16:00:00', 'Scheduled', 1100.0);
+INSERT INTO flight (aircraft_ID, path_iD, date, departure_time, arrival_time, status, cost) VALUES (8, 8, '2022-01-08', '15:00:00', '17:00:00', 'Scheduled', 1200.0);
+INSERT INTO flight (aircraft_ID, path_iD, date, departure_time, arrival_time, status, cost) VALUES (9, 9, '2022-01-09', '16:00:00', '18:00:00', 'Scheduled', 1300.0);
+INSERT INTO flight (aircraft_ID, path_iD, date, departure_time, arrival_time, status, cost) VALUES (10, 10, '2022-01-10', '17:00:00', '19:00:00', 'Scheduled', 1400.0);
+
+INSERT INTO flight_history (flight_ID, Departure_time, Arrival_time) VALUES (1, '2022-01-01 08:00:00', '2022-01-01 10:00:00');
+INSERT INTO flight_history (flight_ID, Departure_time, Arrival_time) VALUES (2, '2022-01-02 09:00:00', '2022-01-02 11:00:00');
+INSERT INTO flight_history (flight_ID, Departure_time, Arrival_time) VALUES (3, '2022-01-03 10:00:00', '2022-01-03 12:00:00');
+INSERT INTO flight_history (flight_ID, Departure_time, Arrival_time) VALUES (4, '2022-01-04 11:00:00', '2022-01-04 13:00:00');
+INSERT INTO flight_history (flight_ID, Departure_time, Arrival_time) VALUES (5, '2022-01-05 12:00:00', '2022-01-05 14:00:00');
+
+INSERT INTO flying_staff (staff_ID, flight_ID) VALUES (1, 1);
+INSERT INTO flying_staff (staff_ID, flight_ID) VALUES (2, 1);
+INSERT INTO flying_staff (staff_ID, flight_ID) VALUES (3, 1);
+INSERT INTO flying_staff (staff_ID, flight_ID) VALUES (4, 1);
+INSERT INTO flying_staff (staff_ID, flight_ID) VALUES (5, 1);
+
+INSERT INTO delayed_flights (flight_ID, Reason, new_arrival, new_departure) VALUES (1, 'Mechanical issue', '2022-01-01 10:30:00', '2022-01-01 08:30:00');
+INSERT INTO delayed_flights (flight_ID, Reason, new_arrival, new_departure) VALUES (2, 'Weather conditions', '2022-01-02 11:30:00', '2022-01-02 09:30:00');
+INSERT INTO delayed_flights (flight_ID, Reason, new_arrival, new_departure) VALUES (3, 'Air traffic control delay', '2022-01-03 12:30:00', '2022-01-03 10:30:00');
+INSERT INTO delayed_flights (flight_ID, Reason, new_arrival, new_departure) VALUES (4, 'Crew availability', '2022-01-04 13:30:00', '2022-01-04 11:30:00');
+INSERT INTO delayed_flights (flight_ID, Reason, new_arrival, new_departure) VALUES (5, 'Aircraft maintenance', '2022-01-05 14:30:00', '2022-01-05:30:00');
+
+INSERT INTO booking (booked_ID, flight_ID, datetime, status) VALUES (2, 2, '2022-01-02 08:00:00', 'Booked');
+INSERT INTO booking (booked_ID, flight_ID, datetime, status) VALUES (3, 3, '2022-01-03 09:00:00', 'Booked');
+INSERT INTO booking (booked_ID, flight_ID, datetime, status) VALUES (4, 4, '2022-01-04 10:00:00', 'Booked');
+INSERT INTO booking (booked_ID, flight_ID, datetime, status) VALUES (5, 5, '2022-01-05 11:00:00', 'Booked');
+INSERT INTO booking (booked_ID, flight_ID, datetime, status) VALUES (6, 6, '2022-01-06 12:00:00', 'Booked');
+INSERT INTO booking (booked_ID, flight_ID, datetime, status) VALUES (7, 7, '2022-01-07 13:00:00', 'Booked');
+INSERT INTO booking (booked_ID, flight_ID, datetime, status) VALUES (8, 8, '2022-01-08 14:00:00', 'Booked');
+INSERT INTO booking (booked_ID, flight_ID, datetime, status) VALUES (9, 9, '2022-01-09 15:00:00', 'Booked');
+INSERT INTO booking (booked_ID, flight_ID, datetime, status) VALUES (10, 10, '2022-01-10 16:00:00', 'Booked');
+
+INSERT INTO Cancelled_Booking (Booking_ID, Reason, time) VALUES (1, 'Customer request', '2022-01-01 07:30:00');
+INSERT INTO Cancelled_Booking (Booking_ID, Reason, time) VALUES (2, 'Flight cancelled', '2022-01-02 08:30:00');
+INSERT INTO Cancelled_Booking (Booking_ID, Reason, time) VALUES (3, 'Customer request', '2022-01-03 09:30:00');
+INSERT INTO Cancelled_Booking (Booking_ID, Reason, time) VALUES (4, 'Flight cancelled', '2022-01-04 10:30:00');
+INSERT INTO Cancelled_Booking (Booking_ID, Reason, time) VALUES (5, 'Customer request', '2022-01-05 11:30:00');
+
+INSERT INTO Passenger (ID, booking_ID, seat_no, flied) VALUES (1, 1, 1, 1);
+INSERT INTO Passenger (ID, booking_ID, seat_no, flied) VALUES (2, 1, 2, 1);
+INSERT INTO Passenger (ID, booking_ID, seat_no, flied) VALUES (3, 2, 3, 1);
+INSERT INTO Passenger (ID, booking_ID, seat_no, flied) VALUES (4, 2, 4, 1);
+INSERT INTO Passenger (ID, booking_ID, seat_no, flied) VALUES (5, 3, 5, 1);
+
+INSERT INTO Transaction (booking_ID, time, total, payment_method) VALUES (1, '2022-01-01 07:00:00', 100.0, 'credit');
+INSERT INTO Transaction (booking_ID, time, total, payment_method) VALUES (2, '2022-01-02 08:00:00', 200.0, 'debit');
+INSERT INTO Transaction (booking_ID, time, total, payment_method) VALUES (3, '2022-01-03 09:00:00', 300.0, 'credit');
+INSERT INTO Transaction (booking_ID, time, total, payment_method) VALUES (4, '2022-01-04 10:00:00', 400.0, 'debit');
+INSERT INTO Transaction (booking_ID, time, total, payment_method) VALUES (5, '2022-01-05 11:00:00', 500.0, 'credit');
