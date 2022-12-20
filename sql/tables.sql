@@ -138,12 +138,13 @@ CREATE TABLE delayed_flights (
   FOREIGN KEY (flight_ID) REFERENCES flight(ID)
 );
 
+
 CREATE TABLE booking (
   ID int AUTO_INCREMENT,
   booked_ID int,
   flight_ID int,
   booked_time datetime,
-  status enum("Booked","Completed","Cancelled"),
+  status enum("Booked","Completed","Cancelled", "TimedOut"),
   PRIMARY KEY (ID),
   FOREIGN KEY (flight_ID) REFERENCES flight(ID)
 );

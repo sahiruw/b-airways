@@ -5,7 +5,7 @@ class flightModel{
 
     static async showFlightTable(){
         let flightdata = await new Promise((resolve,reject) => {
-            const sqlStatement = "SELECT * FROM flights;";
+            const sqlStatement = "SELECT * FROM flight;";
             db.query(sqlStatement,(err,result) => {
                 if (err) reject (err);
                 else resolve(result);
@@ -17,7 +17,7 @@ class flightModel{
 
     static async searchFlightbyLocation(from,to){
         let data = await new Promise((resolve,reject) => {
-            const getFlighbyLoc = `SELECT * FROM flights WHERE from = '${from}' AND to = '${to}';`
+            const getFlighbyLoc = `SELECT * FROM flight WHERE from = '${from}' AND to = '${to}';`
             db.query(getFlighbyLoc,(err,result) => {
                 if (err) reject (err);
                 else resolve(result);

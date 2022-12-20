@@ -14,12 +14,8 @@ import Register from "./components/register";
 import LogIn from "./components/login"
 import Booking from "./components/booking/booking"
 import Show from "./components/searchFlight"
+import Search from "./components/searchFlight";
 
-// const router = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: <HomeScreen />,
-//   },
 
 const router   = createBrowserRouter([
   {
@@ -42,6 +38,10 @@ const router   = createBrowserRouter([
   {
     path : "flights",
     element : <Show />
+  },
+  {
+    path : "search",
+    element : <Search />
   }
 
 ]);
@@ -58,6 +58,7 @@ function App() {
             <Route path="/login" element={LogIn()} />
             <Route path="/register" element={Register()} />
             <Route path="/booking/:id" element={Booking()} />
+            <Route path="/search" element={Search()} />
           </Routes>
         </div>
       </BrowserRouter>
