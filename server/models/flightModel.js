@@ -28,6 +28,17 @@ class flightModel{
     }
 
 
+    static async getAircraftDetailsByID(id){
+        let data = await new Promise((resolve,reject) => {
+            const getFlighbyLoc = `SELECT * FROM aircraft where id=${id};`
+            db.query(getFlighbyLoc,(err,result) => {
+                if (err) reject (err);
+                else resolve(result);
+            })
+        })
+
+        return data;
+    }
 
 
 

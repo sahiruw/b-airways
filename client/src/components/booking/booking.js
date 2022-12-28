@@ -1,5 +1,6 @@
 import React from "react";
 import {useState, useEffect} from "react";
+import SeatSelection from "./seatSelection";
 
 function Booking() {
 
@@ -41,6 +42,8 @@ function Booking() {
       >
         Fuck you
       </button>
+      hi
+      <SeatSelection aircraftID = {1} />
     </div>
   );
 }

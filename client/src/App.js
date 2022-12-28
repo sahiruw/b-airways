@@ -57,7 +57,7 @@ function App() {
             <Route exact path="/" element={HomeScreen()} />
             <Route path="/login" element={LogIn()} />
             <Route path="/register" element={Register()} />
-            <Route path="/booking/:id" element={Booking()} />
+            <Route path="/booking/" element={Booking()} />
             <Route path="/search" element={Search()} />
           </Routes>
         </div>
