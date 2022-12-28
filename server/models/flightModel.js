@@ -27,6 +27,18 @@ class flightModel{
         return data;
     }
 
+    static async getAirportLocations(){
+        let data = await new Promise((resolve,reject) => {
+            const getAirportLoc = "SELECT DISTINCT * FROM airport ORDER BY code ASC;";
+            db.query(getAirportLoc,(err,result) => {
+                if (err) reject (err);
+                else resolve(result);
+            })
+        })
+
+        return data;
+    }
+
 
 
 
