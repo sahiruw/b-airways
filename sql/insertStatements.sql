@@ -124,12 +124,12 @@ INSERT INTO delayed_flights (flight_ID, Reason, new_arrival, new_departure) VALU
 INSERT INTO delayed_flights (flight_ID, Reason, new_arrival, new_departure) VALUES (5, 'Aircraft maintenance', '2022-01-05 14:30:00', '2022-01-05 15:30:00');
 
 INSERT INTO booking (booked_ID, flight_ID, booked_time, booking_status, seat_type) VALUES (2, 2, '2022-01-02 08:00:00', 'Booked','Platinum');
-INSERT INTO booking (booked_ID, flight_ID, booked_time, booking_status, seat_type) VALUES (3, 3, '2022-01-03 09:00:00', 'Booked','Business');
+INSERT INTO booking (booked_ID, flight_ID, booked_time, booking_status, seat_type) VALUES (3, 3, '2022-01-03 09:00:00', 'Booked','Bussiness');
 INSERT INTO booking (booked_ID, flight_ID, booked_time, booking_status, seat_type) VALUES (4, 4, '2022-01-04 10:00:00', 'Booked','Economy');
 INSERT INTO booking (booked_ID, flight_ID, booked_time, booking_status, seat_type) VALUES (5, 5, '2022-01-05 11:00:00', 'Booked','Platinum');
 INSERT INTO booking (booked_ID, flight_ID, booked_time, booking_status, seat_type) VALUES (6, 6, '2022-01-06 12:00:00', 'Booked','Platinum');
-INSERT INTO booking (booked_ID, flight_ID, booked_time, booking_status, seat_type) VALUES (7, 7, '2022-01-07 13:00:00', 'Booked','Business');
-INSERT INTO booking (booked_ID, flight_ID, booked_time, booking_status, seat_type) VALUES (8, 8, '2022-01-08 14:00:00', 'Booked','Business');
+INSERT INTO booking (booked_ID, flight_ID, booked_time, booking_status, seat_type) VALUES (7, 7, '2022-01-07 13:00:00', 'Booked','Bussiness');
+INSERT INTO booking (booked_ID, flight_ID, booked_time, booking_status, seat_type) VALUES (8, 8, '2022-01-08 14:00:00', 'Booked','Bussiness');
 INSERT INTO booking (booked_ID, flight_ID, booked_time, booking_status, seat_type) VALUES (9, 9, '2022-01-09 15:00:00', 'Booked','Economy');
 INSERT INTO booking (booked_ID, flight_ID, booked_time, booking_status, seat_type) VALUES (10, 10, '2022-01-10 16:00:00', 'Booked','Economy');
 
