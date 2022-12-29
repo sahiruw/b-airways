@@ -5,7 +5,7 @@ class userModel {
   static async registerUser(username, password) {
 
     let status = await new Promise((resolve, reject) =>
-    db.query(`INSERT INTO member (username, password) VALUES ('${username}', '${password}')`, (err, result) => {
+    db.query(`SELECT insert_member('John', 'Doe', '${username}', '${password}', 1, '2000-01-01', 'USA', '123-456-7890');`, (err, result) => {
       if (err) reject(err);
       else resolve(true);
     })
@@ -27,7 +27,7 @@ class userModel {
 
   static async getUserbyUsername(usernamee) {
     let userData = await new Promise((resolve, reject) =>
-      db.query(`SELECT * FROM member WHERE username = '${usernamee}'`, (err, result) => {
+      db.query(`SELECT * FROM member WHERE email = '${usernamee}'`, (err, result) => {
         if (err) reject(err);
         else resolve(result);
       })
