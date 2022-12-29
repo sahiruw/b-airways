@@ -1,7 +1,11 @@
 
 const logout = (req, res) => {
     res.clearCookie('loguser')
-    res.send('')
+
+    return res.json({
+        status: 1,
+        message: "USer has been logged out! ",
+      });
 }
 
 

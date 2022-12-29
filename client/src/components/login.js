@@ -37,7 +37,6 @@ const Login = () => {
       headers: { "Content-Type": "application/json" },
     }).then((res) =>
       res.json().then((data) => {
-        console.log(data);
         if (data.status) {
           sendMessage(data.message, "success");
         } else {

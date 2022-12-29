@@ -2,7 +2,7 @@ import React from "react";
 import {useState, useEffect} from "react";
 import SeatSelection from "./seatSelection";
 
-function Booking() {
+function Booking(props) {
 
   const [loggedUser, setLoggeduser] = useState(null);
 

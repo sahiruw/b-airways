@@ -6,8 +6,8 @@ function HomeScreen() {
     <div>
       <div className="container-fluid" id="section1">
         <div className="row">
-          <Search />
-          <DisplayTable />
+          {/* <Search /> */}
+          {/* <DisplayTable /> */}
         </div>
       </div>
     </div>

@@ -8,7 +8,7 @@ const Register = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.status) {
-          document.location.replace('/')
+          //document.location.replace('/')
         }
       });
   });
