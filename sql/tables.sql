@@ -78,7 +78,7 @@ CREATE TABLE member (
   firstname varchar(10),
   lastname varchar(10),
   email varchar(30),
-  password varchar(50),
+  password varchar(150),
   mem_cat_id int,
   dob date,
   country varchar(15),
@@ -145,7 +145,8 @@ CREATE TABLE booking (
   booked_ID int,
   flight_ID int,
   booked_time datetime,
-  status enum("Booked","Completed","Cancelled", "TimedOut"),
+  booking_status enum("Booked","Completed","Cancelled", "TimedOut"),
+  seat_type enum("Platinum","Bussiness","Economy"),
   PRIMARY KEY (ID),
   FOREIGN KEY (flight_ID) REFERENCES flight(ID)
 );

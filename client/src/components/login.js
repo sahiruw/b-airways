@@ -55,8 +55,7 @@ const Login = () => {
             <div className="col-md-8 col-xl-6 text-center mx-auto">
               <h2>Log in</h2>
               <p className="w-lg-50">
-                Curae hendrerit donec commodo hendrerit egestas tempus, turpis
-                facilisis nostra nunc. Vestibulum dui eget ultrices.
+                Fill out the email and password fields to proceed the login process
               </p>
             </div>
           </div>
