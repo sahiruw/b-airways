@@ -6,9 +6,7 @@ const login = require("./login")
 const isLogged = require("./islogged")
 const logout = require("./logout")
 const showFlight = require("./departure_place")
-
-
-// const getUser = require("./getUser")
+const getAircraftDetailsByID = require("./getAircraftDetailsByID")
 
 router.post("/register", register)
 router.post("/login", login)
@@ -16,6 +14,6 @@ router.get("/islogged", isLogged)
 // router.get("/getUser", getUser)
 router.post("/logout", logout)
 router.get("/departure",showFlight)
-
+router.get("/getAircraftDetailsByID",getAircraftDetailsByID)
 
 module.exports = router

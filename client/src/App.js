@@ -14,7 +14,7 @@ import Register from "./components/register";
 import LogIn from "./components/login"
 import Booking from "./components/booking/booking"
 import Show from "./components/searchFlight"
-import Search from "./components/searchFlight";
+import Search from "./components/flightSearchBar";
 
 
 const router   = createBrowserRouter([

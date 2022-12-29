@@ -1,6 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-function seatSelection(props) {
+function SeatSelection(props) {
+  const [aircraftDetails, setairecraftDetails] = useState(null);
+
+  useEffect(() => {
+  fetch("/api/getAircraftDetailsByID?aircraftID=" + props.aircraftID)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.status) {
+          setairecraftDetails(data.data);
+        } else {
+          setairecraftDetails(null);
+        }
+      });
+  }, []);
 
   return (
     <div>
@@ -15,4 +28,4 @@ function seatSelection(props) {
   );
 }
 
-export default seatSelection;
+export default SeatSelection;

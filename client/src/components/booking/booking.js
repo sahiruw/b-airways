@@ -10,7 +10,6 @@ function Booking() {
     fetch("/api/isLogged")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.status) {
           setLoggeduser(data.user);
         } else {
@@ -27,7 +26,7 @@ function Booking() {
     fetch("/api/getuser?username=" + loggedUser)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data)
+        
       });
       
   };
