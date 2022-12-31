@@ -7,7 +7,7 @@ function NavBar() {
     fetch("/api/isLogged")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data.user);
+        // console.log(data.user);
         if (data.status) {
           setLoggeduser(data.user);
         } else {

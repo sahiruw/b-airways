@@ -52,7 +52,17 @@ class flightModel{
         return data;
     }
 
+    static async getReservedSeatsByID(flightID){
+        let data = await new Promise((resolve,reject) => {
+            const getReservedSeats = `SELECT seat_no FROM booking b join passenger p on b.id=p.booking_ID WHERE flight_ID = ${flightID};`
+            db.query(getReservedSeats,(err,result) => {
+                if (err) reject (err);
+                else resolve(result);
+            })
+        })
 
+        return data;
+    }
 
 
 

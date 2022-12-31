@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const Seat = ({ id, reserved, onClick }) => {
+const Seat = ({ id, reserved, onClick, isDiabled }) => {
   const [isChecked, setIsChecked] = useState(reserved);
 
   const handleClick = () => {
@@ -16,6 +16,7 @@ const Seat = ({ id, reserved, onClick }) => {
           id={id}
           checked={isChecked}
           onChange={handleClick}
+          disabled={isDiabled ? "disabled" : ""}
         />
         <label htmlFor={id}>{id}</label>
       </div>
@@ -26,40 +27,31 @@ const Seat = ({ id, reserved, onClick }) => {
 const Seats = ({ seats, onSeatClick }) => {
   return (
     <table className="seats">
-      {seats.map((row) => {
-        return (
-          <tr>
-            {row.map((seat) => (
-              <Seat
-                id={seat.id}
-                reserved={seat.reserved}
-                onClick={onSeatClick}
-              />
-            ))}
-          </tr>
-        );
-      })}
+      <tbody>
+        {seats.map((row) => {
+          return (
+            <tr>
+              {row.map((seat) => (
+                <Seat
+                  id={seat.id}
+                  reserved={seat.reserved}
+                  onClick={onSeatClick}
+                  isDiabled={seat.isDiabled}
+                />
+              ))}
+            </tr>
+          );
+        })}
+      </tbody>
     </table>
   );
 };
 
 function SeatSelection(props) {
-  const [aircraftDetails, setairecraftDetails] = useState();
-  let seatClass = props.seatClass || "Economy";
+  const [aircraftDetails, setairecraftDetails] = useState([]);
+  let seatClass = props.seatClass || "Platinum";
 
-  const [seats, setSeats] = useState([
-    [
-      { id: "A1", reserved: false },
-      { id: "A2", reserved: false },
-      { id: "A3", reserved: false },
-    ],
-    [
-      { id: "B1", reserved: false },
-      { id: "B2", reserved: false },
-      { id: "B3", reserved: false },
-    ],
-  ]);
-
+  const [seats, setSeats] = useState([]);
   const [bookedSeatIds, setBookedSeatIds] = useState([]);
 
   useEffect(() => {
@@ -68,7 +60,52 @@ function SeatSelection(props) {
       .then((data) => {
         setairecraftDetails(data.data);
       });
-  },[]);
+
+    fetch("/api/getReservedSeats?flightID=" + props.flightID)
+      .then((res) => res.json())
+      .then((data) => {
+        setBookedSeatIds(data.data);
+      });
+  }, []);
+
+  useEffect(() => {
+    let platinumSeats = aircraftDetails.platinum_seats;
+    let businessSeats = aircraftDetails.Bussiness_seats;
+    let economySeats = aircraftDetails.Economy_seats;
+
+    //the order for ids is: Platinum, Business, Economy
+    let idsStart = 0;
+    let seatCount = platinumSeats;
+    let seatsPerRow = aircraftDetails
+      ? aircraftDetails.platinum_seats_per_row
+      : 3;
+    if (seatClass == "Business") {
+      idsStart += platinumSeats;
+      seatCount = idsStart + businessSeats;
+      seatsPerRow = aircraftDetails
+        ? aircraftDetails.business_seats_per_row
+        : 3;
+    } else if (seatClass == "Economy") {
+      idsStart += platinumSeats + businessSeats;
+      seatCount = idsStart + economySeats;
+      seatsPerRow = aircraftDetails ? aircraftDetails.economy_seats_per_row : 3;
+    }
+
+    let seatsTemp = [];
+    for (let i = idsStart; i < seatCount; i++) {
+      seatsTemp.push({
+        id: i,
+        reserved: bookedSeatIds.includes(i) ? true : false,
+        isDiabled: bookedSeatIds.includes(i) ? true : false,
+      });
+    }
+    const groups = [];
+
+    for (let i = 0; i < seatsTemp.length; i += seatsPerRow) {
+      groups.push(seatsTemp.slice(i, i + seatsPerRow));
+    }
+    setSeats(groups);
+  }, [aircraftDetails, bookedSeatIds]);
 
   const handleSeatClick = (id, reserved) => {
     setSeats((prevSeats) =>
@@ -77,15 +114,6 @@ function SeatSelection(props) {
       )
     );
   };
-
-  let platinumSeats = aircraftDetails ? aircraftDetails.Platinum_seats : 0;
-  let businessSeats = aircraftDetails ? aircraftDetails.Business_seats : 0;
-  let economySeats = aircraftDetails ? aircraftDetails.Economy_seats : 0;
-
-  //the order for ids is: Platinum, Business, Economy
-  let idsStart = 0;
-  if (seatClass == "Business") {idsStart += platinumSeats}
-  else if (seatClass == "Economy") {idsStart += platinumSeats + businessSeats}
 
   return (
     <>
