@@ -12,6 +12,7 @@ const Search = async (req,res) => {
     console.log(FlightDetails);
 
     return res.json({status:1,data:FlightDetails});
+    
 
     
 
