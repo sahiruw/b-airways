@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const Seat = ({ id, reserved, onClick, isDiabled }) => {
+const Seat = ({ id, reserved, onClick, isDiabled,remainintCT }) => {
   const [isChecked, setIsChecked] = useState(reserved);
 
   const handleClick = () => {
@@ -16,7 +16,7 @@ const Seat = ({ id, reserved, onClick, isDiabled }) => {
           id={id}
           checked={isChecked}
           onChange={handleClick}
-          disabled={isDiabled ? "disabled" : ""}
+          disabled={(isDiabled || (!isChecked && (remainintCT<1))) ? "disabled" : ""}
         />
         <label htmlFor={id}>{id}</label>
       </div>
@@ -24,7 +24,7 @@ const Seat = ({ id, reserved, onClick, isDiabled }) => {
   );
 };
 
-const Seats = ({ seats, onSeatClick }) => {
+const Seats = ({ seats, onSeatClick, remainintCT }) => {
   return (
     <table className="seats">
       <tbody>
@@ -37,6 +37,7 @@ const Seats = ({ seats, onSeatClick }) => {
                   reserved={seat.reserved}
                   onClick={onSeatClick}
                   isDiabled={seat.isDiabled}
+                  remainintCT={remainintCT}
                 />
               ))}
             </tr>
@@ -53,25 +54,24 @@ function SeatSelection(props) {
 
   const [seats, setSeats] = useState([]);
   const [bookedSeatIds, setBookedSeatIds] = useState([]);
-
+  const [remainingSelections, setRemaininSelections] = useState(0);
   useEffect(() => {
     fetch("/api/getAircraftDetailsByID?aircraftID=" + props.flightID)
       .then((res) => res.json())
       .then((data) => {
         setairecraftDetails(data.data);
       });
-  }, []);
+  }, [props.flightID]);
 
   useEffect(() => {
     fetch("/api/getReservedSeats?flightID=" + props.flightID)
-    .then((res) => res.json())
-    .then((data) => {
-      setBookedSeatIds(data.data);
-    });
-  }, [aircraftDetails]);
+      .then((res) => res.json())
+      .then((data) => {
+        setBookedSeatIds(data.data);
+      });
+  }, [aircraftDetails, props.flightID]);
 
   useEffect(() => {
-    
     let platinumSeats = aircraftDetails.platinum_seats;
     let businessSeats = aircraftDetails.Bussiness_seats;
     let economySeats = aircraftDetails.Economy_seats;
@@ -108,24 +108,42 @@ function SeatSelection(props) {
       groups.push(seatsTemp.slice(i, i + seatsPerRow));
     }
     setSeats(groups);
-    console.log(groups[0]);
   }, [bookedSeatIds]);
+
+  useEffect(() => {
+    let count = [];
+    for (let row of seats) {
+      for (let seat of row) {
+        if (seat.reserved) {
+          count++;
+        }
+      }
+    }
+    count = bookedSeatIds.length + props.seatCount - count;
+    setRemaininSelections(count);
+  }, [seats, bookedSeatIds, props.seatCount]);
 
   const handleSeatClick = (id, reservedd) => {
     setSeats((prevSeats) =>
       prevSeats.map((row) =>
-        row.map((seat) => (seat.id === id ? { ...seat, reserved :reservedd} : seat))
+        row.map((seat) =>
+          seat.id === id ? { ...seat, reserved: reservedd } : seat
+        )
       )
     );
   };
 
   return (
     <>
-      <h1>Seat Selection</h1>
+      <h1>Seat Selection {remainingSelections}</h1>
       {seats.map((row) =>
         row.map((seat) => " | id: " + seat.id + " | reserved: " + seat.reserved)
       )}
-      <Seats seats={seats} onSeatClick={handleSeatClick} />
+      <Seats
+        seats={seats}
+        onSeatClick={handleSeatClick}
+        remainintCT={remainingSelections}
+      />
     </>
   );
 }
