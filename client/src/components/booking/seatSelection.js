@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const Seat = ({ id, reserved, onClick, isDiabled,remainintCT }) => {
+const Seat = ({ id, reserved, onClick, isDiabled, remainintCT, seatClass }) => {
   const [isChecked, setIsChecked] = useState(reserved);
 
   const handleClick = () => {
@@ -12,21 +12,36 @@ const Seat = ({ id, reserved, onClick, isDiabled,remainintCT }) => {
     <td>
       <div className="seat">
         <input
+          className="btn-check"
           type="checkbox"
           id={id}
           checked={isChecked}
           onChange={handleClick}
-          disabled={(isDiabled || (!isChecked && (remainintCT<1))) ? "disabled" : ""}
+          disabled={
+            isDiabled || (!isChecked && remainintCT < 1) ? "disabled" : ""
+          }
         />
-        <label htmlFor={id}>{id}</label>
+        <label
+          className={
+            "btn btn-outline-" + (seatClass == "Platinum"
+              ? "warning"
+              : seatClass == "Economy"
+              ? "primary"
+              : "success")
+          }
+          htmlFor={id}
+        >
+          {id}
+        </label>
+        <br></br>
       </div>
     </td>
   );
 };
 
-const Seats = ({ seats, onSeatClick, remainintCT }) => {
+const Seats = ({ seats, onSeatClick, remainintCT, seatClass }) => {
   return (
-    <table className="seats">
+    <table className="table table-borderless text-center mx-auto w-auto">
       <tbody>
         {seats.map((row) => {
           return (
@@ -38,6 +53,7 @@ const Seats = ({ seats, onSeatClick, remainintCT }) => {
                   onClick={onSeatClick}
                   isDiabled={seat.isDiabled}
                   remainintCT={remainintCT}
+                  seatClass={seatClass}
                 />
               ))}
             </tr>
@@ -50,11 +66,13 @@ const Seats = ({ seats, onSeatClick, remainintCT }) => {
 
 function SeatSelection(props) {
   const [aircraftDetails, setairecraftDetails] = useState([]);
-  let seatClass = props.seatClass || "Platinum";
+  let seatClass = props.seatClass;
 
   const [seats, setSeats] = useState([]);
   const [bookedSeatIds, setBookedSeatIds] = useState([]);
   const [remainingSelections, setRemaininSelections] = useState(0);
+  const [totalBookedSeatsOfClass, setTotalBookedSeatsOfClass] = useState(0);
+
   useEffect(() => {
     fetch("/api/getAircraftDetailsByID?aircraftID=" + props.flightID)
       .then((res) => res.json())
@@ -78,48 +96,55 @@ function SeatSelection(props) {
 
     //the order for ids is: Platinum, Business, Economy
     let idsStart = 0;
-    let totalSeatsofClass = platinumSeats;
+    let idsEnd = platinumSeats;
     let seatsPerRow = aircraftDetails
       ? aircraftDetails.platinum_seats_per_row
       : 3;
-    if (seatClass == "Business") {
+    if (seatClass === "Business") {
       idsStart += platinumSeats;
-      totalSeatsofClass = idsStart + businessSeats;
+      idsEnd = idsStart + businessSeats;
       seatsPerRow = aircraftDetails
         ? aircraftDetails.business_seats_per_row
         : 3;
-    } else if (seatClass == "Economy") {
+    } else if (seatClass === "Economy") {
       idsStart += platinumSeats + businessSeats;
-      totalSeatsofClass = idsStart + economySeats;
+      idsEnd = idsStart + economySeats;
       seatsPerRow = aircraftDetails ? aircraftDetails.economy_seats_per_row : 3;
     }
 
     let seatsTemp = [];
-    for (let i = idsStart; i < totalSeatsofClass; i++) {
+    let reservedCt = 0;
+    for (let i = idsStart; i < idsEnd; i++) {
+      let alreadyReserved = bookedSeatIds.includes(i);
+      if (alreadyReserved) reservedCt++;
       seatsTemp.push({
         id: i,
-        reserved: bookedSeatIds.includes(i) ? true : false,
-        isDiabled: bookedSeatIds.includes(i) ? true : false,
+        reserved: alreadyReserved ? true : false,
+        isDiabled: alreadyReserved ? true : false,
       });
     }
+    setTotalBookedSeatsOfClass(reservedCt);
     const groups = [];
 
     for (let i = 0; i < seatsTemp.length; i += seatsPerRow) {
       groups.push(seatsTemp.slice(i, i + seatsPerRow));
     }
     setSeats(groups);
-  }, [bookedSeatIds]);
+  }, [bookedSeatIds, seatClass]);
 
   useEffect(() => {
     let count = [];
+    let usseats = [];
     for (let row of seats) {
       for (let seat of row) {
         if (seat.reserved) {
+          if(!seat.isDiabled){usseats.push(seat.id)}
           count++;
         }
       }
     }
-    count = bookedSeatIds.length + props.seatCount - count;
+    props.setUserSelectedSeats(usseats);
+    count = totalBookedSeatsOfClass + props.seatCount - count;
     setRemaininSelections(count);
   }, [seats, bookedSeatIds, props.seatCount]);
 
@@ -134,17 +159,19 @@ function SeatSelection(props) {
   };
 
   return (
-    <>
-      <h1>Seat Selection {remainingSelections}</h1>
-      {seats.map((row) =>
+    <div className="shadow-lg  mb-5 bg-white rounded text-center">
+      <h4>Seat Selection</h4>
+      {remainingSelections} left to select
+      {/* {seats.map((row) =>
         row.map((seat) => " | id: " + seat.id + " | reserved: " + seat.reserved)
-      )}
+      )} */}
       <Seats
         seats={seats}
         onSeatClick={handleSeatClick}
         remainintCT={remainingSelections}
+        seatClass={seatClass}
       />
-    </>
+    </div>
   );
 }
 

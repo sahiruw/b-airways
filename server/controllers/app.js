@@ -8,6 +8,7 @@ const logout = require("./logout");
 const showFlight = require("./departure_place");
 const getAircraftDetailsByID = require("./getAircraftDetailsByID");
 const getReservedSeats = require("./getReservedSeats");
+const getuserbyusername = require("./getuserbyusername");
 
 router.post("/register", register);
 router.post("/login", login);
@@ -16,5 +17,5 @@ router.post("/logout", logout);
 router.get("/departure", showFlight);
 router.get("/getAircraftDetailsByID", getAircraftDetailsByID);
 router.get("/getReservedSeats", getReservedSeats);
-
+router.get("/getuserbyusername", getuserbyusername)
 module.exports = router;
