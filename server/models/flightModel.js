@@ -15,14 +15,35 @@ class flightModel{
         return flightdata;
     }
 
-    static async searchFlightbyLocation(from,to){
+    static async searchFlightbyLocation(from,to,flight_class,passengers,departure_date){
+        console.log(flight_class);
         let data = await new Promise((resolve,reject) => {
-            const getFlighbyLoc = `SELECT * FROM flight WHERE from = '${from}' AND to = '${to}';`
+
+            var getFlighbyLoc = "";
+            
+            if (flight_class == "Platinum") {
+                getFlighbyLoc = `SELECT DISTINCT ID,start_destination,end_destination,departure_time,arrival_time
+                FROM flight_details4
+                WHERE start_destination = '${from}' AND end_destination = '${to}' AND departure_time >= '${departure_date}' AND num_remaining_platinum_seats2(ID) >= ${passengers};`
+            }
+            else if(flight_class == "Bussiness"){
+                getFlighbyLoc = `SELECT DISTINCT ID,start_destination,end_destination,departure_time,arrival_time
+                FROM flight_details4
+                WHERE start_destination = '${from}' AND end_destination = '${to}' AND departure_time >= '${departure_date}' AND num_remaining_bussiness_seats2(ID) >= ${passengers};`
+            }
+            else{
+                getFlighbyLoc = `SELECT DISTINCT ID,start_destination,end_destination,departure_time,arrival_time
+                FROM flight_details4
+                WHERE start_destination = '${from}' AND end_destination = '${to}' AND departure_time >= '${departure_date}' AND num_remaining_economy_seats2(ID) >= ${passengers};`
+            }
+            
+            console.log(getFlighbyLoc);
+            
             db.query(getFlighbyLoc,(err,result) => {
                 if (err) reject (err);
                 else resolve(result);
             })
-        })
+        });
 
         return data;
     }
@@ -49,6 +70,17 @@ class flightModel{
             })
         })
 
+        return data;
+    }
+
+    static async getRecentFlights(){
+        let data = await new Promise((resolve,reject) => {
+            const getFlighbyLoc = `SELECT * FROM flight ORDER BY ID DESC LIMIT 5;`
+            db.query(getFlighbyLoc,(err,result) => {
+                if (err) reject (err);
+                else resolve(result);
+            })
+        })
         return data;
     }
 
