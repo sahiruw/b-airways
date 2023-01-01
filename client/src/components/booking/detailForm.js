@@ -21,6 +21,7 @@ const DetailForm = (props) => {
       if (data.status) {
         setIsRegisteredUser(true);
         setForm({
+            ...form,
           firstName: data.data.firstname,
           lastName: data.data.lastname,
         })
@@ -35,7 +36,7 @@ const DetailForm = (props) => {
   }
 
   return (
-    <div className={"shadow-lg p-3 mb-5 bg-" + (isRegisteredUser?"success":"white") + " rounded"}>
+    <div id={"user" + props.id} className={"shadow-lg p-3 mb-5 bg-" + (isRegisteredUser?"success":"white") + " rounded"}>
       <form style={{ padding: 20, marginLeft: 400, margin: 2, width: 900 }}>
         <h5>Fill with the details of user {isRegisteredUser? "Registered User":"Not a registered user"}</h5>
         <br/>

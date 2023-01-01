@@ -36,7 +36,7 @@ function Booking(props) {
   return (
     <div className="shadow-lg p-3 mb-5 bg-white rounded" style={style_card}>
       {Array.from(Array(sc).keys()).map((i) => (
-        <DetailForm id={i} />
+        <DetailForm id={i} loggedUserEmail={loggedUser} />
       ))}
       {userSelectedSeats.map((seat) => (" " + seat + " "))}
       <SeatSelection
