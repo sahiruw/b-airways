@@ -10,7 +10,7 @@ const Search = async (req,res) => {
     const FlightDetails = flight.searchFlightbyLocation(from,to,seat_type,passengers,departureDate);
 
     console.log(FlightDetails);
-
+    
     return res.json({status:1,data:FlightDetails});
     
 
