@@ -13,6 +13,8 @@ const Search = async (req,res) => {
 
     return res.json({status:1,data:FlightDetails});
 
+    
+
 }
 
 module.exports = Search;
