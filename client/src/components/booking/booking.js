@@ -42,7 +42,7 @@ function Booking(props) {
         Fuck you
       </button>
       hi
-      <SeatSelection aircraftID = {1} flightID = {2} />
+      <SeatSelection flightID = {2} seatClass= "Platinum" seatCount={2}/>
     </div>
   );
 }

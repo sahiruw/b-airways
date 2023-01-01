@@ -55,44 +55,47 @@ function SeatSelection(props) {
   const [bookedSeatIds, setBookedSeatIds] = useState([]);
 
   useEffect(() => {
-    fetch("/api/getAircraftDetailsByID?aircraftID=" + props.aircraftID)
+    fetch("/api/getAircraftDetailsByID?aircraftID=" + props.flightID)
       .then((res) => res.json())
       .then((data) => {
         setairecraftDetails(data.data);
       });
-
-    fetch("/api/getReservedSeats?flightID=" + props.flightID)
-      .then((res) => res.json())
-      .then((data) => {
-        setBookedSeatIds(data.data);
-      });
   }, []);
 
   useEffect(() => {
+    fetch("/api/getReservedSeats?flightID=" + props.flightID)
+    .then((res) => res.json())
+    .then((data) => {
+      setBookedSeatIds(data.data);
+    });
+  }, [aircraftDetails]);
+
+  useEffect(() => {
+    
     let platinumSeats = aircraftDetails.platinum_seats;
     let businessSeats = aircraftDetails.Bussiness_seats;
     let economySeats = aircraftDetails.Economy_seats;
 
     //the order for ids is: Platinum, Business, Economy
     let idsStart = 0;
-    let seatCount = platinumSeats;
+    let totalSeatsofClass = platinumSeats;
     let seatsPerRow = aircraftDetails
       ? aircraftDetails.platinum_seats_per_row
       : 3;
     if (seatClass == "Business") {
       idsStart += platinumSeats;
-      seatCount = idsStart + businessSeats;
+      totalSeatsofClass = idsStart + businessSeats;
       seatsPerRow = aircraftDetails
         ? aircraftDetails.business_seats_per_row
         : 3;
     } else if (seatClass == "Economy") {
       idsStart += platinumSeats + businessSeats;
-      seatCount = idsStart + economySeats;
+      totalSeatsofClass = idsStart + economySeats;
       seatsPerRow = aircraftDetails ? aircraftDetails.economy_seats_per_row : 3;
     }
 
     let seatsTemp = [];
-    for (let i = idsStart; i < seatCount; i++) {
+    for (let i = idsStart; i < totalSeatsofClass; i++) {
       seatsTemp.push({
         id: i,
         reserved: bookedSeatIds.includes(i) ? true : false,
@@ -105,12 +108,13 @@ function SeatSelection(props) {
       groups.push(seatsTemp.slice(i, i + seatsPerRow));
     }
     setSeats(groups);
-  }, [aircraftDetails, bookedSeatIds]);
+    console.log(groups[0]);
+  }, [bookedSeatIds]);
 
-  const handleSeatClick = (id, reserved) => {
+  const handleSeatClick = (id, reservedd) => {
     setSeats((prevSeats) =>
       prevSeats.map((row) =>
-        row.map((seat) => (seat.id === id ? { ...seat, reserved } : seat))
+        row.map((seat) => (seat.id === id ? { ...seat, reserved :reservedd} : seat))
       )
     );
   };

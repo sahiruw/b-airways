@@ -40,9 +40,9 @@ class flightModel{
     }
 
 
-    static async getAircraftDetailsByID(id){
+    static async getAircraftDetailsByFlightID(id){
         let data = await new Promise((resolve,reject) => {
-            const getFlighbyLoc = `SELECT * FROM aircraft a join aircraft_type att on a.type_ID = att.ID  where a.id=${id};`
+            const getFlighbyLoc = `SELECT * FROM aircraft a join aircraft_type att on a.type_ID = att.ID join flight f on f.aircraft_ID=a.id where f.id=${id};`
             db.query(getFlighbyLoc,(err,result) => {
                 if (err) reject (err);
                 else resolve(result);
