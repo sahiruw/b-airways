@@ -6,6 +6,7 @@ import DetailForm from "./detailForm";
 function Booking(props) {
   const [loggedUser, setLoggeduser] = useState(null);
   const [userSelectedSeats, setUserSelectedSeats] = useState([]);
+  const [userData, setUserData] = useState({});
 
   useEffect(() => {
     fetch("/api/isLogged")
@@ -26,22 +27,24 @@ function Booking(props) {
       .then((res) => res.json())
       .then((data) => {});
   };
+  
   const style_card = {
     marginTop: 30,
     marginLeft: 100,
     marginRight: 100,
     paddingTop: 5,
   };
-  let sc = 3;
+  let sc = 8;
+  console.log(userData);
   return (
     <div className="shadow-lg p-3 mb-5 bg-white rounded" style={style_card}>
       {Array.from(Array(sc).keys()).map((i) => (
-        <DetailForm id={i} loggedUserEmail={loggedUser} />
+        <DetailForm id={i} loggedUserEmail={loggedUser} udata={userData} setudata={setUserData}/>
       ))}
-      {userSelectedSeats.map((seat) => (" " + seat + " "))}
+      {/* {userSelectedSeats.map((seat) => (" " + seat + " "))} */}
       <SeatSelection
         flightID={2}
-        seatClass="Platinum"
+        seatClass="Economy"
         seatCount={sc}
         setUserSelectedSeats={setUserSelectedSeats}
       />

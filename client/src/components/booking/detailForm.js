@@ -10,6 +10,10 @@ const DetailForm = (props) => {
     email: "",
   });
 
+  useEffect(() => {
+    props.setudata({ ...props.udata, [props.id]: form });
+  });
+
 
   const onemailChange = (em) => {
     setForm({ ...form,email: em,});
