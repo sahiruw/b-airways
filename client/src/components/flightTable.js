@@ -2,10 +2,11 @@ import React from "react";
 import { useState,useEffect } from "react";
 
 
-const DisplayTable = () => {
+const DisplayTable = (props) => {
 
 
-    const [flightList , setFlightList] = useState([]);
+    
+    
 
     return(
         <div className="table-responsive">
@@ -21,14 +22,14 @@ const DisplayTable = () => {
                         </tr>
                     </thead>
                     <tbody className="table-group-divider">
-                        {flightList.map((val,index) => {
+                        {props.tableData.map((val,index) => {
                             return(
                                 <tr key={val.ID}>
                             
                                     <th>{val.ID}</th>
-                                    <td>{val.fromtime}</td>
-                                    <td>{val.totime}</td>
-                                    <td>{val.dep_time}</td>
+                                    <td>{val.start_destination}</td>
+                                    <td>{val.end_destination}</td>
+                                    <td>{val.departure_time}</td>
                                     <td>{val.arrival_time}</td>
                                     <td><button className='btn btn-outline-secondary'>Book</button></td>
                                 </tr>

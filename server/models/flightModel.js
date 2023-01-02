@@ -86,6 +86,17 @@ class flightModel{
         return data;
     }
 
+    static async getRecentFlights(){
+        let data = await new Promise((resolve,reject) => {
+            const getRecentFlights = `select start_destination,end_destination,departure_time,arrival_time,aircraft_name from flight_details4 limit 5;`
+            db.query(getRecentFlights,(err,result) => {
+                if (err) reject (err);
+                else resolve(result);
+            })
+        })
+        return data;
+    }
+
 
 
 

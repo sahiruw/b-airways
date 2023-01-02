@@ -11,7 +11,8 @@ import LogIn from "./components/login"
 import Booking from "./components/booking/booking"
 import Show from "./components/searchFlight"
 import SearchBar from "./components/flightSearchBar";
-
+import TablePage from "./components/flightTable";
+import Table from "./screens/Table";
 
 const router   = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const router   = createBrowserRouter([
   {
     path : "search",
     element : <SearchBar />
+  },
+  {
+    path: "table",
+    element: <Table />
   }
 
 ]);
