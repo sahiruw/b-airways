@@ -4,7 +4,7 @@ const flight = require("../models/flightModel");
 
 
 const getAircraftDetails = async(req,res) => {
-    const flightData = await flight.getAircraftDetailsByID(req.query.aircraftID);
+    const flightData = await flight.getAircraftDetailsByFlightID(req.query.aircraftID);
     res.json({status:1, data:flightData[0]});
 
 }

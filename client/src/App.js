@@ -2,10 +2,6 @@ import NavBar from "./components/NavBar";
 import {
   createBrowserRouter,
   RouterProvider,
-  Link,
-  Route,
-  BrowserRouter,
-  Routes,
 } from "react-router-dom";
 
 
@@ -14,8 +10,9 @@ import Register from "./components/register";
 import LogIn from "./components/login"
 import Booking from "./components/booking/booking"
 import Show from "./components/searchFlight"
-import Search from "./components/flightSearchBar";
-
+import SearchBar from "./components/flightSearchBar";
+import TablePage from "./components/flightTable";
+import Table from "./screens/Table";
 
 const router   = createBrowserRouter([
   {
@@ -32,7 +29,7 @@ const router   = createBrowserRouter([
     element: <LogIn />,
   },
   {
-    path: "booking/:id",
+    path: "booking/",
     element: <Booking />,
   },
   {
@@ -41,7 +38,11 @@ const router   = createBrowserRouter([
   },
   {
     path : "search",
-    element : <Search />
+    element : <SearchBar />
+  },
+  {
+    path: "table",
+    element: <Table />
   }
 
 ]);
@@ -52,18 +53,18 @@ function App() {
   return (
     <div className="App">
       <NavBar />
-      {/* <RouterProvider router={router} /> */}
-      <BrowserRouter>
+      <RouterProvider router={router} />
+      {/* <BrowserRouter>
         <div>
           <Routes>
             <Route exact path="/" element={HomeScreen()} />
             <Route path="/login" element={LogIn()} />
             <Route path="/register" element={Register()} />
-            <Route path="/booking/" element={Booking()} />
+            <Route path="/booking/" element={Booking(5)} />
             <Route path="/search" element={Search()} />
           </Routes>
         </div>
-      </BrowserRouter>
+      </BrowserRouter> */}
     </div>
   );
 }
