@@ -10,8 +10,6 @@ CREATE TABLE Aircraft_type (
   PRIMARY KEY (ID)
 );
 
-
-
 CREATE TABLE Aircraft (
   ID int AUTO_INCREMENT,
   type_ID int,
