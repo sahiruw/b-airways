@@ -3,6 +3,7 @@ const db = require("../routes/db-config");
 const user = require("../models/userModel");
 
 const register = async (req, res) => {
+  console.log(req.body);
   const { username, pass: rawPass } = req.body;
 
   const userData = await user.getUserbyUsername(username);
