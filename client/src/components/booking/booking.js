@@ -33,9 +33,9 @@ function Booking(props) {
       dataforbackend.push([userSelectedSeats[id], userData[id]]);
     }
 
-    fetch("/api/register", {
+    fetch("/api/book", {
       method: "POST",
-      body: JSON.stringify({ dataforbackend}),
+      body: JSON.stringify({flightID, dataforbackend}),
       headers: { "Content-Type": "application/json" },
     }).then((res) =>
       res.json().then((data) => {
@@ -51,7 +51,7 @@ function Booking(props) {
     paddingTop: 5,
   };
   let sc = 2;
-
+  let flightID = 2;
   return (
     <div className="shadow-lg p-3 mb-5 bg-white rounded" style={style_card}>
       {loggedUser ? (
@@ -83,7 +83,7 @@ function Booking(props) {
       ))}
 
       <SeatSelection
-        flightID={2}
+        flightID={flightID}
         seatClass="Economy"
         seatCount={sc}
         setUserSelectedSeats={setUserSelectedSeats}

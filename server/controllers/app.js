@@ -11,11 +11,14 @@ const getReservedSeats = require("./getReservedSeats");
 const getuserbyusername = require("./getuserbyusername");
 const Flights = require("./search");
 const RecentFlights = require("./recent_flights");
+const Booking = require("./addBooking");
 
 router.post("/register", register);
 router.post("/login", login);
-router.get("/isLogged", isLogged);
 router.post("/logout", logout);
+router.post("/book", Booking);
+router.get("/isLogged", isLogged);
+
 router.get("/departure", showFlight);
 router.get("/getAircraftDetailsByID", getAircraftDetailsByID);
 router.get("/getReservedSeats", getReservedSeats);

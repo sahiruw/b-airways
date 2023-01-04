@@ -1,65 +1,13 @@
 import React, { Component } from "react";
 import { useState, useEffect, useMemo } from "react";
-import countryList from "react-select-country-list";
 import Form from "react-bootstrap/Form";
 import MuiPhoneNumber from "material-ui-phone-number";
+import CountrySelection from "./countrySelect";
 
 const DetailForm = (props) => {
   const [isRegisteredUser, setIsRegisteredUser] = useState(false);
-  const excludeCountries = [
-    "Western Sahara",
-    "United States Minor Outlying Islands",
-    "Svalbard and Jan Mayen",
-    "South Georgia and the South Sandwich Islands",
-    "Sint Maarten (Dutch part)",
-    "Pitcairn",
-    "Montserrat",
-    "Montenegro",
-    "Micronesia, Federated States of",
-    "Moldova, Republic of",
-    "Mayotte",
-    "Mauritius",
-    "Mauritania",
-    "Martinique",
-    "Isle of Man",
-    "Åland Islands",
-    "Bonaire, Sint Eustatius and Saba",
-    "Bosnia and Herzegovina",
-    "British Indian Ocean Territory",
-    "Antarctica",
-    "Bouvet Island",
-    "Christmas Island",
-    "Cocos (Keeling) Islands",
-    "French Southern Territories",
-    "French Polynesia",
-    "Guernsey",
-    "Heard Island and McDonald Islands",
-    "Jersey",
-  ];
-
-  const countries = useMemo(
-    () =>
-      countryList()
-        .getData()
-        .map((r) => r.label)
-        .filter((x) => !excludeCountries.includes(x)),
-    []
-  );
-
-  const countryCodes = useMemo(
-    () =>
-      countryList()
-        .getData()
-        .map((r) => [r.label, r.value]),
-    []
-  );
 
   const fillFirstWithUser = props.isloggeduserpassenger && props.id == 0;
-
-  const handleChange = (event) => {
-    let code = countryCodes.filter((r) => r[0] == event.target.value)[0][1];
-    setForm({ ...form, country: event.target.value, countryCode: code });
-  };
 
   const [form, setForm] = useState({
     firstName: "",
@@ -67,13 +15,16 @@ const DetailForm = (props) => {
     email: "",
     countryCode: "LK",
     country: "Sri Lanka",
+    isRegistered: props.isRegisteredUser
   });
+
 
   useEffect(() => {
     props.setudata({ ...props.udata, [props.id]: form });
   }, [form]);
 
   useEffect(() => {
+
     if (fillFirstWithUser) {
       setForm({
         ...form,
@@ -103,10 +54,11 @@ const DetailForm = (props) => {
             firstName: data.data.firstname,
             lastName: data.data.lastname,
             email: em,
+            isRegistered: true,
           });
         } else {
           setIsRegisteredUser(false);
-          setForm({ ...form, firstName: "", lastName: "", email: em });
+          setForm({ ...form, firstName: "", lastName: "", email: em , isRegistered: false});
         }
       });
   };
@@ -188,7 +140,7 @@ const DetailForm = (props) => {
                 className="form-control"
                 placeholder="Passport Number"
                 disabled={isRegisteredUser ? "disabled" : ""}
-                value={form.firstName}
+                value={form.passport}
                 onChange={(e) => {
                   setForm({
                     ...form,
@@ -213,26 +165,17 @@ const DetailForm = (props) => {
           <div class="row">
             <div className="mb-3 col-md-6">
               <label htmlFor="selected-country">Country</label>
-              <select
-                className="form-select"
-                id="selected-country"
-                value={form.country}
-                onChange={handleChange}
-              >
-                {countries.map((country) => (
-                  <option key={country} value={country}>
-                    {country}
-                  </option>
-                ))}
-              </select>
+              <CountrySelection form={form} setForm={setForm}/>
             </div>
             <div className="mb-3 col-md-6">
               <label>Phone Number</label>
-              {form.countryCode}
               <div>
                 <MuiPhoneNumber
                   defaultCountry={form.countryCode.toLowerCase()}
                   disableAreaCodes={true}
+                  onChange={(value) => {
+                    setForm({ ...form, phone: value });
+                  }}
                 />
               </div>
             </div>
