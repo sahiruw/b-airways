@@ -10,12 +10,9 @@ const Search = async (req,res) => {
     const FlightDetails = await flight.searchFlightbyLocation(from,to,seat_type,passengers,departureDate);
 
     console.log(FlightDetails);
-    
+        
     return res.json({status:1,flightdata:FlightDetails});
     
-
-    
-
 }
 
 module.exports = Search;
