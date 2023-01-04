@@ -9,6 +9,7 @@ function SearchBar(){
 
         const[Airports,setAirports] = useState([]);
         const[FlightList,setFlightList] = useState([]);
+        
         const[from,setFrom] = useState("");
         const[to,setTo] = useState("");
         const[departureDate,setDepartureDate] = useState("");
@@ -65,7 +66,7 @@ function SearchBar(){
     
         const style_search_bar = {
             
-            width : 500,
+            width : 1350,
             marginLeft : 50,
             marginTop : 10
     
@@ -81,11 +82,11 @@ function SearchBar(){
     
             <div>
     
-                <div className="shadow-lg p-3 mb-5 bg-white rounded" style={style_search_bar}>
-                <select onChange={(e) => {
+                <div className="row shadow-lg p-3 mb-5 bg-white rounded" style={style_search_bar}>
+                <select className = "col-2" onChange={(e) => {
                     setFrom(e.target.value);
                 }}>
-                    <option selected>To--</option>
+                    <option selected>From--</option>
                     {Airports.map((val) => {
                         return(
                             
@@ -94,10 +95,10 @@ function SearchBar(){
                     })}
                 </select>
     
-                <select onChange={(e) => {
+                <select className = "col-2"  onChange={(e) => {
                     setTo(e.target.value);
                 }}>
-                    <option selected>From--</option>
+                    <option selected>To--</option>
                     {Airports.map((val) => {
                         return(
                             <option value={val.code}>{val.code}</option>
@@ -105,10 +106,9 @@ function SearchBar(){
                     })}
                 </select>
                 
-                <br></br>
-                <br></br>
+                
     
-                <select className = "from-select" aria-label = "Defaul select example" style={style_class_search} onChange = {(e) => {
+                <select className = "from-select col-2" aria-label = "Defaul select example" style={style_class_search} onChange = {(e) => {
                     setSeat_type(e.target.value);
                 }}>
                     <option selected>Class</option>
@@ -116,14 +116,14 @@ function SearchBar(){
                     <option value={"Economy"}>Economy</option>
                     <option value={"Platinum"}>Platinum</option>
                 </select>
-                <input type = "text" placeholder="Passengers" onChange={(e) => {
+                <input className = "col-2"  type = "number" placeholder="Passengers" onChange={(e) => {
                     setPassengers(e.target.value);
                 }}></input>
-                <br></br>
-                <input type = "date" onChange={(e) => {
+                
+                <input className = "col-2"  type = "date" onChange={(e) => {
                     setDepartureDate(e.target.value);
                 }}></input>
-                <button className="btn btn-outline-secondary mx-4" style={{width : 200}} onClick = {(e) => ShowBySearch(e)}>Search</button>
+                <button className="btn btn-outline-secondary mx-4 col-2" style={{width : 200}} onClick = {(e) => ShowBySearch(e)}>Search</button>
                 </div>
             </div>
     

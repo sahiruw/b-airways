@@ -24,11 +24,16 @@ function HomeScreen() {
   return (
     <div>
       <div className="container-fluid" id="section1">
-        <div className="row">
-          <SearchBar />
-          {recentFlights.map((flights) => (
-            <FlightCard from = {flights.start_destination} to = {flights.end_destination} dept = {flights.departure_time} arr = {flights.arrival_time} aircraft = {flights.aircraft_name} />
-          ))}
+        <SearchBar />
+        <div className="row" style={{padding : 80}}>
+          
+          <div className="row">
+            {recentFlights.map((flights) => (
+              <FlightCard from = {flights.start_destination} to = {flights.end_destination} dept = {flights.departure_time} arr = {flights.arrival_time} aircraft = {flights.aircraft_name} />
+            ))}
+          </div>
+              
+          
           
         </div>
       </div>

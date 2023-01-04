@@ -24,17 +24,17 @@ class flightModel{
             if (flight_class == "Platinum") {
                 getFlighbyLoc = `SELECT DISTINCT ID,start_destination,end_destination,departure_time,arrival_time
                 FROM flight_details4
-                WHERE start_destination = '${from}' AND end_destination = '${to}' AND departure_time >= '${departure_date}' AND num_remaining_platinum_seats2(ID) >= ${passengers};`
+                WHERE start_destination = '${from}' AND end_destination = '${to}' AND departure_time >= '${departure_date}' AND num_remaining_platinum_seats2(ID) >= ${passengers} AND flight_status = "Scheduled";`
             }
             else if(flight_class == "Bussiness"){
                 getFlighbyLoc = `SELECT DISTINCT ID,start_destination,end_destination,departure_time,arrival_time
                 FROM flight_details4
-                WHERE start_destination = '${from}' AND end_destination = '${to}' AND departure_time >= '${departure_date}' AND num_remaining_bussiness_seats2(ID) >= ${passengers};`
+                WHERE start_destination = '${from}' AND end_destination = '${to}' AND departure_time >= '${departure_date}' AND num_remaining_bussiness_seats2(ID) >= ${passengers} AND flight_status = "Scheduled";`
             }
             else{
                 getFlighbyLoc = `SELECT DISTINCT ID,start_destination,end_destination,departure_time,arrival_time
                 FROM flight_details4
-                WHERE start_destination = '${from}' AND end_destination = '${to}' AND departure_time >= '${departure_date}' AND num_remaining_economy_seats2(ID) >= ${passengers};`
+                WHERE start_destination = '${from}' AND end_destination = '${to}' AND departure_time >= '${departure_date}' AND num_remaining_economy_seats2(ID) >= ${passengers} AND flight_status = "Scheduled";`
             }
             
             console.log(getFlighbyLoc);
@@ -88,7 +88,7 @@ class flightModel{
 
     static async getRecentFlights(){
         let data = await new Promise((resolve,reject) => {
-            const getRecentFlights = `select start_destination,end_destination,departure_time,arrival_time,aircraft_name from flight_details4 limit 5;`
+            const getRecentFlights = `select fa.ID,start_destination,end_destination,departure_time,arrival_time,aircraft_name from flights_and_aircrafts fa inner join paths p on p.ID = fa.path_ID where status = "Scheduled" order by departure_time asc limit 6;`
             db.query(getRecentFlights,(err,result) => {
                 if (err) reject (err);
                 else resolve(result);
