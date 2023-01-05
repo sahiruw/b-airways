@@ -1,5 +1,7 @@
+
+-- function to insert members
 DELIMITER $$
-CREATE FUNCTION insert_member(p_firstname VARCHAR(10), p_lastname VARCHAR(10), p_email VARCHAR(30), p_password VARCHAR(150), p_mem_cat_id INT, p_dob DATE, p_country VARCHAR(15), p_tele_no VARCHAR(12))
+CREATE FUNCTION insert_member(p_firstname VARCHAR(10), p_lastname VARCHAR(10), p_email VARCHAR(30), p_password VARCHAR(50), p_mem_cat_id INT, p_dob DATE, p_country VARCHAR(15), p_tele_no VARCHAR(12))
 RETURNS INT
 DETERMINISTIC
 BEGIN
@@ -9,3 +11,96 @@ BEGIN
   RETURN LAST_INSERT_ID();
 END$$
 DELIMITER ;
+
+
+-- function to get difference between booked and total platinum seats
+DELIMITER $$
+CREATE FUNCTION num_remaining_platinum_seats2(flight_ID int)
+RETURNS INT
+DETERMINISTIC
+BEGIN
+ 
+ DECLARE total_platinum_seats INT;
+ DECLARE booked_seats INT;
+ 
+ SELECT platinum_seats into total_platinum_seats
+ FROM flights_and_aircrafts WHERE ID = flight_ID;
+ 
+ SELECT COUNT(seat_type) into booked_seats
+ FROM flight_details4
+ WHERE ID = flight_ID AND seat_type = 'Platinum';
+	
+
+ RETURN total_platinum_seats - booked_seats;
+  
+END$$
+DELIMITER 
+
+-- function to get difference between booked and total bussiness seats
+DELIMITER $$
+CREATE FUNCTION num_remaining_bussiness_seats2(flight_ID int)
+RETURNS INT
+DETERMINISTIC
+BEGIN
+ 
+ DECLARE total_bussiness_seats INT;
+ DECLARE booked_seats INT;
+ 
+ SELECT Bussiness_seats into total_bussiness_seats
+ FROM flights_and_aircrafts WHERE ID = flight_ID;
+ 
+ SELECT COUNT(seat_type) into booked_seats
+ FROM flight_details4
+ WHERE ID = flight_ID AND seat_type = 'Bussiness';
+	
+
+ RETURN total_bussiness_seats - booked_seats;
+  
+END$$
+DELIMITER 
+
+-- function to get difference between booked and total economy seats
+DELIMITER $$
+CREATE FUNCTION num_remaining_economy_seats2(flight_ID int)
+RETURNS INT
+DETERMINISTIC
+BEGIN
+ 
+ DECLARE total_economy_seats INT;
+ DECLARE booked_seats INT;
+ 
+ SELECT Economy_seats into total_economy_seats
+ FROM flights_and_aircrafts WHERE ID = flight_ID;
+ 
+ SELECT COUNT(seat_type) into booked_seats
+ FROM flight_details4
+ WHERE ID = flight_ID AND seat_type = 'Economy';
+	
+
+ RETURN total_economy_seats - booked_seats;
+  
+END$$
+DELIMITER 
+
+
+
+DELIMITER $$
+CREATE FUNCTION SetFlyingStaff(flight_ID int, staff_member_name varchar(15))
+RETURNS INT
+DETERMINISTIC
+BEGIN
+	
+    DECLARE staff_member_id INT;
+    SELECT ID into staff_member_id
+    from staff
+    where name = staff_member_name;
+    
+    INSERT into flying_staff(staff_ID,flight_ID) values (staff_member_id,flight_ID);
+    
+    return 1;
+	
+  
+END$$
+DELIMITER 
+
+
