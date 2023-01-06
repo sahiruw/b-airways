@@ -61,7 +61,7 @@ function NavBar() {
               </a>
             </li>
             <li className="nav-item active">
-              <a href="/flights" className="nav-link">
+              <a href="/table" className="nav-link">
                 Flights
               </a>
             </li>

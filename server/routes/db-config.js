@@ -1,4 +1,4 @@
-const sql = require("mysql");
+const sql = require("mysql2");
 
 const db = sql.createConnection({
   user: process.env.USER,

@@ -162,9 +162,6 @@ function SeatSelection(props) {
     <div className="shadow-lg  mb-5 bg-white rounded text-center">
       <h4>Seat Selection</h4>
       {remainingSelections} left to select
-      {/* {seats.map((row) =>
-        row.map((seat) => " | id: " + seat.id + " | reserved: " + seat.reserved)
-      )} */}
       <Seats
         seats={seats}
         onSeatClick={handleSeatClick}

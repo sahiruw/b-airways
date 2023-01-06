@@ -4,12 +4,14 @@ import SearchBar from "../components/flightSearchBar";
 import DisplayTable from "../components/flightTable";
 
 function Table() {
-const location = useLocation();
-console.log(location.state.Tabledata);
+  const location = useLocation();
   return (
     <div>
-      <SearchBar />
-      <DisplayTable tableData = {location.state.Tabledata}/>
+      <SearchBar selectedValues={location.state? location.state.form:{}} />
+      <DisplayTable
+        tableData={location.state? location.state.Tabledata:{}} 
+        selectedValues={location.state? location.state.form:{}} 
+      />
     </div>
   );
 }

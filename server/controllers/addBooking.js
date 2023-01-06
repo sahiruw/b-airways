@@ -1,12 +1,14 @@
 const bcrypt = require("bcryptjs");
 const db = require("../routes/db-config");
-const user = require("../models/userModel");
+const booking = require("../models/bookingModel");
 
 const register = async (req, res) => {
     
-  for (let entry of Object.entries(req.body.dataforbackend)) {
-    console.log(entry);
-  }
+  // for (let entry of Object.entries(req.body.dataforbackend)) {
+  //   console.log(entry);
+  // }
+
+  booking.addBooking(req.body.dataforbackend)
 
 };
 
