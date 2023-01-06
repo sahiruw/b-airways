@@ -23,10 +23,10 @@ function OffCanvasMenue(){
       <Offcanvas show={show} onHide={handleClose}>
       
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title>Offcanvas</Offcanvas.Title>
+          <Offcanvas.Title>B-Airways</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          B - Airways
+          You can proceed follwing actions as an Admin
           
 
           <hr></hr>
