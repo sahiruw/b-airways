@@ -50,17 +50,24 @@ const CountrySelection = (props) => {
     []
   );
 
+  useEffect(() => {
+    handleChange({ target: { value: props.value } });
+  }, [props.value]);
+
   const handleChange = (event) => {
     let code = countryCodes.filter((r) => r[0] == event.target.value)[0][1];
     props.setForm({ ...props.form, country: event.target.value, countryCode: code });
   };
 
   return (
+    <>
+    {props.value}
     <select
       className="form-select"
       id="selected-country"
-      value={props.form.country}
+      value={props.value}
       onChange={handleChange}
+      disabled={props.disabled}
     >
       {countries.map((country) => (
         <option key={country} value={country}>
@@ -68,6 +75,7 @@ const CountrySelection = (props) => {
         </option>
       ))}
     </select>
+    </>
   );
 };
 
