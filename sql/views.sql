@@ -16,7 +16,7 @@ VIEW `flights_and_aircrafts` AS
     FROM
         ((`flight` `f`
         JOIN `aircraft` `a` ON ((`f`.`aircraft_ID` = `a`.`ID`)))
-        JOIN `aircraft_type` `at` ON ((`a`.`type_ID` = `at`.`ID`)))
+        JOIN `aircraft_type` `at` ON ((`a`.`type_ID` = `at`.`ID`)));
 
 
 

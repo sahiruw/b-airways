@@ -16,7 +16,6 @@ class flightModel{
     }
 
     static async searchFlightbyLocation(from,to,flight_class,passengers,departure_date){
-        console.log(flight_class);
         let data = await new Promise((resolve,reject) => {
 
             var getFlighbyLoc = "";
@@ -36,8 +35,6 @@ class flightModel{
                 FROM flight_details4
                 WHERE start_destination = '${from}' AND end_destination = '${to}' AND departure_time >= '${departure_date}' AND num_remaining_economy_seats2(ID) >= ${passengers} AND flight_status = "Scheduled";`
             }
-            
-            console.log(getFlighbyLoc);
             
             db.query(getFlighbyLoc,(err,result) => {
                 if (err) reject (err);

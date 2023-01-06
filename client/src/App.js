@@ -9,9 +9,7 @@ import HomeScreen from "./screens/HomeScreen";
 import Register from "./components/register";
 import LogIn from "./components/login"
 import Booking from "./components/booking/booking"
-import Show from "./components/searchFlight"
 import SearchBar from "./components/flightSearchBar";
-import TablePage from "./components/flightTable";
 import Table from "./screens/Table";
 
 const router   = createBrowserRouter([
@@ -33,10 +31,6 @@ const router   = createBrowserRouter([
     element: <Booking />,
   },
   {
-    path : "flights",
-    element : <Show />
-  },
-  {
     path : "search",
     element : <SearchBar />
   },
@@ -44,7 +38,6 @@ const router   = createBrowserRouter([
     path: "table",
     element: <Table />
   }
-
 ]);
 
 function App() {
@@ -54,17 +47,6 @@ function App() {
     <div className="App">
       <NavBar />
       <RouterProvider router={router} />
-      {/* <BrowserRouter>
-        <div>
-          <Routes>
-            <Route exact path="/" element={HomeScreen()} />
-            <Route path="/login" element={LogIn()} />
-            <Route path="/register" element={Register()} />
-            <Route path="/booking/" element={Booking(5)} />
-            <Route path="/search" element={Search()} />
-          </Routes>
-        </div>
-      </BrowserRouter> */}
     </div>
   );
 }

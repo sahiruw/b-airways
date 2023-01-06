@@ -2,8 +2,16 @@ import React from "react";
 import { useState, useEffect } from "react";
 import SeatSelection from "./seatSelection";
 import DetailForm from "./detailForm";
+import {useLocation} from 'react-router-dom';
 
 function Booking(props) {
+  //this receives data from flight table and cards
+  const location = useLocation();
+
+  let seatCount = parseInt(location.state.passengerCount);
+  let flightID = location.state.id;
+  let seatClass = location.state.seatType;
+
   const [loggedUser, setLoggeduser] = useState(null);
   const [userSelectedSeats, setUserSelectedSeats] = useState([]);
   const [userData, setUserData] = useState({});
@@ -50,8 +58,7 @@ function Booking(props) {
     marginRight: 100,
     paddingTop: 5,
   };
-  let sc = 2;
-  let flightID = 2;
+
   return (
     <div className="shadow-lg p-3 mb-5 bg-white rounded" style={style_card}>
       {loggedUser ? (
@@ -72,7 +79,7 @@ function Booking(props) {
         ""
       )}
 
-      {Array.from(Array(sc).keys()).map((i) => (
+      {Array.from(Array(seatCount).keys()).map((i) => (
         <DetailForm
           id={i}
           loggedUserEmail={loggedUser}
@@ -84,8 +91,8 @@ function Booking(props) {
 
       <SeatSelection
         flightID={flightID}
-        seatClass="Economy"
-        seatCount={sc}
+        seatClass={seatClass}
+        seatCount={seatCount}
         setUserSelectedSeats={setUserSelectedSeats}
       />
       <button
