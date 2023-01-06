@@ -5,7 +5,7 @@ const register = require("./register");
 const login = require("./login");
 const isLogged = require("./islogged");
 const logout = require("./logout");
-const showFlight = require("./departure_place");
+const show_departure = require("./departure_place");
 const getAircraftDetailsByID = require("./getAircraftDetailsByID");
 const getReservedSeats = require("./getReservedSeats");
 const getuserbyusername = require("./getuserbyusername");
@@ -15,6 +15,9 @@ const Booking = require("./addBooking");
 //const AdminLogin = require("./adminLogin");
 const Schedule = require("./schedule_flight");
 const GetStaff = require("./get_all_staff_members");
+const Action1 = require("./action1");
+const Pssenger_Details = require("./get_passenger_details");
+const Bookings_by_Passenger_type = require("./bookings_by_passenger_type");
 
 router.post("/register", register);
 router.post("/login", login);
@@ -23,12 +26,15 @@ router.post("/book", Booking);
 router.post("/schedule", Schedule);
 
 router.get("/isLogged", isLogged);
-router.get("/departure", showFlight);
+router.get("/departure", show_departure);
 router.get("/getAircraftDetailsByID", getAircraftDetailsByID);
 router.get("/getReservedSeats", getReservedSeats);
 router.get("/getuserbyusername", getuserbyusername);
 router.get("/Flights",Flights)
 router.get("/RecentFlights",RecentFlights)
 router.get("/GetStaff",GetStaff);
+router.get("/Action1",Action1);
+router.get("/Passenger_Details",Pssenger_Details);
+router.get("/Bookings_by_Passenger_type",Bookings_by_Passenger_type);
 //router.get("/AdminLogin",AdminLogin)
 module.exports = router;

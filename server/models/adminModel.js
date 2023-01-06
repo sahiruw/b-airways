@@ -53,6 +53,62 @@ class AdminModel{
         return data;
     }
 
+    static async Action1(end_des,time_from,time_to){
+        let data = await new Promise((resolve,reject)=>{
+            const action1_query = `select COUNT(*) as number_of_passengers from action1 where end_destination = '${end_des}' and '${time_from}' <= departure_time <= '${time_to}'`;
+            db.query(action1_query,(err,result) => {
+                if(err) reject(err)
+                else resolve(result)
+            })
+        })
+
+        return data;
+        
+    }
+
+    static async Members_Below_18(restricted_date){
+
+        let data = await new Promise((resolve,reject) => {
+            const query = `select passenger_ID,flight_ID,ID,firstname,lastname from flight_member_details where dob >= '${restricted_date}'  and flight_status = 'Scheduled' order by departure_time limit 1`;
+            db.query(query,(err,result) => {
+                if(err) reject(err)
+                else resolve(result)
+            })
+        })
+
+        return data
+
+    }
+
+    static async Members_Above_18(restricted_date){
+
+        let data = await new Promise((resolve,reject) => {
+            const query = `select passenger_ID,flight_ID,ID,firstname,lastname from flight_member_details where dob <= '${restricted_date}'  and flight_status = 'Scheduled' order by departure_time limit 1`;
+            db.query(query,(err,result) => {
+                if(err) reject(err)
+                else resolve(result)
+            })
+        })
+
+        return data
+
+    }
+
+    static async Bookings_by_Passenger_type(){
+        
+        let data = await new Promise((resolve,reject) => {
+            const query = `select seat_type,sum(seat_count) as bookings from booking group by seat_type;`;
+            db.query(query,(err,result) => {
+                if(err) reject(err)
+                else resolve(result)
+            })
+
+            
+        })
+
+        return data;
+    }
+
 }
 
 module.exports = AdminModel;

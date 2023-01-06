@@ -4,10 +4,6 @@ import { useState,useEffect } from "react";
 
 const DisplayTable = (props) => {
 
-
-    
-    
-
     return(
         <div className="table-responsive">
                 <table className="table table-striped table-hover align-middle">

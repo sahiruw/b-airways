@@ -40,10 +40,10 @@ function OffCanvasMenue(){
                 <a class="nav-link" href="/schedule">Flight Schedule</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href="/action1">Given a Date range number of passengers travelling to a given destination</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link disabled" href="#">Disabled</a>
+                <a class="nav-link" href="/bookings_by_passenger_type">Bookings by passenger type</a>
             </li>
         </ul>
 
