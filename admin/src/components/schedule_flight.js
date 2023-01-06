@@ -15,6 +15,29 @@ function FlightSchedule() {
 
   const [Airports, setAirports] = useState([]);
   const [Staff, setStaff] = useState([]);
+  const[AllStaffMembers,setAllStaffMembers] = useState([]);
+
+  const[Pilot,setPilot] = useState([]);
+  const[Mechanic,setMechanic] = useState([]);
+  const[Steweardess,setSteweardess] = useState([]);
+
+  
+
+
+  // for(let element of AllStaffMembers){
+
+  //   if(element.occupation == "Pilot"){
+  //     setPilot([...Pilot,element]);
+  //   }
+  //   else if(element.occupation == "Mechanic"){
+  //     setMechanic([...Mechanic,element]);
+  //   }
+  //   else if(element.occupation == "Steweardess"){
+  //     setSteweardess([...Steweardess,element]);
+  //   }
+  // }
+
+
 
   function addToArray() {
     var staffInput = document.getElementById("staffInputField").value;
@@ -42,12 +65,36 @@ function FlightSchedule() {
     fetch("/api/departure")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data.status);
         if (data.status) {
           setAirports(data.data);
         }
       });
-  });
+  },[]);
+
+  useEffect(() => {
+
+    fetch("/api/GetStaff")
+    .then((res) => res.json())
+    .then((data) => {
+      if(data.status){
+        for(let element of data.data){
+            
+            if(element.occupation == "Pilot"){
+              setPilot([...Pilot,element]);
+            }
+            else if(element.occupation == "Mechanic"){
+              setMechanic([...Mechanic,element]);
+            }
+            else if(element.occupation == "Steweardess"){
+              setSteweardess([...Steweardess,element]);
+            }
+        }
+        //setAllStaffMembers(data.data);
+      }
+
+    })
+
+  },[]);
 
   const submit = (e) => {
     e.preventDefault();
@@ -56,18 +103,21 @@ function FlightSchedule() {
     let end_destination = form.end_destination;
     let aircraft_id = form.aircraft_id;
     let departure_date_time = form.departure_date + " " + form.departure_time;
-    let arrival_date_TIME = form.arrival_date + " " + form.arrival_time;
+    let arrival_date_time = form.arrival_date + " " + form.arrival_time;
     let cost = form.cost;
+
+    
+
 
     fetch("/api/schedule", {
       method: "POST",
       body: JSON.stringify({
-        start_dest: start_destination,
-        end_dest: end_destination,
-        aircraft_ID: aircraft_id,
-        departure_time: departure_date_time,
-        arrival_time: arrival_date_TIME,
-        cost: cost,
+        start_destination,
+        end_destination,
+        aircraft_id,
+        departure_date_time,
+        arrival_date_time,
+        cost
       }),
       headers: { "Content-Type": "application/json" },
     })
@@ -106,17 +156,7 @@ function FlightSchedule() {
 
         <div className="mb-3">
           <label>From</label>
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Start Destination"
-            onChange={(e) => {
-              setForm({
-                ...form,
-                start_destination: e.target.value,
-              });
-            }}
-          />
+          
           <select className = "col-2" onChange={(e) => {
                     setForm({
                         ...form,
@@ -132,19 +172,23 @@ function FlightSchedule() {
                     })}
         </select>
         </div>
-        <div className="mb-3">
-          <label>To</label>
-          <input
-            type="text"
-            className="form-control"
-            placeholder="End Destination"
-            onChange={(e) => {
-              setForm({
-                ...form,
-                end_destination: e.target.value,
-              });
-            }}
-          />
+        <div>
+        <label>To</label>
+        
+          <select className = "col-2" onChange={(e) => {
+                    setForm({
+                        ...form,
+                        end_destination: e.target.value,
+                    });
+                }}>
+                    <option selected>From--</option>
+                    {Airports.map((val) => {
+                        return(
+                            
+                            <option value={val.code}>{val.code}</option>
+                        )
+                    })}
+            </select>
         </div>
 
         <div className="mb-3">
@@ -238,20 +282,28 @@ function FlightSchedule() {
 
         <div className="mb-3">
           <label>Staff : </label>
-          <input
-            type="text"
-            id="staffInputField"
-            className="form-control"
-            placeholder="Name"
-            min="20"
-            max="1000"
-            onChange={(e) => {
-              setForm({
-                ...form,
-                cost: e.target.value,
-              });
-            }}
-          />
+          <label>Pilot : </label>
+           <select>
+            <option selected>Pilot--</option>
+            {Pilot.map((val) => {
+              return (
+                <option value={val.id}>
+                  {val.name}
+                </option>
+              )})}
+          </select> 
+          <label>Mechanics : </label>
+          <select>
+            <option selected>Pilot--</option>
+            {Mechanic.map((val) => {
+              return (
+                <option value={val.id}>
+                  {val.name}
+                </option>
+              )})}
+          </select> 
+          
+          
           <button onClick={(e) => addToArray(e)}>+</button>
           <button onClick={(e) => testfunction(e)}>blaa</button>
         </div>

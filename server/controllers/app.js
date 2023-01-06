@@ -12,17 +12,23 @@ const getuserbyusername = require("./getuserbyusername");
 const Flights = require("./search");
 const RecentFlights = require("./recent_flights");
 const Booking = require("./addBooking");
+//const AdminLogin = require("./adminLogin");
+const Schedule = require("./schedule_flight");
+const GetStaff = require("./get_all_staff_members");
 
 router.post("/register", register);
 router.post("/login", login);
 router.post("/logout", logout);
 router.post("/book", Booking);
-router.get("/isLogged", isLogged);
+router.post("/schedule", Schedule);
 
+router.get("/isLogged", isLogged);
 router.get("/departure", showFlight);
 router.get("/getAircraftDetailsByID", getAircraftDetailsByID);
 router.get("/getReservedSeats", getReservedSeats);
 router.get("/getuserbyusername", getuserbyusername);
 router.get("/Flights",Flights)
 router.get("/RecentFlights",RecentFlights)
+router.get("/GetStaff",GetStaff);
+//router.get("/AdminLogin",AdminLogin)
 module.exports = router;
