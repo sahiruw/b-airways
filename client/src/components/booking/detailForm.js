@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { useState, useEffect, useMemo } from "react";
 import Form from "react-bootstrap/Form";
 import MuiPhoneNumber from "material-ui-phone-number";
@@ -15,16 +15,15 @@ const DetailForm = (props) => {
     email: "",
     countryCode: "LK",
     country: "Sri Lanka",
-    isRegistered: props.isRegisteredUser
+    isRegistered: props.isRegisteredUser,
+    passport: "",
   });
-
 
   useEffect(() => {
     props.setudata({ ...props.udata, [props.id]: form });
   }, [form]);
 
   useEffect(() => {
-
     if (fillFirstWithUser) {
       setForm({
         ...form,
@@ -49,16 +48,35 @@ const DetailForm = (props) => {
       .then((data) => {
         if (data.status) {
           setIsRegisteredUser(true);
+          const dateFromMySQL = data.data.dob;
+          const formattedDate = new Date(dateFromMySQL)
+            .toISOString()
+            .substring(0, 10);
+
           setForm({
             ...form,
             firstName: data.data.firstname,
             lastName: data.data.lastname,
             email: em,
             isRegistered: true,
+            passport: data.data.passport_number,
+            country: data.data.country,
+            birthday: formattedDate,
+            phone: data.data.tele_no,
           });
         } else {
           setIsRegisteredUser(false);
-          setForm({ ...form, firstName: "", lastName: "", email: em , isRegistered: false});
+          setForm({
+            ...form,
+            firstName: "",
+            lastName: "",
+            email: em,
+            isRegistered: false,
+            passport: "",
+            country: "Sri Lanka",
+            birthday: "",
+            phone: "",
+          });
         }
       });
   };
@@ -92,7 +110,6 @@ const DetailForm = (props) => {
               type="email"
               className="form-control"
               placeholder="Enter email"
-              // {fillFirstWithUser?"value=":undefined}
               onChange={(e) => onemailChange(e.target.value)}
               // value = {form.email}
               {...(fillFirstWithUser ? { value: form.email } : {})}
@@ -155,6 +172,7 @@ const DetailForm = (props) => {
                 type="date"
                 name="date_of_birth"
                 value={form.birthday}
+                disabled={isRegisteredUser ? "disabled" : ""}
                 onChange={(e) => {
                   setForm({ ...form, birthday: e.target.value });
                 }}
@@ -165,14 +183,22 @@ const DetailForm = (props) => {
           <div class="row">
             <div className="mb-3 col-md-6">
               <label htmlFor="selected-country">Country</label>
-              <CountrySelection form={form} setForm={setForm}/>
+              <CountrySelection
+                form={form}
+                setForm={setForm}
+                disabled={isRegisteredUser ? "disabled" : ""}
+                value={form.country}
+              
+              />
             </div>
             <div className="mb-3 col-md-6">
               <label>Phone Number</label>
-              <div>
+              <div> {form.phone}
                 <MuiPhoneNumber
                   defaultCountry={form.countryCode.toLowerCase()}
                   disableAreaCodes={true}
+                  disabled={isRegisteredUser ? "disabled" : ""}
+                  value={form.phone}
                   onChange={(value) => {
                     setForm({ ...form, phone: value });
                   }}
