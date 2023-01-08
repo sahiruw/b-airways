@@ -68,8 +68,8 @@ const DetailForm = (props) => {
           setIsRegisteredUser(false);
           setForm({
             ...form,
-            firstName: "",
-            lastName: "",
+            // firstName: "",
+            // lastName: "",
             email: em,
             isRegistered: false,
             passport: "",
@@ -193,7 +193,7 @@ const DetailForm = (props) => {
             </div>
             <div className="mb-3 col-md-6">
               <label>Phone Number</label>
-              <div> {form.phone}
+              <div>
                 <MuiPhoneNumber
                   defaultCountry={form.countryCode.toLowerCase()}
                   disableAreaCodes={true}
