@@ -5,6 +5,9 @@ function Action1(){
 
     const[Destinations,setDestinations] = useState([]);
     const[count,setCount] = useState(0);
+    let alert_type = count >= 0 ? {display : "block"} : {display : "none"};
+    console.log(alert_type);
+
 
     const[form,setForm] = useState({
         end_des : "",
@@ -34,28 +37,47 @@ function Action1(){
         fetch(`api/Action1?end_destination=${end_des}&time_range_from=${from_time}&time_range_to=${to_time}`)
         .then(res => res.json())
         .then((data) => {
-            setCount(data.data);
-            alert(data.data[0].number_of_passengers);
+            console.log(data.data[0].number_of_passengers);
+            setCount(data.data[0].number_of_passengers);
+            
         })
     }
+
+    const style_card = {
+        marginTop : 30,
+        "width" : "auto",
+        marginLeft : 300,
+        marginRight : 300,
+        "height" : "auto",
+        paddingTop : 20
+        
+    
+    };
    
 
     return(
-        <div>
-            <h1>Admin Action 1</h1>
+        <div className="shadow-lg p-3 mb-5 bg-white rounded mw-100" style={style_card}>
+            <h2>Number of Passengers Travelling to a given Destination</h2>
+            <br></br>
+            <div className="row">
+            <div className="col-3">
             <label>From : </label><input type = "date" onChange = {(e) => {
                 setForm({
                     ...form,
                     from_time : e.target.value
                 });
             }}></input>
+            </div>
+            <div className="col-3">
             <label>To : </label><input type="date" onChange = {(e) => {
                 setForm({
                     ...form,
                     to_time : e.target.value
                 })
             }}/>
-            <select onChange = {(e) => {
+            </div>
+
+            <select className = "col-2" onChange = {(e) => {
                 setForm({
                     ...form,
                     end_des : e.target.value
@@ -67,7 +89,15 @@ function Action1(){
                     );
                 })}
             </select>
-            <button className="btn-primart" onClick={(e) => action1(e)}>Get</button>
+            <button className="btn btn-outline-secondary col-2" style = {{marginLeft:10}} onClick={(e) => action1(e)}>Get</button>
+            </div>
+            
+            <br></br>
+            <div className={"alert alert-success "} role="alert" style={alert_type}>
+                 <label>
+                    Number of passengers travelled  - {count}
+                </label>
+            </div>
         </div>
     );
 }

@@ -6,12 +6,18 @@ import Action1 from "./components/Action1";
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import PassengerDetails from "./components/passenger_detaiils";
 import Bookings_by_Passenger_Type from "./components/bookings_by_passenger_type";
+import Past_Flights from "./components/past_flights";
+import background from "./b7.jpg";
 
 
 const router = createBrowserRouter([
 
   {
     path: "login",
+    element : <Login />,
+  },
+  {
+    path: "/",
     element : <Login />,
   },
   {
@@ -25,6 +31,10 @@ const router = createBrowserRouter([
   {
     path : "bookings_by_passenger_type",
     element : <Bookings_by_Passenger_Type/>
+  },
+  {
+    path : "past_flights",
+    element : <Past_Flights/>
   }
 
   
@@ -35,13 +45,16 @@ const router = createBrowserRouter([
 function App() {
  
   return (
-    <div className="App">
+    
+      <div className="App">
       {/* <PassengerDetails /> */}
       {/* <Action1 /> */}
       <OffCanvasMenue />
       {/* <FlightSchedule /> */}
       <RouterProvider router={router} /> 
     </div>
+    
+    
   );
 }
 
