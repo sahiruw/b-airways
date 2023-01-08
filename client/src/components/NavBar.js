@@ -169,12 +169,14 @@ function NavBar() {
               ) : (
                 <>
                   <li className="nav-item">
-                    <button
-                      className="btn btn-primary nav-button"
-                      type="button"
-                    >
-                      Log In
-                    </button>
+                    <a href="/login" className="nav-link">
+                      <button
+                        className="btn btn-primary nav-button"
+                        type="button"
+                      >
+                        Log In
+                      </button>
+                    </a>
                   </li>
                   <li className="nav-item">
                     <button
