@@ -8,6 +8,8 @@ function SearchBar(props) {
 
   const [Form, setForm] = useState({});
 
+
+
   useEffect(() => {
     setForm(props.selectedValues);
   }, [props.selectedValues]);
@@ -28,15 +30,13 @@ function SearchBar(props) {
     e.preventDefault();
     
 
-    if (!Form || !Form.from || !Form.to || !Form.date || !Form.seat_type) {
+    if (!Form || !Form.from || !Form.to || !Form.date || !Form.seat_type || !Form.passengerCount) {
       alert("Please fill all the fields");
       console.log("Please fill all the fields");
 
       return;
     }
-    if (!Form.passengerCount) {
-        setForm({ ...Form, passengerCount: 1 });
-    }
+
 
     fetch(
       `/api/Flights?from=${Form.from}&to=${Form.to}&departureDate=${Form.date}&seat_type=${Form.seat_type}&passengers=${Form.passengerCount}`
@@ -113,7 +113,7 @@ function SearchBar(props) {
           onChange={(e) => {
             setForm({ ...Form, passengerCount: e.target.value });
           }}
-          value= {Form? Form.passengerCount : 1}
+          value= {Form? Form.passengerCount : 0}
         ></input>
 
         <input

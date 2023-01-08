@@ -11,6 +11,7 @@ import LogIn from "./components/login"
 import Booking from "./components/booking/booking"
 import SearchBar from "./components/flightSearchBar";
 import Table from "./screens/Table";
+import ConfirmBooking from "./components/booking/bookingConfirm";
 
 const router   = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const router   = createBrowserRouter([
   {
     path: "table",
     element: <Table />
+  },
+  {
+    path: "confirmbooking",
+    element: <ConfirmBooking />
   }
 ]);
 
