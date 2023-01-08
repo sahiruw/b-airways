@@ -109,6 +109,19 @@ class AdminModel{
         return data;
     }
 
+    static async Past_Fligts(start_des,end_des){
+        let data = await new Promise((resolve,reject) => {
+            const query = `select aircraft_name,flight_ID,flight_status,count(passenger_ID) as passenger_count from past_flights where start_destination = '${start_des}' and end_destination = '${end_des}' group by flight_ID;`
+            db.query(query,(err,result) => {
+                if(err) reject(err)
+                else resolve(result)
+            })})
+        return data;
+    }
+
+    
+    
+
 }
 
 module.exports = AdminModel;
