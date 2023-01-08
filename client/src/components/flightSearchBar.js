@@ -134,7 +134,7 @@ function SearchBar(props) {
     //   </div>
     // </div>
     <div class="landing-threshold" style={{width : "100%"}}>
-      <div class="container-fluid" style={{ transform: "scale(1.15)" }}>
+      <div class="container-fluid">
         <div class="container-rempadresponsive">
           <ul
             class="wizardpane nav-fill"
@@ -277,7 +277,10 @@ function SearchBar(props) {
                   <div class="d-flex qr-datepicker">
                     <div class="bk-search-block-1">
                       <div class="bk-search-block-2">
-                        <input class="t-day-check-in" type="date" />
+                        <input class="t-day-check-in" type="date" onChange={(e) => {
+                              setForm({ ...Form, date: e.target.value });
+                                }}
+                                   defaultValue= {Form? Form.date : ""}/>
                         <span class="t-class-info">Date</span>
                       </div>
                     </div>
@@ -288,7 +291,10 @@ function SearchBar(props) {
                     <div class="bk-search-block-1">
                       <div class="bk-search-block-2">
                         <span class="t-class-info">Passengers</span>
-                        <input type="number" min="1" max="9" />
+                        <input type="number" min="1" max="9" onChange={(e) => {
+                                      setForm({ ...Form, passengerCount: e.target.value });
+                                  }}
+                         value= {Form? Form.passengerCount : 1}/>
                       </div>
                     </div>
                   </div>
@@ -298,13 +304,16 @@ function SearchBar(props) {
                     <div class="bk-search-block-1">
                       <div class="bk-search-block-2">
                         <span class="t-class-info">Class</span>
-                        <select>
+                        <select onChange={(e) => {
+                              setForm({ ...Form, seat_type: e.target.value });
+                                    }}
+                             value= {Form? Form.seat_type : ""}>
                           <optgroup label="Country">
-                            <option value="ec">Economy</option>
-                            <option value="bc" selected>
+                            <option value={"Economy"}>Economy</option>
+                            <option value={"Bussiness"} selected>
                               Business
                             </option>
-                            <option value="pt">Platinum</option>
+                            <option value={"Platinum"}>Platinum</option>
                           </optgroup>
                         </select>
                       </div>
