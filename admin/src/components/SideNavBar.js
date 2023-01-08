@@ -33,9 +33,7 @@ function OffCanvasMenue(){
 
         
         <ul class="nav flex-column">
-            <li class="nav-item ">
-                <a class="nav-link active" href="/login" style={{color : "white"}}>Login</a>
-            </li>
+            
             <li class="nav-item">
                 <a class="nav-link" href="/schedule" style={{color : "white"}}>Flight Schedule</a>
             </li>

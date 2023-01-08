@@ -1,0 +1,73 @@
+.account-block {
+  padding: 0;
+  background-image: url(../../assets/img/Vish_inside_an_aeroplane_business_class_luxury_castleton_green__a6b3331a-8c10-42ae-9680-838392966f7c.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  position: relative;
+  font-family: nexa;
+}
+
+.account-block .account-testimonial {
+  text-align: center;
+  position: absolute;
+  margin: 0 auto;
+  padding: 0 1.75rem;
+  bottom: 3rem;
+  left: 0;
+  right: 0;
+  font-family: nexa;
+}
+
+.text-theme {
+  font-family: nexa;
+  color: #08575c;
+}
+
+.btn-theme {
+  margin-bottom: 18px;
+  background-color: #08575c;
+  border-color: #08575c;
+  color: #fff;
+  font-family: nexa;
+}
+
+.text-muted text-center {
+  font-family: nexa;
+  font-size: 12px;
+}
+
+.form-group {
+  font-family: nexa;
+}
+
+.text-muted mt-2 mb-5 {
+  font-family: nexa;
+  color: #08575c;
+}
+
+.lable-head {
+  font-weight: 700;
+}
+
+.header-topic {
+  font-family: nexa;
+  font-weight: 600;
+  font-size: xx-large;
+}
+
+.container-ud {
+  background-color: rgba(8,87,92,0.31);
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-top: 20px;
+  border-radius: 20px;
+}
+
+.paragraph-normal {
+  font-family: nexa;
+  font-weight: bold;
+  margin-top: 29px;
+  margin-left: 12px;
+}
+

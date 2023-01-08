@@ -13,10 +13,6 @@ import background from "./b7.jpg";
 const router = createBrowserRouter([
 
   {
-    path: "login",
-    element : <Login />,
-  },
-  {
     path: "/",
     element : <Login />,
   },
@@ -49,7 +45,7 @@ function App() {
       <div className="App">
       {/* <PassengerDetails /> */}
       {/* <Action1 /> */}
-      <OffCanvasMenue />
+      {/* <OffCanvasMenue /> */}
       {/* <FlightSchedule /> */}
       <RouterProvider router={router} /> 
     </div>

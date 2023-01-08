@@ -1,5 +1,6 @@
 @media (min-width: 768px) {
   .navbar {
+    margin-left: 20px;
     margin-right: 20px;
     background-color: #075257;
   }
@@ -87,7 +88,143 @@
   border-color: var(--bs-gray-100);
   color: rgb(255,255,255);
   transform: scale(2);
-  margin-right: 10px;
-  margin-left: 10px;
+  margin-right: 40px;
+  margin-left: 40px;
+}
+
+.bk-search-block {
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: left;
+  font-size: 100%;
+  font-family: var(--jotia);
+  color: #064c50;
+  box-sizing: border-box;
+  width: 75%;
+  flex: 0 0 25%;
+  margin-bottom: 1rem;
+  display: flex;
+  padding-right: 0;
+  padding-left: 0;
+  float: left;
+  position: static;
+  max-width: 20%;
+}
+
+.qr-datepicker {
+  font-weight: 400;
+  text-align: left;
+  font-family: var(--jotia);
+  color: #064c50;
+  box-sizing: border-box;
+  display: flex;
+  float: left;
+  clear: both;
+  width: 100%;
+  font-size: 14px;
+  line-height: 1.4em;
+}
+
+.bk-search-block-1 {
+  text-align: left;
+  font-family: var(--jotia);
+  font-size: 14px;
+  line-height: 1.4em;
+  width: 100%;
+  margin-right: 0;
+  margin-left: 0;
+  padding-right: 0;
+  padding-left: 0;
+  display: inline-block;
+  float: left;
+  position: static;
+  border: 0;
+  text-decoration: none;
+  color: #666;
+  font-weight: 400;
+  box-sizing: border-box;
+  height: 60px;
+  min-width: 15%;
+}
+
+.bk-search-block-2 {
+  box-sizing: border-box;
+  margin: 0;
+  font-family: inherit;
+  line-height: inherit;
+  overflow: visible;
+  text-indent: 11px;
+  font-weight: 400;
+  color: #333;
+  text-transform: capitalize;
+  min-height: 46px;
+  border: 1px solid #d7d7d7;
+  width: 100%;
+  background-clip: padding-box;
+  padding: 27px 0 6px;
+  font-size: 17px;
+  margin-left: 0;
+  border-left: 1px solid #d7d7d7;
+  border-radius: 0 6px 6px 0;
+  border-bottom-right-radius: 0px;
+  border-top-right-radius: 0px;
+}
+
+.t-class-info {
+  line-height: 1.5;
+  text-align: left;
+  font-family: var(--jotia);
+  cursor: pointer;
+  box-sizing: border-box;
+  -webkit-user-select: none;
+  z-index: +2;
+  position: absolute;
+  pointer-events: none;
+  transition: all .2s ease;
+  top: 7px;
+  font-size: 12px;
+  font-weight: 400;
+  opacity: 1;
+  color: #555;
+  padding: 0;
+  margin-left: -11px;
+}
+
+.t-day-check-in {
+  height: 24px;
+  box-sizing: border-box;
+  font-family: nexa;
+  line-height: inherit;
+  overflow: visible;
+  position: relative;
+  border: 0;
+  display: block;
+  width: auto;
+  background: 0;
+  color: #aaaaaa;
+  left: 0;
+  margin-left: 11px;
+  font-size: 11px;
+}
+
+.container-rempadresponsive {
+  font-size: x-large;
+  font-family: nexa;
+  width: 75%;
+  margin-bottom: 215px;
+  margin-top: 24px;
+  margin-left: 175px;
+  margin-right: 175px;
+}
+
+.btn-index-search {
+  height: 35px;
+  margin-left: 484px;
+  margin-right: 458px;
+  transform: scale(1.55);
+  border-radius: 37px;
+  width: 89.7px;
+  margin-top: 33px;
+  font-weight: bold;
 }
 
