@@ -164,7 +164,7 @@ const Register = () => {
     //   </p>
     // </form>
     // </div>
-    <div className="container" style={{ marginBottom: '12px' ,fontFamily:"nexa"}}>
+    <div className="container" style={{ marginBottom: '12px' ,fontFamily:"nexa",backgroundColor:"c3e7e3"}}>
       <div id="main-wrapper" className="container">
         <div className="row justify-content-center">
           <div className="col-xl-10">

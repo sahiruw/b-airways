@@ -25,8 +25,8 @@ function HomeScreen() {
     <div>
       <div id="section1">
         <SearchBar />
-        <div className="row" style={{padding : 80,marginRight:90}}>
-        <div style={{"margin": "50px"}}>
+        <div className="row" style={{marginleft : 40}}>
+        <div style={{"margin": "10px"}}>
         <div class="container sombra borderedondo">
           <div className="row">
             {recentFlights.map((flights) => (

@@ -50,7 +50,7 @@ function App() {
   
 
   return (
-    <div className="App">
+    <div className="App" style={{backgroundColor:"#c3e7e3"}}>
       <NavBar />
       <RouterProvider router={router} />
       <Footer />

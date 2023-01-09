@@ -16,7 +16,7 @@ const FlightCard = (props) => {
             
         // </div>
         // </div>
-        <div class="col-md-4">
+        <div class="col-md-4" style={{backgroundColor:"white"}}>
             <div class="imgRedonda"><img class="imgpeque" src={newyork} /></div>
                 <h1 class="text-center" style = {{"font-weight":"bold","font-size":"46px",}}>{props.from} -- {props.to}</h1>
                 <p class="text-center" style = {{"font-weight":"bold","font-size":"23px",}}>{props.aircraft}</p>
