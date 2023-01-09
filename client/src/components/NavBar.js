@@ -179,12 +179,14 @@ function NavBar() {
                     </a>
                   </li>
                   <li className="nav-item">
-                    <button
-                      className="btn btn-primary nav-button"
-                      type="button"
-                    >
-                      Sign In
-                    </button>
+                    <a href="/register" className="nav-link">
+                      <button
+                        className="btn btn-primary nav-button"
+                        type="button"
+                      >
+                        Register
+                      </button>
+                    </a>
                   </li>
                 </>
               )}

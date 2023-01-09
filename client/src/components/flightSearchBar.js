@@ -175,7 +175,7 @@ function SearchBar(props) {
               >
                 Book
                 <i
-                  class="far fa-paper-plane"
+                  class="fa fa-plane"
                   style={{
                     "margin-right": "-74px",
                     "padding-right": "0px",
@@ -326,7 +326,7 @@ function SearchBar(props) {
           <a
             class="btn btn-light action-button btn-theme btn-index-search"
             role="button"
-            href="table.html"
+            onClick={(e) => ShowBySearch(e)}
           >
             Search
           </a>
