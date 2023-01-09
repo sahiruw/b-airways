@@ -25,12 +25,15 @@ function HomeScreen() {
     <div>
       <div id="section1">
         <SearchBar />
-        <div className="row" style={{padding : 80}}>
-          
+        <div className="row" style={{padding : 80,marginRight:90}}>
+        <div style={{"margin": "50px"}}>
+        <div class="container sombra borderedondo">
           <div className="row">
             {recentFlights.map((flights) => (
               <FlightCard from = {flights.start_destination} to = {flights.end_destination} dept = {flights.departure_time} arr = {flights.arrival_time} aircraft = {flights.aircraft_name} />
             ))}
+          </div>
+          </div>
           </div>
               
           

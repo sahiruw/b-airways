@@ -85,7 +85,7 @@ class flightModel{
 
     static async getRecentFlights(){
         let data = await new Promise((resolve,reject) => {
-            const getRecentFlights = `select fa.ID,start_destination,end_destination,departure_time,arrival_time,aircraft_name from flights_and_aircrafts fa inner join paths p on p.ID = fa.path_ID where status = "Scheduled" order by departure_time asc limit 6;`
+            const getRecentFlights = `select fa.ID,start_destination,end_destination,departure_time,arrival_time,aircraft_name from flights_and_aircrafts fa inner join paths p on p.ID = fa.path_ID where status = "Scheduled" order by departure_time asc limit 4;`
             db.query(getRecentFlights,(err,result) => {
                 if (err) reject (err);
                 else resolve(result);
