@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
+import "./assets/css/Table-With-Search.css"
 const DisplayTable = (props) => {
   const navigate = useNavigate();
 
@@ -115,16 +115,17 @@ const DisplayTable = (props) => {
                     <th>{val.ID}</th>
                     <td>{val.start_destination}</td>
                     <td>{val.end_destination}</td>
-                    <td>{val.departure_time}</td>
-                    <td>{val.arrival_time}</td>
+                    <td>{new Date(val.departure_time).toLocaleString()}</td>
+                    <td>{new Date(val.arrival_time).toLocaleString()}</td>
                     <td>
                       <button
-                        className="btn btn-outline-secondary"
+                        className="btn btn-success"
                         onClick={() => {
                           toBooking(val.ID);
                         }}
+                        style = {{"font-family":"nexa","font-weight":"bold","margin-right":"52px","margin-left":"73px","color":"#08575c",}}
                       >
-                        Book
+                        <i class="fa fa-paper-plane-o" style = {{"font-size":"17px",}}></i>  BOOK
                       </button>
                     </td>
                   </tr>

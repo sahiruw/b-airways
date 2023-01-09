@@ -11,6 +11,7 @@ import LogIn from "./components/login"
 import Booking from "./components/booking/booking"
 import SearchBar from "./components/flightSearchBar";
 import Table from "./screens/Table";
+import Footer from "./components/footer";
 
 const router   = createBrowserRouter([
   {
@@ -47,6 +48,7 @@ function App() {
     <div className="App">
       <NavBar />
       <RouterProvider router={router} />
+      <Footer />
     </div>
   );
 }
