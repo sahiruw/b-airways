@@ -16,12 +16,12 @@ const FlightCard = (props) => {
             
         // </div>
         // </div>
-        <div class="col-md-4" style={{backgroundColor:"white"}}>
-            <div class="imgRedonda"><img class="imgpeque" src={newyork} /></div>
+        <div class="col-md-3 shadow-lg bg-white rounded" style={{backgroundColor:"white",margin:10}}>
+            <div class="imgRedonda"><img class="imgpeque" src={newyork}/></div>
                 <h1 class="text-center" style = {{"font-weight":"bold","font-size":"46px",}}>{props.from} -- {props.to}</h1>
                 <p class="text-center" style = {{"font-weight":"bold","font-size":"23px",}}>{props.aircraft}</p>
-                <p style = {{"font-family":"nexa","font-size":"15px",}}>DepatureTime<br />{props.dept}</p>
-                <p style = {{"font-family":"nexa",}}>Arrival Time<br />{props.arr}</p>
+                <p style = {{"font-family":"nexa","font-size":"15px","text-align":"center"}}>DepatureTime<br />{props.dept}</p>
+                <p style = {{"font-family":"nexa","text-align":"center"}}>Arrival Time<br />{props.arr}</p>
             <div class="row">
                 <div class="col text-end"><a class="btn btn-light" role="button" href="destinations.html" style = {{"margin":"17px","background":"#08575c","color":"rgb(255,255,255)","transform":"scale(1.50)","margin-top":"-7px",}}>More..</a></div>
             </div>
