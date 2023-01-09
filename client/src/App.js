@@ -13,6 +13,7 @@ import SearchBar from "./components/flightSearchBar";
 import Table from "./screens/Table";
 import Footer from "./components/footer";
 import UnderConstruction from "./screens/under_construction";
+import ConfirmBooking from "./components/booking/bookingConfirm";
 
 const router   = createBrowserRouter([
   {
@@ -43,6 +44,10 @@ const router   = createBrowserRouter([
   {
     path : "underconstruction",
     element : <UnderConstruction />
+  },
+  {
+    path: "confirmbooking",
+    element: <ConfirmBooking />
   }
 ]);
 

@@ -68,8 +68,8 @@ const DetailForm = (props) => {
           setIsRegisteredUser(false);
           setForm({
             ...form,
-            // firstName: "",
-            // lastName: "",
+            firstName: "",
+            lastName: "",
             email: em,
             isRegistered: false,
             passport: "",

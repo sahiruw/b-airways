@@ -92,10 +92,32 @@ class flightModel{
             })
         })
         return data;
+
+        
     }
 
 
+    static async getFlightDetailsByID(flightID){
+        let data = await new Promise((resolve,reject) => {
+            const flightDetails = `SELECT * FROM flight f JOIN paths p ON f.path_id=p.id where f.ID=${flightID};`
+            db.query(flightDetails,(err,result) => {
+                if (err) reject (err);
+                else resolve(result);
+            })
+        })
+        return data[0];
+    }
 
+    static async getAirportDetails(airportCode){
+        let data = await new Promise((resolve,reject) => {
+            const getAdetails = `SELECT * FROM airport where code="${airportCode}";`
+            db.query(getAdetails,(err,result) => {
+                if (err) reject (err);
+                else resolve(result);
+            })
+        })
+        return data[0];
+    }
 
 
 }

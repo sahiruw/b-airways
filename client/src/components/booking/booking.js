@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import SeatSelection from "./seatSelection";
 import DetailForm from "./detailForm";
-import {useLocation} from 'react-router-dom';
+import { Link, useNavigate , useLocation} from "react-router-dom";
 
 function Booking(props) {
   //this receives data from flight table and cards
@@ -17,6 +17,14 @@ function Booking(props) {
   const [userData, setUserData] = useState({});
   const [isloggeduserpassenger, setisloggeduserpassenger] = useState(false);
 
+
+  const navigate = useNavigate();
+
+  const toBookingConfirm = () => {
+    navigate("/confirmbooking", { state: { userSelectedSeats: userSelectedSeats, userData: userData, flightID:flightID } });
+  };
+
+  
   useEffect(() => {
     fetch("/api/isLogged")
       .then((res) => res.json())
@@ -98,7 +106,8 @@ function Booking(props) {
       <button
         type="submit"
         className="btn btn-primary btn-lg btn-block"
-        onClick={(e) => submit(e)}
+        // onClick={(e) => submit(e)}
+        onClick={()=>{toBookingConfirm()}}
       >
         Fuck you
       </button>

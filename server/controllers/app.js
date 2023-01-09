@@ -19,12 +19,14 @@ const Action1 = require("./action1");
 const Pssenger_Details = require("./get_passenger_details");
 const Bookings_by_Passenger_type = require("./bookings_by_passenger_type");
 const Past_Flights = require("./past_flights");
+const DetailsforBookingConfim = require("./detailsforBookingConfim");
 
 router.post("/register", register);
 router.post("/login", login);
 router.post("/logout", logout);
 router.post("/book", Booking);
 router.post("/schedule", Schedule);
+router.post("/getConfirmDetails",DetailsforBookingConfim)
 
 router.get("/isLogged", isLogged);
 router.get("/departure", show_departure);
@@ -38,5 +40,6 @@ router.get("/Action1",Action1);
 router.get("/Passenger_Details",Pssenger_Details);
 router.get("/Bookings_by_Passenger_type",Bookings_by_Passenger_type);
 router.get("/Past_Flights",Past_Flights);
-//router.get("/AdminLogin",AdminLogin)
+
+
 module.exports = router;
