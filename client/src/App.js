@@ -55,7 +55,8 @@ function App() {
   
 
   return (
-    <div className="App" style={{backgroundColor:"#c3e7e3"}}>
+    // style={{backgroundColor:"#c3e7e3"}}
+    <div className="App">
       <NavBar />
       <RouterProvider router={router} />
       <Footer />
