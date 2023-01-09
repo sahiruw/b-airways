@@ -101,73 +101,175 @@ function NavBar() {
   // );
 
   return (
-    <div style={{ backgroundColor: "#075257" }}>
-      <nav
-        className="navbar navbar-light navbar-expand-md"
-        style={{ opacity: 0.78, height: 107, paddingTop: 2, paddingRight: 0 }}
-      >
-        <div className="container-fluid">
-          <a className="navbar-brand" href="/">
-            <img
-              width={50}
-              height={30}
-              style={{
-                width: 60,
-                height: 36,
-                paddingTop: 0,
-                marginTop: 2,
-                transform: "scale(1.50)",
-                paddingRight: 0,
-                marginLeft: 52,
-                marginRight: 52,
-              }}
-              src={logo}
-            />
-          </a>
-          <div className="collapse navbar-collapse">
-            <ul
-              className="navbar-nav flex-grow-1 justify-content-between"
-              style={{ paddingRight: 0, marginRight: 0 }}
+    // <div style={{ backgroundColor: "#075257" }}>
+    //   <nav
+    //     className="navbar navbar-light navbar-expand-md"
+    //     style={{ opacity: 0.78, height: 107, paddingTop: 2, paddingRight: 0 }}
+    //   >
+    //     <div className="container-fluid">
+    //       <a className="navbar-brand" href="/">
+    //         <img
+    //           width={50}
+    //           height={30}
+    //           style={{
+    //             width: 60,
+    //             height: 36,
+    //             paddingTop: 0,
+    //             marginTop: 2,
+    //             transform: "scale(1.50)",
+    //             paddingRight: 0,
+    //             marginLeft: 52,
+    //             marginRight: 52,
+    //           }}
+    //           src={logo}
+    //         />
+    //       </a>
+    //       <div className="collapse navbar-collapse">
+    //         <ul
+    //           className="navbar-nav flex-grow-1 justify-content-between"
+    //           style={{ paddingRight: 0, marginRight: 0 }}
+    //         >
+    //           <li className="nav-item" style={{ marginRight: 0 }}>
+    //             <button className="btn btn-primary nav-button" type="button">
+    //               Book
+    //             </button>
+    //           </li>
+    //           <li className="nav-item">
+    //             <button
+    //               className="btn btn-primary nav-button"
+    //               type="button"
+    //               style={{ width: 94.9375 }}
+    //             >
+    //               Flight Schedule
+    //             </button>
+    //           </li>
+    //           <li className="nav-item" style={{ marginRight: 62 }}>
+    //             <button className="btn btn-primary nav-button" type="button">
+    //               Our Fleet
+    //             </button>
+    //           </li>
+              // {loggedUser ? (
+              //   <>
+              //     {" "}
+              //     <li className="nav-item active">
+              //       <a href="/" className="nav-link">
+              //         {loggedUser}
+              //       </a>
+              //     </li>
+              //     <li className="nav-item active">
+              //       <button
+              //         onClick={(e) => logout(e)}
+              //         className="btn btn-primary nav-button"
+              //         type="button"
+              //       >
+              //         Log Out
+              //       </button>
+              //     </li>
+              //   </>
+              // ) : (
+              //   <>
+              //     <li className="nav-item">
+              //       <a href="/login" className="nav-link">
+              //         <button
+              //           className="btn btn-primary nav-button"
+              //           type="button"
+              //         >
+              //           Log In
+              //         </button>
+              //       </a>
+              //     </li>
+              //     <li className="nav-item">
+              //       <a href="/register" className="nav-link">
+              //         <button
+              //           className="btn btn-primary nav-button"
+              //           type="button"
+              //         >
+              //           Register
+              //         </button>
+              //       </a>
+              //     </li>
+              //   </>
+              // )}
+    //         </ul>
+    //       </div>
+    //     </div>
+    //   </nav>
+    // </div>
+    <nav
+      className="navbar navbar-expand-lg sticky-top"
+      style={{ height: "80px", marginRight: "0px", marginLeft: "0px" }}
+    >
+      <a className="navbar-brand" href="index.html">
+        <img
+          width="50"
+          height="30"
+          style={{
+            width: "60px",
+            height: "36px",
+            paddingTop: "0px",
+            marginTop: "2px",
+            transform: "scale(1.3)",
+            paddingRight: "0px",
+            marginLeft: "52px",
+            marginRight: "52px",
+          }}
+          src={logo}
+        />
+      </a>
+      <div className="collapse navbar-collapse">
+        <ul className="nav justify-content-between" style={{ width: "80%" }}>
+          <li className="nav-item" style={{ marginRight: "0px" }}>
+            <button className="btn btn-primary nav-button" type="button">
+              Book
+            </button>
+          </li>
+          <li className="nav-item">
+            <button
+              className="btn btn-primary nav-button"
+              type="button"
+              style={{ width: "94.9375px" }}
             >
-              <li className="nav-item" style={{ marginRight: 0 }}>
-                <button className="btn btn-primary nav-button" type="button">
-                  Book
-                </button>
-              </li>
-              <li className="nav-item">
-                <button
-                  className="btn btn-primary nav-button"
-                  type="button"
-                  style={{ width: 94.9375 }}
+              Flight Schedule
+            </button>
+          </li>
+          <li className="nav-item" style={{ marginRight: "62px" }}>
+            <button className="btn btn-primary nav-button" type="button">
+              Our Fleet
+            </button>
+          </li>
+        </ul>
+        {loggedUser ? (
+                <ul className="nav" style={{ width: "40%", marginLeft: "200px" }}>
+                <li
+                  className="nav-item"
+                  style={{ paddingRight: "0px", marginLeft: "-18px" }}
                 >
-                  Flight Schedule
-                </button>
-              </li>
-              <li className="nav-item" style={{ marginRight: 62 }}>
-                <button className="btn btn-primary nav-button" type="button">
-                  Our Fleet
-                </button>
-              </li>
-              {loggedUser ? (
-                <>
-                  {" "}
-                  <li className="nav-item active">
-                    <a href="/" className="nav-link">
-                      {loggedUser}
-                    </a>
-                  </li>
-                  <li className="nav-item active">
-                    <button
-                      onClick={(e) => logout(e)}
-                      className="btn btn-primary nav-button"
-                      type="button"
-                    >
-                      Log Out
-                    </button>
-                  </li>
-                </>
+                  <a
+                    className="nav-link"
+                    style={{ fontFamily: "nexa", color: "#ffffff", fontSize: "20px" }}
+                    href="#"
+                  >
+                    <i
+                      className="fa fa-user"
+                      style={{ color: "#ffffff", transform: "scale(1.75)",marginRight: "15px" }}
+                    />
+                    {loggedUser}
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a
+                    className="btn btn-light nav-button"
+                    role="button"
+                    href="signin.html"
+                    style={{ marginLeft: "64px" }}
+                    onClick={(e) => logout(e)}
+                  >
+                    Logout
+                  </a>
+                </li>
+              </ul>
               ) : (
-                <>
+                <ul className="nav" style={{ width: "40%", marginLeft: "200px" }}>
                   <li className="nav-item">
                     <a href="/login" className="nav-link">
                       <button
@@ -188,13 +290,11 @@ function NavBar() {
                       </button>
                     </a>
                   </li>
-                </>
+                </ul>
               )}
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </div>
+        
+      </div>
+    </nav>
   );
 }
 

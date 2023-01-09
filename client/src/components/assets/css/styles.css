@@ -78,7 +78,7 @@
   border-bottom-left-radius: 20px;
   text-align: center;
   font-family: Nexa;
-  height: 19px;
+  height: 20px;
   padding: 0px;
   padding-bottom: 0px;
   padding-top: 1px;
@@ -87,7 +87,7 @@
   min-width: 1px;
   border-color: var(--bs-gray-100);
   color: rgb(255,255,255);
-  transform: scale(2);
+  transform: scale(1.5);
   margin-right: 40px;
   margin-left: 40px;
 }
