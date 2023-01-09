@@ -12,6 +12,7 @@ import Booking from "./components/booking/booking"
 import SearchBar from "./components/flightSearchBar";
 import Table from "./screens/Table";
 import Footer from "./components/footer";
+import UnderConstruction from "./screens/under_construction";
 
 const router   = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const router   = createBrowserRouter([
   {
     path: "table",
     element: <Table />
+  },
+  {
+    path : "underconstruction",
+    element : <UnderConstruction />
   }
 ]);
 
@@ -45,7 +50,7 @@ function App() {
   
 
   return (
-    <div className="App">
+    <div className="App" style={{backgroundColor:"#c3e7e3"}}>
       <NavBar />
       <RouterProvider router={router} />
       <Footer />

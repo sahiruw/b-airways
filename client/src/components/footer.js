@@ -6,19 +6,19 @@ function Footer() {
     <div class="footer-basic">
       <footer>
         <div class="social">
-          <a href="uconstruction.html" style={{ "border-color": "#08575c" }}>
+          <a href="underconstruction" style={{ "border-color": "#08575c" }}>
             <i
               class="fa fa-instagram"
               style={{ "border-color": "#032e31", opacity: "1" }}
             ></i>
           </a>
-          <a href="uconstruction.html" style={{ "border-color": "#08575c" }}>
+          <a href="underconstruction" style={{ "border-color": "#08575c" }}>
             <i class="fa fa-snapchat-ghost"></i>
           </a>
-          <a href="uconstruction.html" style={{ "border-color": "#08575c" }}>
+          <a href="underconstruction" style={{ "border-color": "#08575c" }}>
             <i class="fa fa-twitter" style={{ color: "#08575c" }}></i>
           </a>
-          <a href="uconstruction.html" style={{ "border-color": "#08575c" }}>
+          <a href="underconstruction" style={{ "border-color": "#08575c" }}>
             <i class="fa fa-facebook-f" style={{ color: "#08575c" }}></i>
           </a>
         </div>
