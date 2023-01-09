@@ -1,20 +1,20 @@
 import React, { Component } from "react";
-import { useState ,useEffect} from "react";
+import { useState, useEffect } from "react";
 import "./assets/css/Signup-page-with-overlay.css";
 import "./assets/css/styles.css";
-import "./assets/css/Landing-Section-with-Call-to-Action-BS4.css"
+import "./assets/css/Landing-Section-with-Call-to-Action-BS4.css";
 import "./assets/css/Sakae-Simple-Section.css";
 
-
+import MuiPhoneNumber from "material-ui-phone-number";
+import CountrySelection from "./booking/countrySelect";
 
 const Register = () => {
-
   useEffect(() => {
     fetch("/api/isLogged")
       .then((res) => res.json())
       .then((data) => {
         if (data.status) {
-          //document.location.replace('/')
+          document.location.replace('/')
         }
       });
   });
@@ -41,7 +41,7 @@ const Register = () => {
 
     setTimeout(() => {
       setAlert({ ...alert, aalert: { display: "none" } });
-      if (type === "success") document.location.replace('/login')
+      if (type === "success") document.location.replace("/login");
     }, time * 1000);
   };
 
@@ -50,12 +50,10 @@ const Register = () => {
     if (form.email.length < 5 || form.pass.length < 3) {
       return sendMessage("Please fille the form correctly!");
     }
-    let username = form.email;
-    let pass = form.pass;
-    
+
     fetch("/api/register", {
       method: "POST",
-      body: JSON.stringify({ username, pass}),
+      body: JSON.stringify({ form }),
       headers: { "Content-Type": "application/json" },
     }).then((res) =>
       res.json().then((data) => {
@@ -67,104 +65,13 @@ const Register = () => {
       })
     );
   };
-  const style_card = {
-    marginTop : 30,
-    width : 935,
-    marginLeft : 300,
-    marginRight : 300,
-    height : 650,
-    paddingTop : 20
-    
-
-};
 
 
   return (
-
-    // <div className="shadow-lg p-3 mb-5 bg-white rounded" style={style_card}>
-    //   <form style={{padding:10,marginLeft:400,margin:100,width:700}}>
-    //   <h3>Sign Up</h3>
-    //   <div
-    //     className={`alert alert-${alert.atype}`}
-    //     role="alert"
-    //     style={alert.aalert}
-    //   >
-    //     {alert.amessage}
-    //   </div>
-
-    //   <div className="mb-3">
-    //     <label>First name</label>
-    //     <input
-    //       type="text"
-    //       className="form-control"
-    //       placeholder="First name"
-    //       onChange={(e) => {
-    //         setForm({
-    //           ...form,
-    //           firstName: e.target.value,
-    //         });
-    //       }}
-    //     />
-    //   </div>
-    //   <div className="mb-3">
-    //     <label>Last name</label>
-    //     <input
-    //       type="text"
-    //       className="form-control"
-    //       placeholder="Last name"
-    //       onChange={(e) => {
-    //         setForm({
-    //           ...form,
-    //           lastName: e.target.value,
-    //         });
-    //       }}
-    //     />
-    //   </div>
-
-    //   <div className="mb-3">
-    //     <label>Email address</label>
-    //     <input
-    //       type="email"
-    //       className="form-control"
-    //       placeholder="Enter email"
-    //       onChange={(e) => {
-    //         setForm({
-    //           ...form,
-    //           email: e.target.value,
-    //         });
-    //       }}
-    //     />
-    //   </div>
-    //   <div className="mb-3">
-    //     <label>Password</label>
-    //     <input
-    //       type="password"
-    //       className="form-control"
-    //       placeholder="Enter password"
-    //       onChange={(e) => {
-    //         setForm({
-    //           ...form,
-    //           pass: e.target.value,
-    //         });
-    //       }}
-    //     />
-    //   </div>
-    //   <div className="d-grid">
-    //     <button
-    //       type="submit"
-    //       className="btn btn-outline-primary"
-    //       style={{marginTop:10}}
-    //       onClick={(e) => submit(e)}
-    //     >
-    //       Sign Up
-    //     </button>
-    //   </div>
-    //   <p className="forgot-password text-right">
-    //     Already registered <a href="/login">sign in?</a>
-    //   </p>
-    // </form>
-    // </div>
-    <div className="container" style={{ marginBottom: '12px' ,fontFamily:"nexa"}}>
+    <div
+      className="container"
+      style={{ marginBottom: "12px", fontFamily: "nexa" }}
+    >
       <div id="main-wrapper" className="container">
         <div className="row justify-content-center">
           <div className="col-xl-10">
@@ -174,90 +81,158 @@ const Register = () => {
                   <div className="col-lg-6">
                     <div className="p-5">
                       <div className="mb-5">
-                        <h3 className="h4 font-weight-bold text-theme">REGISTER</h3>
+                        <h3 className="h4 font-weight-bold text-theme">
+                          REGISTER
+                        </h3>
                       </div>
                       <p className="text-muted mt-2 mb-5">
-                        Welcome to B Airways! By creating an account with us, you'll be able to book flights, manage your reservations, and access special deals and discounts. Signing up is quick and easy, so start your journey with B Airways today! With your account, you can:
+                        Welcome to B Airways! By creating an account with us,
+                        you'll be able to book flights, manage your
+                        reservations, and access special deals and discounts.
+                        Signing up is quick and easy, so start your journey with
+                        B Airways today! With your account, you can:
                       </p>
                       <form>
                         <div className="form-group">
                           <label className="form-label" htmlFor="fname">
                             First name
                           </label>
-                          <input id="fname" className="form-control form-control" type="text" />
+                          <input
+                            id="fname"
+                            className="form-control form-control"
+                            type="text"
+                            onChange={(e) => {
+                                      setForm({
+                                        ...form,
+                                        firstName: e.target.value,
+                                      });
+                                    }}
+                          />
                         </div>
                         <div className="form-group">
                           <label className="form-label" htmlFor="lname">
                             Last Name
                           </label>
-                          <input id="lname" className="form-control form-control" type="text" />
+                          <input
+                            id="lname"
+                            className="form-control form-control"
+                            type="text"
+                            onChange={(e) => {
+                              setForm({
+                                ...form,
+                                lastName: e.target.value,
+                              });
+                            }}
+                          />
                         </div>
                         <div className="form-group">
-                          <label className="form-label" htmlFor="exampleInputEmail1">
+                          <label
+                            className="form-label"
+                            htmlFor="exampleInputEmail1"
+                          >
                             Email address
                           </label>
                           <input
                             id="exampleInputEmail1"
                             className="form-control form-control"
                             type="email"
+                            onChange={(e) => {
+                              setForm({
+                                ...form,
+                                email: e.target.value,
+                              });
+                            }}
                           />
                         </div>
                         <div className="form-group">
-                          <label className="form-label" htmlFor="exampleInputPassword1">
+                          <label
+                            className="form-label"
+                            htmlFor="exampleInputPassword1"
+                          >
                             Password
                           </label>
                           <input
                             id="exampleInputPassword1"
                             className="form-control form-control"
                             type="password"
+                            onChange={(e) => {
+                              setForm({
+                                ...form,
+                                pass: e.target.value,
+                              });
+                            }}
                           />
                         </div>
                         <div className="form-group">
-                          <label className="form-label" htmlFor="exampleInputPassword2">
-                            Submit Password
-                          </label>
-                          <input
-                            id="exampleInputPassword2"
-                            className="form-control form-control"
-                            type="password"
-                          />
-                        </div>
-                        <div className="form-group">
-                          <label className="form-label" htmlFor="passportnumber">
+                          <label
+                            className="form-label"
+                            htmlFor="passportnumber"
+                          >
                             Passport Number
                           </label>
                           <input
                             id="passportnumber"
                             className="form-control form-control"
                             type="text"
+                            onChange={(e) => {
+                              setForm({
+                                ...form,
+                                passport: e.target.value,
+                              });
+                            }}
                           />
                         </div>
-<div className="form-group">
+                        <div className="form-group">
                           <label className="form-label" htmlFor="birthday">
                             BirthDay
                           </label>
-                          <input id="birthday" className="form-control form-control" type="date" />
+                          <input
+                            id="birthday"
+                            className="form-control form-control"
+                            type="date"
+                            onChange={(e) => {
+                              setForm({
+                                ...form,
+                                birthday: e.target.value,
+                              });
+                            }}
+                          />
                         </div>
                         <div className="form-group">
                           <label className="form-label" htmlFor="country">
                             Country
                           </label>
-                          <input id="country" className="form-control form-control" type="text" />
+
+                          <CountrySelection
+                            form={form}
+                            setForm={setForm}
+                            disabled={false}
+                          />
                         </div>
+
                         <div className="form-group mb-5">
+                          <br />
                           <label className="form-label" htmlFor="cnumber">
                             Phone Number
                           </label>
-                          <input id="cnumber" className="form-control form-control" type="text" />
+                          <MuiPhoneNumber
+                            inputClass="form-control form-control"
+                            defaultCountry={"lk"}
+                            disableAreaCodes={true}
+                            value={form.phone}
+                            onChange={(value) => {
+                              setForm({ ...form, phone: value });
+                            }}
+                          />
                         </div>
-                        <button className="btn-theme" type="submit">
-                            Register
+                        <button className="btn-theme" type="submit" onClick={(e) => submit(e)}>
+                          Register
                         </button>
                         <p className="text-center text-muted">
-                            Already have an account?{' '}
-                            <a className="text-primary ml-1" href="login.html">
-                                login
-                            </a>
+                          Already have an account?{" "}
+                          <a className="text-primary ml-1" href="login.html">
+                            login
+                          </a>
                         </p>
                       </form>
                     </div>
@@ -267,7 +242,12 @@ const Register = () => {
                       <div className="overlay rounded-right"></div>
                       <div className="account-testimonial">
                         <p className="lead text-white">
-                          Book flights and manage your reservations online. Access special deals and discounts available only to account holders. Store your personal information and preferences for faster booking in the future. View your travel history and itineraries. Receive updates and promotions from B Airways
+                          Book flights and manage your reservations online.
+                          Access special deals and discounts available only to
+                          account holders. Store your personal information and
+                          preferences for faster booking in the future. View
+                          your travel history and itineraries. Receive updates
+                          and promotions from B Airways
                         </p>
                       </div>
                     </div>

@@ -22,7 +22,7 @@ const isLogged =  async (req, res) => {
 
   if (currentUserData == null) return res.json({ status: 0 });
   else {
-    return res.json({ status: 1, user: currentUserData[0].email });
+    return res.json({ status: 1, user: currentUserData[0].email, name: currentUserData[0].firstname });
   }
 };
 
