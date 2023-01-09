@@ -51,7 +51,7 @@ const CountrySelection = (props) => {
   );
 
   useEffect(() => {
-    handleChange({ target: { value: props.value } });
+    if (props.value){handleChange({ target: { value: props.value } });}
   }, [props.value]);
 
   const handleChange = (event) => {
@@ -61,7 +61,6 @@ const CountrySelection = (props) => {
 
   return (
     <>
-    {props.value}
     <select
       className="form-select"
       id="selected-country"

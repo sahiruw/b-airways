@@ -1,7 +1,7 @@
 
 -- function to insert members
 DELIMITER $$
-CREATE FUNCTION insert_member(p_firstname VARCHAR(10), p_lastname VARCHAR(10), p_email VARCHAR(30), p_password VARCHAR(50), p_mem_cat_id INT, p_dob DATE, p_country VARCHAR(15), p_tele_no VARCHAR(12), p_passport VARCHAR(10))
+CREATE FUNCTION insert_member(p_firstname VARCHAR(10), p_lastname VARCHAR(10), p_email VARCHAR(30), p_password VARCHAR(150), p_mem_cat_id INT, p_dob DATE, p_country VARCHAR(15), p_tele_no VARCHAR(12), p_passport VARCHAR(10))
 RETURNS INT
 DETERMINISTIC
 BEGIN
