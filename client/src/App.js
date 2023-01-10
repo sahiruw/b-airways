@@ -1,21 +1,17 @@
 import NavBar from "./components/NavBar";
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
-
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import HomeScreen from "./screens/HomeScreen";
 import Register from "./components/register";
-import LogIn from "./components/login"
-import Booking from "./components/booking/booking"
+import LogIn from "./components/login";
+import Booking from "./components/booking/booking";
 import SearchBar from "./components/flightSearchBar";
 import Table from "./screens/Table";
 import Footer from "./components/footer";
 import UnderConstruction from "./screens/under_construction";
 import ConfirmBooking from "./components/booking/bookingConfirm";
 
-const router   = createBrowserRouter([
+const router = createBrowserRouter([
   {
     path: "/",
     element: <HomeScreen />,
@@ -34,28 +30,25 @@ const router   = createBrowserRouter([
     element: <Booking />,
   },
   {
-    path : "search",
-    element : <SearchBar />
+    path: "search",
+    element: <SearchBar />,
   },
   {
     path: "table",
-    element: <Table />
+    element: <Table />,
   },
   {
-    path : "underconstruction",
-    element : <UnderConstruction />
+    path: "underconstruction",
+    element: <UnderConstruction />,
   },
   {
     path: "confirmbooking",
-    element: <ConfirmBooking />
-  }
+    element: <ConfirmBooking />,
+  },
 ]);
 
 function App() {
-  
-
   return (
-    // style={{backgroundColor:"#c3e7e3"}}
     <div className="App">
       <NavBar />
       <RouterProvider router={router} />
