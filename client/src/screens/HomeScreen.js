@@ -29,8 +29,11 @@ function HomeScreen() {
   return (
     <div>
       <div id="section1">
+        <div id="div1">
         <SearchBar />
-        <div className="row" style={{ marginleft: 40}}>
+        </div>
+        
+        <div className="row" style={{ marginleft: 40}} id="div3">
           <div style={{marginTop : 10}}>
             <div class="container">
             {/* sombra borderedondo */}
@@ -48,7 +51,10 @@ function HomeScreen() {
             </div>
           </div>
         </div>
+        <div className="div1" id = "div2">
         <Blog />
+        </div>
+        
       </div>
     </div>
   );
