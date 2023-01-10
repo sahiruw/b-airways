@@ -52,7 +52,10 @@ function App() {
     <div className="App">
       <NavBar />
       <RouterProvider router={router} />
+      <div id = "footer">
       <Footer />
+      </div>
+      
     </div>
   );
 }

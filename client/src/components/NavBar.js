@@ -64,23 +64,31 @@ function NavBar() {
       <div className="collapse navbar-collapse">
         <ul className="nav justify-content-between" style={{ width: "80%" }}>
           <li className="nav-item" style={{ marginRight: "0px" }}>
+            <a href="#div1">
             <button className="btn btn-primary nav-button" type="button">
               Book
             </button>
+            </a>
+            
           </li>
           <li className="nav-item">
-            <button
-              className="btn btn-primary nav-button"
-              type="button"
-              style={{ width: "94.9375px" }}
-            >
-              Flight Schedule
+            <a href="#div2">
+              <button
+                className="btn btn-primary nav-button"
+                type="button"
+                style={{ width: "94.9375px" }}
+              >
+              About Us
             </button>
+            </a>
           </li>
           <li className="nav-item" style={{ marginRight: "62px" }}>
+            <a href="#footer">
             <button className="btn btn-primary nav-button" type="button">
               Our Fleet
             </button>
+            </a>
+            
           </li>
         </ul>
         {loggedUser ? (

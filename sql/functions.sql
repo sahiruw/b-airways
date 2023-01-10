@@ -117,3 +117,18 @@ END$$
 DELIMITER 
 
 
+DELIMITER $$
+CREATE FUNCTION Get_Most_Recent_Flight_ID()
+RETURNS INT
+DETERMINISTIC
+BEGIN
+	
+    DECLARE most_recent_flight_ID INT;
+    select ID into most_recent_flight_ID
+    from flight order by departure_time asc limit 1;
+    
+    return most_recent_flight_ID;
+	
+  
+END$$
+DELIMITER 
