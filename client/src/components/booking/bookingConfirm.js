@@ -72,7 +72,7 @@ function BookingConfirm(props) {
                 <div class="d-flex justify-content-end py-4">
                     <h6 style = {{"color":"#08575c","text-decoration":"underline",}}><a class="link-href" href="#">Cancel and return to website</a></h6>
                 </div>
-                <div class="bg-white d-flex flex-column p-3" style = {{"border-radius":"14px",}}>
+                <div class="bg-white d-flex flex-column p-3" style = {{"border-radius":"14px", "margin-left":"100px","margin-right":"-100px"}}>
                     <div class="pt-2">
                         <h5>Passengers</h5>
                     </div>
