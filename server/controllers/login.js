@@ -26,7 +26,7 @@ const login = async (req, res) => {
 
   return res.json({
     status: 1,
-    message: "USer has been logged in! " + userData[0].ID,
+    message: "User has been logged in! " + userData[0].ID,
   });
 
 };

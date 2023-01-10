@@ -1,0 +1,37 @@
+.accordion-module-content {
+  width: 80%;
+  font-family: nexa;
+  box-sizing: border-box;
+  color: #075257;
+  background: rgba(7,82,87,0.14);
+  border-radius: 20px;
+  padding: 24px !important;
+}
+
+.row-bkc {
+  height: 49px;
+  text-align: center;
+  background-color: rgba(255,255,255,0.54);
+}
+
+.row-hkc {
+  text-align: center;
+  height: 49px;
+  font-weight: 900;
+}
+
+.tb-cell-1 {
+  font-family: nexa;
+  text-align: left;
+  border-radius: 10px 0 0 10px;
+}
+
+.tb-cell-2 {
+  font-family: nexa;
+  border-radius: 0 10px 10px 0;
+}
+
+.tb-cell {
+  font-family: nexa;
+}
+
