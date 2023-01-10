@@ -74,14 +74,12 @@ const Register = () => {
     >
       <div id="main-wrapper" className="container">
         <div className="row justify-content-center">
-          <div className="col-xl-10">
-            <div className="card border-0">
               <div className="card-body p-0">
                 <div className="row no-gutters">
                   <div className="col-lg-6">
                     <div className="p-5">
                       <div className="mb-5">
-                        <h3 className="h4 font-weight-bold text-theme">
+                        <h3 className="h4 font-weight-bold text-theme" style={{}}>
                           REGISTER
                         </h3>
                       </div>
@@ -253,12 +251,11 @@ const Register = () => {
                     </div>
                   </div>
                 </div>
-              </div>
+              
             </div>
           </div>
         </div>
       </div>
-    </div>
   );
 };
 
