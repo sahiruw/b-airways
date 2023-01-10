@@ -79,7 +79,7 @@ const Register = () => {
                   <div className="col-lg-6">
                     <div className="p-5">
                       <div className="mb-5">
-                        <h3 className="h4 font-weight-bold text-theme" style={{}}>
+                        <h3 className="h4 font-weight-bold text-theme" style={{color: "red"}}>
                           REGISTER
                         </h3>
                       </div>
