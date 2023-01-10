@@ -4,9 +4,9 @@ const db = require("../routes/db-config");
 
 class AdminModel{
 
-    static async checkAdmin(username, password){
+    static async checkAdmin(email, password){
         let data = await new Promise((resolve,reject) => {
-            const sqlQuery = "";
+            const sqlQuery = `select count(*) as number from admin where email = '${email}' and password = '${password}';`
             db.query(sqlQuery,(err,ressult) => {
                 if(err) reject(err)
                 else resolve(ressult)
@@ -66,10 +66,10 @@ class AdminModel{
         
     }
 
-    static async Members_Below_18(restricted_date){
+    static async Flight_Details_Guest(flight_id){
 
         let data = await new Promise((resolve,reject) => {
-            const query = `select passenger_ID,flight_ID,ID,firstname,lastname from flight_member_details where dob >= '${restricted_date}'  and flight_status = 'Scheduled' order by departure_time limit 1`;
+            const query = `select * from flight_guest where flight_ID = ${flight_id}`;
             db.query(query,(err,result) => {
                 if(err) reject(err)
                 else resolve(result)
@@ -80,10 +80,10 @@ class AdminModel{
 
     }
 
-    static async Members_Above_18(restricted_date){
+    static async Flight_Details_Members(flight_id){
 
         let data = await new Promise((resolve,reject) => {
-            const query = `select passenger_ID,flight_ID,ID,firstname,lastname from flight_member_details where dob <= '${restricted_date}'  and flight_status = 'Scheduled' order by departure_time limit 1`;
+            const query = `select * from flight_members where flight_ID = ${flight_id}`;
             db.query(query,(err,result) => {
                 if(err) reject(err)
                 else resolve(result)

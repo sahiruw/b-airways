@@ -150,3 +150,14 @@ INSERT INTO Transaction (booking_ID, time, total, payment_method) VALUES (2, '20
 INSERT INTO Transaction (booking_ID, time, total, payment_method) VALUES (3, '2022-01-03 09:00:00', 300.0, 'credit');
 INSERT INTO Transaction (booking_ID, time, total, payment_method) VALUES (4, '2022-01-04 10:00:00', 400.0, 'debit');
 INSERT INTO Transaction (booking_ID, time, total, payment_method) VALUES (5, '2022-01-05 11:00:00', 500.0, 'credit');
+
+
+INSERT INTO admin (email, password, Name, ContactNo, Country) VALUES
+('admin1@example.com', 'p@ssword1', 'Admin One', '123-456-7890', 'USA'),
+('admin2@example.com', 'p@ssword2', 'Admin Two', '123-456-7891', 'Canada'),
+('admin3@example.com', 'p@ssword3', 'Admin Three', '123-456-7892', 'Mexico'),
+('admin4@example.com', 'p@ssword4', 'Admin Four', '123-456-7893', 'UK'),
+('admin5@example.com', 'p@ssword5', 'Admin Five', '123-456-7894', 'France'),
+('admin6@example.com', 'p@ssword6', 'Admin Six', '123-456-7895', 'Germany'),
+('admin7@example.com', 'p@ssword7', 'Admin Seven', '123-456-7896', 'Spain'),
+('admin8@example.com', 'p@ssword8', 'Admin Eight', '123-456-7897', 'Italy');

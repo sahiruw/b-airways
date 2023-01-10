@@ -1,5 +1,6 @@
 import React from 'react';
 import { useEffect,useState } from 'react';
+import {Link,useNavigate} from "react-router-dom";
 
 
 function Login(){
@@ -8,18 +9,49 @@ function Login(){
         email : "",
         pass : "",
     });
+    const[messageObject,setmessageObject] = useState({
+       message : "",
+       alertType : "",
+       alertStyle : {display : "none"},
+    });
+
+    const navigate = useNavigate();
+
+    const loginProcess = (message,alertType,alertStyle) => {
+        setmessageObject({
+          ...messageObject,
+          message : message,
+          alertType : alertType,
+          alertStyle : {display : "block"}
+        });
+
+        if(alertType === "success"){
+          //document.location.replace("/start");
+          navigate('/start',{
+            state : {useMail : form.email},
+          });
+        }
+
+    }
 
     const submit = (e) => {
         e.preventDefault();
 
         let password = form.pass;
         let email = form.email;
-
-        fetch(`/api/AdminLogin?password=${password}&email=${email}`)
+        
+        fetch(`/api/adminLogin?password=${password}&email=${email}`)
         .then((res) => res.json())
         .then((data)=>{
 
-
+          if(data.status){
+            // setmessageObject({...messageObject,message : data.message,alertType : "success",alertStyle : {display : "block"}});
+            loginProcess(data.message,"success",{display : "block"});
+          } 
+          else if(!data.status){
+            // setmessageObject({...messageObject,message : data.message,alertType : "danger",alertStyle : {display : "block"}});
+            loginProcess(data.message,"danger",{display : "block"});
+          }
 
         })
 
@@ -55,8 +87,8 @@ function Login(){
                     </svg>
                   </div>
 
-                  <div className={"alert alert-" + alert.atype} role="alert" style={alert.aalert}>
-                    {alert.amessage}
+                  <div className={"alert alert-" + messageObject.alertType} role="alert" style={messageObject.alertStyle}>
+                    {messageObject.message}
                   </div>
 
 

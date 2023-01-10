@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 
-function OffCanvasMenue(){
+function OffCanvasMenue(props){
 
     const [show, setShow] = useState(false);
 
@@ -15,10 +15,19 @@ function OffCanvasMenue(){
 
     return(
         <>
-      {/* <Button variant="primary" onClick={handleShow}>
+        
+      {/* {/* <Button variant="primary" onClick={handleShow}>
       &#9776;
       </Button> "font-size:30px;cursor:pointer"*/}
-      <span style={{fontSize : 30 , cursor : "pointer"}} onClick={handleShow}>&#9776;</span>
+      {/* <nav class="navbar navbar-expand-sm sticky-top" style={{"background-color": "black"}}>
+    <a href="" class="navbar-brand" style={{"padding-left":"100px", "font-weight": "bold","color":"white"}}>B Air Ways</a>
+    
+
+  </nav>
+      <span style={{fontSize : 30 , cursor : "pointer"}} onClick={handleShow}>
+        &#9776;
+        {props.mail}
+      </span>
 
       <Offcanvas show={show} onHide={handleClose} style= {{"background-color" : "#047a74"}}>
       
@@ -55,8 +64,10 @@ function OffCanvasMenue(){
        
 
         </Offcanvas.Body>
-      </Offcanvas>
-    </>
+      </Offcanvas> 
+     */}
+     
+     </>
 
     );
 }

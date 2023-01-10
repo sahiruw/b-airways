@@ -20,6 +20,9 @@ const Pssenger_Details = require("./get_passenger_details");
 const Bookings_by_Passenger_type = require("./bookings_by_passenger_type");
 const Past_Flights = require("./past_flights");
 const DetailsforBookingConfim = require("./detailsforBookingConfim");
+const AdminLogin = require("./adminLogin");
+const Flight_Details_Members = require("./Member_Flight_Details");
+
 
 router.post("/register", register);
 router.post("/login", login);
@@ -34,12 +37,14 @@ router.get("/getAircraftDetailsByID", getAircraftDetailsByID);
 router.get("/getReservedSeats", getReservedSeats);
 router.get("/getuserbyusername", getuserbyusername);
 router.get("/Flights",Flights)
-router.get("/RecentFlights",RecentFlights)
+router.get("/RecentFlights",RecentFlights);
 router.get("/GetStaff",GetStaff);
 router.get("/Action1",Action1);
 router.get("/Passenger_Details",Pssenger_Details);
 router.get("/Bookings_by_Passenger_type",Bookings_by_Passenger_type);
 router.get("/Past_Flights",Past_Flights);
+router.get("/adminLogin",AdminLogin);
+router.get("/Flight_Details_Members",Flight_Details_Members )
 
 
 module.exports = router;
