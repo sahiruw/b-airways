@@ -62,7 +62,7 @@ function BookingConfirm(props) {
                     <p>Abu Dhabi Airport (AUH)</p>
                     <h4 class="green" style = {{"color":"rgb(0,0,0)","font-size":"20px","font-family":"Helvetica",}}></h4>
                 </div>
-                <div class="bg-white d-flex flex-column p-2" style = {{"border-radius":"20px","width":"332.513px",}}><b><span style = {{"color":"rgb(63, 63, 63)",}}>Duration</span><br /></b>
+                <div class="bg-white d-flex flex-column p-2" style = {{"border-radius":"20px","width":"332.513px","margin-top":"20px"}}><b><span style = {{"color":"rgb(63, 63, 63)",}}>Duration</span><br /></b>
                     <p><span style = {{"color":"rgb(63, 63, 63)",}}>05:00 H</span><br /></p><b><span style = {{"color":"rgb(63, 63, 63)",}}>Air Craft</span><br /></b>
                     <p>Air Bus 3045</p><b><span style = {{"color":"rgb(63, 63, 63)",}}>Cabin</span><br /></b>
                     <p>Business</p>
@@ -121,8 +121,8 @@ function BookingConfirm(props) {
                 </div>
             </div>
         </div>
-        <div class="row d-flex justify-content-center bg pb-5">
-            <div class="col"><b style = {{"font-size":"34px",}}>Choose Your Payment Method</b>
+        <div class="row d-flex justify-content-center bg pb-5" style = {{"margin-top":"40px","padding-top":"10px"}}>
+            <div class="col"><b style = {{"font-size":"25px",}}>Choose Your Payment Method</b>
                 <div style = {{"margin-right":"100px","margin-left":"100px",}}>
                     <div class="row cc-type-error">
                         <div id="ccOptions" class="container">
@@ -141,7 +141,9 @@ function BookingConfirm(props) {
             </div>
         </div>
     </div>
-    <div class="container bg-white rounded"><button class="btn btn-primary btn btn-theme" type="button" style = {{"width":"112.6625px","height":"50px","font-size":"20px","font-weight":"bold","font-family":"NExa",}}>Back</button><button class="btn btn-primary btn btn-theme" type="button" style = {{"width":"137.6625px","height":"50px","font-size":"20px","font-weight":"bold","font-family":"NExa","margin-left":"1042px","margin-right":"0px","padding-right":"8px",}}>Checkout</button></div>
+    <div class="container bg-white rounded">
+        <button class="btn-bk-confirm" type="button" >Back</button>
+        <button class="btn-bk-confirm" style = {{ marginLeft: "890px", marginRight: "0px", width:"150px"}} type="button" >Checkout</button></div>
     <div class="container bg-white rounded">
         <div class="bg-white d-flex flex-column mt-4 p-3" style = {{"border-radius":"14px",}}>
             <div class="pt-2">
