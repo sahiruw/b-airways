@@ -6,19 +6,19 @@ function Footer() {
     <div class="footer-basic">
       <footer>
         <div class="social">
-          <a href="https://www.facebook.com/profile.php?id=100009692474415" style={{ "border-color": "#08575c" }}>
+          <a href="https://www.facebook.com/photo/?fbid=2018449405012461&set=a.114819818708772" style={{ "border-color": "#08575c" }}>
             <i
               class="fa fa-instagram"
               style={{ "border-color": "#032e31", opacity: "1" }}
             ></i>
           </a>
-          <a href="underconstruction" style={{ "border-color": "#08575c" }}>
+          <a href="https://www.facebook.com/photo.php?fbid=852361291784093&set=t.100010306903766&type=3" style={{ "border-color": "#08575c" }}>
             <i class="fa fa-snapchat-ghost"></i>
           </a>
-          <a href="underconstruction" style={{ "border-color": "#08575c" }}>
+          <a href="https://www.facebook.com/photo.php?fbid=680275139594000&set=pb.100028345601357.-2207520000.&type=3" style={{ "border-color": "#08575c" }}>
             <i class="fa fa-twitter" style={{ color: "#08575c" }}></i>
           </a>
-          <a href="https://www.facebook.com/profile.php?id=100009692474415" style={{ "border-color": "#08575c" }}>
+          <a href="https://www.facebook.com/photo.php?fbid=261264910873256&set=pb.100009692474415.-2207520000.&type=3" style={{ "border-color": "#08575c" }}>
             <i class="fa fa-facebook-f" style={{ color: "#08575c" }}></i>
           </a>
         </div>

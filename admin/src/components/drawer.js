@@ -22,6 +22,9 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import MenuItem from '@mui/material/MenuItem';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Link from '@mui/material/Link';
+import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
+import FlightIcon from '@mui/icons-material/Flight';
+import Groups2Icon from '@mui/icons-material/Groups2';
 
 
 const drawerWidth = 240;
@@ -91,9 +94,9 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-const Options = ['Past Flights', 'Bookings',"Action1", 'Action4'];
-const Icons = [<InboxIcon />, <MailIcon />, <LogoutIcon />,<MailIcon />];
-const links = ["past_flights","bookings_by_passenger_type","action1","passenger_details"]
+const Options = ['Past Flights', 'Bookings',"Action1", 'Action4','Revenue'];
+const Icons = [<FlightIcon />, <MailIcon />, <Groups2Icon/>,<MailIcon />,<MonetizationOnIcon />];
+const links = ["past_flights","bookings_by_passenger_type","action1","passenger_details","revenue"]
 function MiniDrawer(props) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -107,9 +110,9 @@ function MiniDrawer(props) {
   };
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex' }} >
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
+      <AppBar position="fixed" open={open}  style={{backgroundColor:"#075257"}}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -195,6 +198,7 @@ function MiniDrawer(props) {
 
         <List>
           {['Logout'].map((text, index) => (
+            <Link href="/" underline="none">
             <ListItem key={text} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
                 sx={{
@@ -216,7 +220,9 @@ function MiniDrawer(props) {
                 <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
+            </Link>
           ))}
+        
         </List>
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
