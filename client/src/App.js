@@ -1,5 +1,5 @@
 import NavBar from "./components/NavBar";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, useLocation } from "react-router-dom";
 
 import HomeScreen from "./screens/HomeScreen";
 import Register from "./components/register";
@@ -48,6 +48,9 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+  // const { pathname } = useLocation();
+
+
   return (
     <div className="App">
       <NavBar />

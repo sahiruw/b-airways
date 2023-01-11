@@ -7,11 +7,15 @@ function SearchBar(props) {
   const [Airports, setAirports] = useState([]);
   const [FlightList, setFlightList] = useState([]);
 
-  const [Form, setForm] = useState({});
+  const [Form, setForm] = useState({seat_type:"Economy", passengerCount:1});
 
   useEffect(() => {
-    setForm(props.selectedValues);
+    if (props.selectedValues) {
+      setForm(props.selectedValues);
+      console.log(props.selectedValues)
+    }
   }, [props.selectedValues]);
+
 
   useEffect(() => {
     fetch("/api/departure")
@@ -27,6 +31,7 @@ function SearchBar(props) {
 
   const ShowBySearch = (e) => {
     e.preventDefault();
+    console.log(Form);
 
     if (!Form || !Form.from || !Form.to || !Form.date) {
       alert("Please fill all the fields");
@@ -34,16 +39,15 @@ function SearchBar(props) {
 
       return;
     }
-    if (!Form.passengerCount) {
-      setForm({ ...Form, passengerCount: 1 });
-    }
 
-    if (!Form.seat_type){
-      setForm({ ...Form, seat_type: "Economy" })
+    let passengerCountT = Form.passengerCount;
+    if (!passengerCountT) {
+      setForm({ ...Form, passengerCount: 1 });
+      passengerCountT = 1;
     }
 
     fetch(
-      `/api/Flights?from=${Form.from}&to=${Form.to}&departureDate=${Form.date}&seat_type=${Form.seat_type}&passengers=${Form.passengerCount}`
+      `/api/Flights?from=${Form.from}&to=${Form.to}&departureDate=${Form.date}&seat_type=${Form.seat_type}&passengers=${passengerCountT}`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -55,10 +59,8 @@ function SearchBar(props) {
       });
   };
 
-
-
   return (
-    <div class="landing-threshold" style={{width : "100%"}}>
+    <div class="landing-threshold" style={{ width: "100%" }}>
       <div class="container-fluid">
         <div class="container-rempadresponsive">
           <ul
@@ -164,14 +166,21 @@ function SearchBar(props) {
                     <div class="bk-search-block-1">
                       <div class="bk-search-block-2">
                         <span class="t-class-info">From</span>
-                        <select onChange={(e) => {
+                        <select
+                          onChange={(e) => {
                             setForm({ ...Form, from: e.target.value });
                           }}
-                            value= {Form? Form.from : ""}>
+                          value={Form ? Form.from : ""}
+                        >
                           <optgroup label="Country">
-                          {Airports.map((val) => {
-                                  return <option value={val.code}>{val.code}</option>;
-                               })}
+                            <option value=""  selected={true}>From</option>
+                            {Airports.map((val) => {
+                              return (
+                                <option value={val.code}>
+                                  {val.code}
+                                </option>
+                              );
+                            })}
                           </optgroup>
                         </select>
                       </div>
@@ -183,15 +192,19 @@ function SearchBar(props) {
                     <div class="bk-search-block-1">
                       <div class="bk-search-block-2">
                         <span class="t-class-info">To</span>
-                        <select onChange={(e) => {
-                              setForm({ ...Form, to: e.target.value });
-                                  }}
-                             value= {Form? Form.to : ""}>
+                        <select
+                          onChange={(e) => {
+                            setForm({ ...Form, to: e.target.value });
+                          }}
+                          value={Form ? Form.to : ""}
+                        >
                           <optgroup label="Country">
-                          {Airports.map((val) => {
-                             return <option value={val.code}>{val.code}</option>;
-                                 })}
-                              
+                          <option value=""  selected={true}>To</option>
+                            {Airports.map((val) => {
+                              return (
+                                <option value={val.code}>{val.code}</option>
+                              );
+                            })}
                           </optgroup>
                         </select>
                       </div>
@@ -202,10 +215,14 @@ function SearchBar(props) {
                   <div class="d-flex qr-datepicker">
                     <div class="bk-search-block-1">
                       <div class="bk-search-block-2">
-                        <input class="t-day-check-in" type="date" onChange={(e) => {
-                              setForm({ ...Form, date: e.target.value });
-                                }}
-                                   defaultValue= {Form? Form.date : ""}/>
+                        <input
+                          class="t-day-check-in"
+                          type="date"
+                          onChange={(e) => {
+                            setForm({ ...Form, date: e.target.value });
+                          }}
+                          defaultValue={Form ? Form.date : ""}
+                        />
                         <span class="t-class-info">Date</span>
                       </div>
                     </div>
@@ -216,10 +233,18 @@ function SearchBar(props) {
                     <div class="bk-search-block-1">
                       <div class="bk-search-block-2">
                         <span class="t-class-info">Passengers</span>
-                        <input type="number" min="1" max="9" onChange={(e) => {
-                                      setForm({ ...Form, passengerCount: e.target.value });
-                                  }}
-                         value= {Form? Form.passengerCount : 1}/>
+                        <input
+                          type="number"
+                          min="1"
+                          max="9"
+                          value={Form ? Form.passengerCount : 1}
+                          onChange={(e) => {
+                            setForm({
+                              ...Form,
+                              passengerCount: e.target.value,
+                            });
+                          }}
+                        />
                       </div>
                     </div>
                   </div>
@@ -229,15 +254,17 @@ function SearchBar(props) {
                     <div class="bk-search-block-1">
                       <div class="bk-search-block-2">
                         <span class="t-class-info">Class</span>
-                        <select onChange={(e) => {
-                              setForm({ ...Form, seat_type: e.target.value });
-                                    }}
-                             value= {Form? Form.seat_type : ""}>
+                        <select
+                          onChange={(e) => {
+                            setForm({ ...Form, seat_type: e.target.value });
+                          }}
+                          value={Form ? Form.seat_type : ""}
+                        >
                           <optgroup label="Country">
-                            <option value={"Economy"} selected>Economy</option>
-                            <option value={"Bussiness"} >
-                              Business
+                            <option value={"Economy"} selected>
+                              Economy
                             </option>
+                            <option value={"Bussiness"}>Business</option>
                             <option value={"Platinum"}>Platinum</option>
                           </optgroup>
                         </select>
