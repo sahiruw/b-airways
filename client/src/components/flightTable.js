@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./assets/css/Table-With-Search.css"
+
 const DisplayTable = (props) => {
   const navigate = useNavigate();
 

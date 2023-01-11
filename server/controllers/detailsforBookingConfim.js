@@ -10,10 +10,15 @@ const detailsforBookingConfim = async(req,res) => {
     let from = airportDetails[flightDetails.start_destination]
     let to = airportDetails[flightDetails.end_destination]
 
+    let flightData = {
+        details: flightDetails,
+        from: from,
+        to: to
+    }
 
     let userData = req.body.userData;
-    console.log(userData);
-    // res.json({status:1, data:ids});
+
+    res.json({status:1, flightdata:flightData});
 }
 
 

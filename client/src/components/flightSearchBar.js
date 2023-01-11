@@ -32,7 +32,7 @@ function SearchBar(props) {
   const ShowBySearch = (e) => {
     e.preventDefault();
 
-    if (!Form || !Form.from || !Form.to || !Form.date || !Form.seat_type) {
+    if (!Form || !Form.from || !Form.to || !Form.date) {
       alert("Please fill all the fields");
       console.log("Please fill all the fields");
 
@@ -40,6 +40,10 @@ function SearchBar(props) {
     }
     if (!Form.passengerCount) {
       setForm({ ...Form, passengerCount: 1 });
+    }
+
+    if (!Form.seat_type){
+      setForm({ ...Form, seat_type: "Economy" })
     }
 
     fetch(
@@ -55,16 +59,7 @@ function SearchBar(props) {
       });
   };
 
-  const style_search_bar = {
-    width: 1350,
-    marginLeft: 50,
-    marginTop: 10,
-  };
 
-  const style_class_search = {
-    width: 190,
-    padding: 5,
-  };
 
   return (    
     <div style={{width:"100%"}}>
