@@ -10,7 +10,7 @@ import Table from "./screens/Table";
 import Footer from "./components/footer";
 import UnderConstruction from "./screens/under_construction";
 import ConfirmBooking from "./components/booking/bookingConfirm";
-
+import Carousal from "./components/carousal";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -44,6 +44,10 @@ const router = createBrowserRouter([
   {
     path: "confirmbooking",
     element: <ConfirmBooking />,
+  },
+  {
+    path: "carousal",
+    element: <Carousal />,
   },
 ]);
 

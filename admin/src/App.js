@@ -10,6 +10,7 @@ import Bookings_by_Passenger_Type from "./components/bookings_by_passenger_type"
 import Past_Flights from "./components/past_flights";
 import background from "./b7.jpg";
 import MiniDrawer from "./components/drawer";
+import Revenue from "./components/revenue";
 
 
 const router = createBrowserRouter([
@@ -38,6 +39,11 @@ const router = createBrowserRouter([
       {
         path : "passenger_details",
         element : <PassengerDetails/>
+      }
+      ,
+      {
+        path : "revenue",
+        element : <Revenue />
       }
   
 

@@ -119,6 +119,18 @@ class AdminModel{
         return data;
     }
 
+    static async Revenue(){
+        let data = await new Promise((resolve,reject) => {
+            const query = `select * from revenue`;
+            db.query(query,(err,res)=>{
+                if(err) reject(err)
+                else resolve(res)
+            }) 
+        })
+
+        return data;
+    }
+
     
     
 
