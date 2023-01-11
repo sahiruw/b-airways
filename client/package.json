@@ -30,6 +30,7 @@
     "react-phone-number-input": "^3.2.13",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.6.1",
+    "react-script": "^2.0.5",
     "react-scripts": "^5.0.1",
     "react-select-country-list": "^2.2.3",
     "react-select-search": "^4.1.6",

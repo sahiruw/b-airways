@@ -21,7 +21,7 @@ function Booking(props) {
   const navigate = useNavigate();
 
   const toBookingConfirm = () => {
-    navigate("/confirmbooking", { state: { userSelectedSeats: userSelectedSeats, userData: userData, flightID:flightID } });
+    navigate("/confirmbooking", { state: { userSelectedSeats: userSelectedSeats, userData: userData, flightID:flightID, isloggeduserpassenger:isloggeduserpassenger } });
   };
 
   
