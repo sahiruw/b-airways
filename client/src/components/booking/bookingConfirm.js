@@ -15,7 +15,8 @@ function parseTime(timeString) {
 function BookingConfirm(props) {
   //this receives data from flight table and cards
   const location = useLocation();
-
+  const navigate = useNavigate();
+  
   const [userSelectedSeats, setUserSelectedSeats] = useState([]);
   const [userData, setUserData] = useState({});
   const [flightID, setFlightID] = useState();
@@ -23,6 +24,8 @@ function BookingConfirm(props) {
   const [loggedUserDetails, setloggedUserDetails] = useState([]);
   const [flightDetails, setflightDetails] = useState();
   const [discount, setdiscount] = useState();
+  const [bookingId, setbookingId] = useState();
+  const [finalPrice, setFinalPrice] = useState(0);
 
   useEffect(() => {
     fetch("/api/getConfirmDetails", {
@@ -38,8 +41,15 @@ function BookingConfirm(props) {
       res.json().then((data) => {
         setflightDetails(data.flightdata);
         setdiscount(data.discount);
+        let cost1 = userSelectedSeats.length * data.flightdata.details.cost;
+        let cost2 = cost1 - data.discount * cost1
+        setFinalPrice(cost2)
       })
     );
+
+
+
+    
   }, [flightID, userData, loggedUserDetails]);
 
   useEffect(() => {
@@ -54,13 +64,32 @@ function BookingConfirm(props) {
   }, [location.state]);
 
   const submit = (e) => {
+    const currentTime = new Date().toISOString().slice(0,19).replace('T',' ');
+    let userCount = userSelectedSeats.length
 
     fetch("/api/book", {
       method: "POST",
-      body: JSON.stringify({ flightID, userSelectedSeats, userData }),
+      body: JSON.stringify({ flightID, userSelectedSeats, userData, seatClass , currentTime, userCount}),
       headers: { "Content-Type": "application/json" },
-    }).then((res) => res.json().then((data) => {}));
+    }).then((res) => res.json().then((data) => {
+      console.log(data)
+      if(data.status){
+        setbookingId(data.bookingID)
+        toPayment(data.bookingID)
+      }
+    }));
 
+    const toPayment = (bID) => {
+      
+        navigate("/payment", {
+          state: {
+            flightID: flightID,
+            bookingId: bID,
+            finalPrice: finalPrice,
+          },
+        });
+
+    };
   };
 
   const dept_time = moment(
@@ -88,7 +117,6 @@ function BookingConfirm(props) {
   return (
     <>
       <div>
-        {JSON.stringify(userData)}
         <div className="container bg-white rounded">
           <div className="row d-flex justify-content-center bg pb-5">
             <div className="col-sm-4 col-md-4 ml-1">
@@ -207,7 +235,7 @@ function BookingConfirm(props) {
                 <h6
                   style={{ color: "#08575c", "textDecoration": "underline" }}
                 >
-                  <a className="link-href" href="#">
+                  <a className="link-href" href="/">
                     Cancel and return to website
                   </a>
                 </h6>

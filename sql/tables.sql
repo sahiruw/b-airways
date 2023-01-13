@@ -168,7 +168,7 @@ CREATE TABLE Passenger (
   flied boolean,
   PRIMARY KEY (ID,booking_ID),
   FOREIGN KEY (ID) REFERENCES customer(ID),
-  FOREIGN KEY (ID) REFERENCES booking(ID)
+  FOREIGN KEY (booking_ID) REFERENCES booking(ID)
 );
 
 
