@@ -58,7 +58,7 @@ CREATE TABLE staff (
 
 CREATE TABLE member_category (
   mem_cat_id int AUTO_INCREMENT,
-  category_type enum("gold","frequent","general"),
+  category_type enum("gold","frequent"),
   min_booking int,
   discount_precentage float,
   PRIMARY KEY (mem_cat_id)
