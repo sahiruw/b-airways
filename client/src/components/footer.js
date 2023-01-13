@@ -6,7 +6,7 @@ function Footer() {
     <div class="footer-basic">
       <footer>
         <div class="social">
-          <a href="https://www.facebook.com/photo/?fbid=2018449405012461&set=a.114819818708772" style={{ "border-color": "#08575c" }}>
+          <a href="underconstruction" style={{ "border-color": "#08575c" }}>
             <i
               class="fa fa-instagram"
               style={{ "border-color": "#032e31", opacity: "1" }}

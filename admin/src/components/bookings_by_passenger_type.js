@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
+import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline';
 
 function Bookings_by_Passenger_Type() {
   const [Bookings_by_Passenger_Type, setBookings_by_Passenger_Type] = useState(
@@ -138,12 +139,14 @@ function Bookings_by_Passenger_Type() {
         <br></br>
         <hr></hr>
         <br></br>
+        
         <button
           className="btn btn-outline-secondary"
           onClick={(e) => {
             generatePDF(e);
-          }}
+          }} 
         >
+        <DownloadForOfflineIcon />
           Download the report
         </button>
       </div>

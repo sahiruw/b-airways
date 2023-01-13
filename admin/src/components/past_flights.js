@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect,useRef } from "react";
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
+import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline';
 
 
 function Past_Flights(){
@@ -93,7 +94,7 @@ function Past_Flights(){
             </select>
             </div>
             <button  className = "btn col-3 btn-outline-secondary" style = {{marginLeft:20}} onClick = {(e) => {past_flight_details(e)}}>Get past flight details</button>
-            <button  className = "btn col-3 btn-outline-secondary" style = {{marginLeft:20}} onClick = {(e) => {generatePDF(e)}}>Generate PDF</button>
+            <button  className = "btn col-3 btn-outline-secondary" style = {{marginLeft:20}} onClick = {(e) => {generatePDF(e)}}><DownloadForOfflineIcon/>Generate PDF</button>
             </div>
             <div className="shadow-lg p-3 mb-5 bg-white rounded" style={{style_card}}>
             <div className="table-responsive">
