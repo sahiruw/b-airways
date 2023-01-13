@@ -41,6 +41,20 @@ class userModel {
 
     return userData;
   }
+
+  static async getDiscountByMemCatID(id) {
+    let memcatData = await new Promise((resolve, reject) =>
+      db.query(
+        `SELECT * FROM flight.member_category where mem_cat_id='${id}'`,
+        (err, result) => {
+          if (err) reject(err);
+          else resolve(result);
+        }
+      )
+    );
+
+    return memcatData;
+  }
 }
 
 module.exports = userModel;
