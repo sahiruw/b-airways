@@ -208,13 +208,12 @@
 }
 
 .container-rempadresponsive {
-  font-size: x-large;
+  margin-top: auto;
+  margin-bottom: 20px;
+  margin-inline-start: 350px;
+  margin-inline-end: 350px;
   font-family: nexa;
-  width: 75%;
-  margin-bottom: 215px;
-  margin-top: 24px;
-  margin-left: 175px;
-  margin-right: 175px;
+  width: 60%;
 }
 
 .btn-index-search {
@@ -224,7 +223,18 @@
   transform: scale(1.55);
   border-radius: 37px;
   width: 89.7px;
-  margin-top: 33px;
+  margin-top: 20px;
   font-weight: bold;
 }
 
+.carousel-caption{
+  margin-bottom: 450px;
+}
+
+.c-slogan{
+  font-family: nexa;
+  font-size: 50px;
+  font-weight: 850;
+  color: #ffffff;
+
+}

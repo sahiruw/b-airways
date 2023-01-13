@@ -1,5 +1,5 @@
 import NavBar from "./components/NavBar";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, useLocation } from "react-router-dom";
 
 import HomeScreen from "./screens/HomeScreen";
 import Register from "./components/register";
@@ -10,7 +10,7 @@ import Table from "./screens/Table";
 import Footer from "./components/footer";
 import UnderConstruction from "./screens/under_construction";
 import ConfirmBooking from "./components/booking/bookingConfirm";
-
+import Carousal from "./components/carousal";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -45,9 +45,16 @@ const router = createBrowserRouter([
     path: "confirmbooking",
     element: <ConfirmBooking />,
   },
+  {
+    path: "carousal",
+    element: <Carousal />,
+  },
 ]);
 
 function App() {
+  // const { pathname } = useLocation();
+
+
   return (
     <div className="App">
       <NavBar />
