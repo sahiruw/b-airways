@@ -43,3 +43,20 @@ VIEW `flight_details4` AS
         JOIN `aircraft` `a` ON ((`f`.`aircraft_ID` = `a`.`ID`)))
         JOIN `aircraft_type` `at` ON ((`a`.`type_ID` = `at`.`ID`)))
         LEFT JOIN `booking` `b` ON ((`f`.`ID` = `b`.`flight_ID`)))
+
+
+
+CREATE 
+    ALGORITHM = UNDEFINED 
+    DEFINER = `root`@`localhost` 
+    SQL SECURITY DEFINER
+VIEW `revenue` AS
+    SELECT 
+        SUM(`t`.`total`) AS `revenue`, `atp`.`name` AS `name`
+    FROM
+        ((((`transaction` `t`
+        JOIN `booking` `b` ON ((`t`.`booking_ID` = `b`.`ID`)))
+        LEFT JOIN `flight` `f` ON ((`f`.`ID` = `b`.`flight_ID`)))
+        LEFT JOIN `aircraft` `a` ON ((`a`.`ID` = `f`.`aircraft_ID`)))
+        LEFT JOIN `aircraft_type` `atp` ON ((`atp`.`ID` = `a`.`type_ID`)))
+    GROUP BY `atp`.`name`
