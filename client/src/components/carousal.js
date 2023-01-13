@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 
 import "./assets/css/scrolltable.css";
 import "./assets/css/Sakae-Simple-Section.css";
@@ -10,6 +10,44 @@ import img2 from "./assets/img/male-silluette.jpg";
 
 
 const Carousal = () => {
+
+    const[userMail,setuserMail] = useState("");
+    const[flightDetails,setflightDetails] = useState([]);
+    const[userData,setuserData] = useState([]);
+
+    useEffect(() => {
+        fetch("/api/isLogged")
+        .then((res) => res.json())
+        .then((data) => {
+            if(data.status){
+                setuserMail(data.user);
+            }
+        })
+    });
+
+    useEffect(() => {
+        fetch(`/api/profileData?email=${userMail}`)
+        .then((res) => res.json())
+        .then((data) => {
+            if(data.status){
+    
+                setflightDetails(data.userDataTable);
+            }
+        })
+    })
+
+    useEffect(() => {
+        fetch(`/api/getuserbyusername?email=${userMail}`)
+        .then((res) => res.json())
+        .then((data) => {
+            if(data.status){
+            
+                setuserData(data.data);
+            }
+        })
+    })
+    
+
 
   return (
     <div>
@@ -45,7 +83,7 @@ const Carousal = () => {
                                     <p class="mb-0">Full Name</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0">Johnatan Smith</p>
+                                    <p class="text-muted mb-0">{userData.firstname + userData.lastname}</p>
                                 </div>
                             </div>
                             <hr />
@@ -54,7 +92,7 @@ const Carousal = () => {
                                     <p class="mb-0">Email</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0">example@example.com</p>
+                                    <p class="text-muted mb-0">{userData.email}</p>
                                 </div>
                             </div>
                             <hr />
@@ -63,7 +101,7 @@ const Carousal = () => {
                                     <p class="mb-0">Passport Number</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0">(097) 234-5678</p>
+                                    <p class="text-muted mb-0">{userData.passport_number}</p>
                                 </div>
                             </div>
                             <hr />
@@ -72,7 +110,7 @@ const Carousal = () => {
                                     <p class="mb-0">Mobile</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0">(098) 765-4321</p>
+                                    <p class="text-muted mb-0">{userData.tele_no}</p>
                                 </div>
                             </div>
                             <hr />
@@ -90,7 +128,7 @@ const Carousal = () => {
                                     <p class="mb-0">BirthDay</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0">Bay Area, San Francisco, CA</p>
+                                    <p class="text-muted mb-0">{userData.dob}</p>
                                 </div>
                             </div>
                             <hr />
@@ -99,7 +137,7 @@ const Carousal = () => {
                                     <p class="mb-0">Country</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0">Bay Area, San Francisco, CA</p>
+                                    <p class="text-muted mb-0">{userData.country}</p>
                                 </div>
                             </div>
                             <hr />
@@ -164,51 +202,22 @@ const Carousal = () => {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td scope="row">1</td>
-                                                <td scope="row">1</td>
-                                                <td>Mark</td>
-                                                <td>Otto</td>
-                                                <td>@mdo</td>
-                                                <td>@mdo</td>
-                                                <td>@mdo</td>
-                                            </tr>
-                                            <tr>
-                                                <td scope="row">1</td>
-                                                <td scope="row">1</td>
-                                                <td>Mark</td>
-                                                <td>Otto</td>
-                                                <td>@mdo</td>
-                                                <td>@mdo</td>
-                                                <td>@mdo</td>
-                                            </tr>
-                                            <tr>
-                                                <td scope="row">1</td>
-                                                <td scope="row">1</td>
-                                                <td>Mark</td>
-                                                <td>Otto</td>
-                                                <td>@mdo</td>
-                                                <td>@mdo</td>
-                                                <td>@mdo</td>
-                                            </tr>
-                                            <tr>
-                                                <td scope="row">1</td>
-                                                <td scope="row">1</td>
-                                                <td>Mark</td>
-                                                <td>Otto</td>
-                                                <td>@mdo</td>
-                                                <td>@mdo</td>
-                                                <td>@mdo</td>
-                                            </tr>
-                                            <tr>
-                                                <td scope="row">1</td>
-                                                <td scope="row">1</td>
-                                                <td>Mark</td>
-                                                <td>Otto</td>
-                                                <td>@mdo</td>
-                                                <td>@mdo</td>
-                                                <td>@mdo</td>
-                                            </tr>
+                                            {flightDetails.map((flightDetail) => {
+                                                return (
+                                                    <tr>
+                                                        <td>{flightDetail.flight_ID}</td>
+                                                        <td>{flightDetail.air_craft}</td>
+                                                        <td>{flightDetail.seat_no}</td>
+                                                        <td>{flightDetail.start_destination}</td>
+                                                        <td>{flightDetail.end_destination}</td>
+                                                        <td>{flightDetail.departure_time}</td>
+                                                        <td>{flightDetail.arrival_time}</td>
+                                                    </tr>
+                                                )
+                                            })}
+                                                
+                                            
+                                            
                                         </tbody>
                                     </table>
                                 </div>

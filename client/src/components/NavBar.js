@@ -100,7 +100,7 @@ function NavBar() {
                   <a
                     className="nav-link"
                     style={{ fontFamily: "nexa", color: "#ffffff", fontSize: "20px" }}
-                    href="#"
+                    href="carousal"
                   >
                     <i
                       className="fa fa-user"

@@ -23,6 +23,7 @@ const DetailsforBookingConfim = require("./detailsforBookingConfim");
 const AdminLogin = require("./adminLogin");
 const Flight_Details_Members = require("./Member_Flight_Details");
 const Revenue = require("./revenue");
+const profileData = require("./profileData");
 
 
 router.post("/register", register);
@@ -47,6 +48,7 @@ router.get("/Past_Flights",Past_Flights);
 router.get("/adminLogin",AdminLogin);
 router.get("/Flight_Details_Members",Flight_Details_Members );
 router.get("/Revenue",Revenue);
+router.get("/profileData",profileData);
 
 
 module.exports = router;
