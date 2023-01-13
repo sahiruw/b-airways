@@ -5,6 +5,13 @@ import image from "../assets/img/AirBus1.jpg";
 import "../assets/css/bkconfirm.css";
 import moment from "moment";
 
+function parseTime(timeString) {
+  var date = new Date(timeString);
+  var hours = ("0" + date.getHours()).slice(-2);
+  var minutes = ("0" + date.getMinutes()).slice(-2);
+  return hours + ":" + minutes;
+}
+
 function BookingConfirm(props) {
   //this receives data from flight table and cards
   const location = useLocation();
@@ -12,52 +19,75 @@ function BookingConfirm(props) {
   const [userSelectedSeats, setUserSelectedSeats] = useState([]);
   const [userData, setUserData] = useState({});
   const [flightID, setFlightID] = useState();
-  const [isloggeduserpassenger, setisloggeduserpassenger] = useState();
-
+  const [seatClass, setseatClass] = useState();
+  const [loggedUserDetails, setloggedUserDetails] = useState([]);
   const [flightDetails, setflightDetails] = useState();
+  const [discount, setdiscount] = useState();
 
   useEffect(() => {
     fetch("/api/getConfirmDetails", {
       method: "POST",
-      body: JSON.stringify({ flightID, userData, isloggeduserpassenger }),
+      body: JSON.stringify({
+        flightID,
+        userData,
+        loggedUserDetails,
+        userSelectedSeats,
+      }),
       headers: { "Content-Type": "application/json" },
     }).then((res) =>
       res.json().then((data) => {
         setflightDetails(data.flightdata);
-        console.log(data.flightdata);
+        setdiscount(data.discount);
       })
     );
-  }, [flightID, userData, isloggeduserpassenger]);
+  }, [flightID, userData, loggedUserDetails]);
 
   useEffect(() => {
     setUserSelectedSeats(location.state.userSelectedSeats);
     setUserData(location.state.userData);
     setFlightID(location.state.flightID);
-    setisloggeduserpassenger(location.state.isloggeduserpassenger);
+    setseatClass(location.state.seatClass);
+    setloggedUserDetails([
+      location.state.loggedUser,
+      location.state.isloggeduserpassenger,
+    ]);
   }, [location.state]);
 
   const submit = (e) => {
-    // fetch("/api/book", {
-    //   method: "POST",
-    //   body: JSON.stringify({ flightID, dataforbackend }),
-    //   headers: { "Content-Type": "application/json" },
-    // }).then((res) => res.json().then((data) => {}));
+
+    fetch("/api/book", {
+      method: "POST",
+      body: JSON.stringify({ flightID, userSelectedSeats, userData }),
+      headers: { "Content-Type": "application/json" },
+    }).then((res) => res.json().then((data) => {}));
+
   };
 
-  const dept_time = moment(flightDetails? new Date(flightDetails.details.departure_time): new Date());
-  const arr_time = moment(flightDetails?new Date(flightDetails.details.arrival_time): new Date());
+  const dept_time = moment(
+    flightDetails
+      ? new Date(flightDetails.details.departure_time.slice(0, -1))
+      : new Date()
+  );
+  const arr_time = moment(
+    flightDetails
+      ? new Date(flightDetails.details.arrival_time.slice(0, -1))
+      : new Date()
+  );
 
-  const isNextDayArriving = dept_time.startOf('day').isSame(arr_time.startOf('day'))
-  // const duration = 
+  const isNextDayArriving = !dept_time.isSame(arr_time, "day");
+  let duration = moment.duration(arr_time.diff(dept_time));
+  var hours = Math.floor(duration.asHours());
+  var minutes = Math.floor(duration.asMinutes()) - hours * 60;
+  duration = `${hours}H ${minutes}m`;
+
+  let totalPrice =
+    flightDetails && userSelectedSeats
+      ? userSelectedSeats.length * flightDetails.details.cost
+      : 0;
+
   return (
     <>
-      {/* {JSON.stringify(userSelectedSeats)}
-      {JSON.stringify(userData)}
-      {JSON.stringify(flightID)} */}
-
       <div>
-        {JSON.stringify(flightDetails)}
-        {/* {flightDetails? new Date(flightDetails.details.arrival_time).toLocaleString():""} */}
         <div class="container bg-white rounded">
           <div class="row d-flex justify-content-center bg pb-5">
             <div class="col-sm-4 col-md-4 ml-1">
@@ -97,7 +127,10 @@ function BookingConfirm(props) {
                 </p>
                 <b>
                   <span style={{ color: "rgb(63, 63, 63)" }}>
-                    {/* {flightDetails ? dept_time.format() : ""} &nbsp; */}
+                    {flightDetails
+                      ? parseTime(flightDetails.details.departure_time)
+                      : ""}{" "}
+                    &nbsp;
                     {flightDetails ? flightDetails.from[1] : ""}
                   </span>
                   <br />
@@ -114,7 +147,10 @@ function BookingConfirm(props) {
                 </p>
                 <b>
                   <span style={{ color: "rgb(63, 63, 63)" }}>
-                    04:00 (+1Day) Abu Dhabi
+                    {flightDetails
+                      ? parseTime(flightDetails.details.arrival_time)
+                      : ""}{" "}
+                    {isNextDayArriving ? "(+1Day)" : ""} Abu Dhabi
                     {/* {flightDetails ? arr_time.format("HH:") : ""} &nbsp; */}
                     {/* {flightDetails ? flightDetails.to[1] : ""} */}
                   </span>
@@ -135,26 +171,34 @@ function BookingConfirm(props) {
               </div>
               <div
                 class="bg-white d-flex flex-column p-2"
-                style={{ "border-radius": "20px", width: "332.513px" }}
+                style={{
+                  "border-radius": "20px",
+                  width: "332.513px",
+                  marginTop: "10px",
+                }}
               >
                 <b>
                   <span style={{ color: "rgb(63, 63, 63)" }}>Duration</span>
                   <br />
                 </b>
                 <p>
-                  <span style={{ color: "rgb(63, 63, 63)" }}>05:00 H</span>
+                  <span style={{ color: "rgb(63, 63, 63)" }}> {duration}</span>
                   <br />
                 </p>
                 <b>
                   <span style={{ color: "rgb(63, 63, 63)" }}>Air Craft</span>
                   <br />
                 </b>
-                <p>{flightDetails?flightDetails.aircraftDetails.name:""}&nbsp; ({flightDetails?flightDetails.aircraftDetails.type:""})</p>
+                <p>
+                  {flightDetails ? flightDetails.aircraftDetails.name : ""}
+                  &nbsp; (
+                  {flightDetails ? flightDetails.aircraftDetails.type : ""})
+                </p>
                 <b>
                   <span style={{ color: "rgb(63, 63, 63)" }}>Cabin</span>
                   <br />
                 </b>
-                <p>Business</p>
+                <p>{seatClass}</p>
               </div>
             </div>
             <div class="col-sm-5 col-md-6 mobile">
@@ -178,48 +222,46 @@ function BookingConfirm(props) {
                 <div class="pt-2">
                   <h5>Passengers</h5>
                 </div>
-                <div class="d-flex">
-                  <div class="col-8">
-                    <span>Rasula Gimhan Koralege</span>
-                  </div>
-                  <div class="ml-auto">
-                    <p
-                      style={{ "margin-bottom": "-1px", "text-align": "right" }}
-                    >
-                      S1253
-                    </p>
-                  </div>
-                  <div class="ml-auto" style={{ "text-align": "right" }}>
-                    <b>$ 1000</b>
-                  </div>
-                </div>
-                <div class="d-flex">
-                  <div class="col-8">
-                    <span>Fathima Ifra Zaheer</span>
-                  </div>
-                  <div class="ml-auto">
-                    <p
-                      style={{ "margin-bottom": "-1px", "text-align": "right" }}
-                    >
-                      S1254
-                    </p>
-                  </div>
-                  <div class="ml-auto" style={{ "text-align": "right" }}>
-                    <b>$ 1000</b>
-                  </div>
-                </div>
+                {flightDetails && userSelectedSeats
+                  ? userSelectedSeats.map((seat, index) => {
+                      return (
+                        <div class="d-flex">
+                          <div class="col-8">
+                            <span>{userData[index].firstName}</span>
+                          </div>
+                          <div class="ml-auto">
+                            <p
+                              style={{
+                                "margin-bottom": "-1px",
+                                "text-align": "right",
+                              }}
+                            >
+                              S{seat}
+                            </p>
+                          </div>
+                          <div
+                            class="ml-auto"
+                            style={{ "text-align": "right" }}
+                          >
+                            <b>$ {flightDetails.details.cost}</b>
+                          </div>
+                        </div>
+                      );
+                    })
+                  : ""}
+
                 <div class="pt-2">
                   <h5>Total </h5>
                 </div>
                 <div class="d-flex">
                   <div class="col-8">
-                    <span>Total Pricie</span>
+                    <span>Total Price</span>
                   </div>
                   <div class="ml-auto">
                     <p style={{ "margin-bottom": "-1px" }}></p>
                   </div>
                   <div class="ml-auto" style={{ "text-align": "right" }}>
-                    <p style={{ "margin-bottom": "0px" }}>$ 2000</p>
+                    <p style={{ "margin-bottom": "0px" }}>$ {totalPrice}</p>
                   </div>
                 </div>
                 <div class="d-flex">
@@ -230,11 +272,13 @@ function BookingConfirm(props) {
                     <p
                       style={{ "margin-bottom": "-1px", "text-align": "right" }}
                     >
-                      10%
+                      {discount * 100}%
                     </p>
                   </div>
                   <div class="ml-auto" style={{ "text-align": "right" }}>
-                    <p style={{ "margin-bottom": "0px" }}>$ 100</p>
+                    <p style={{ "margin-bottom": "0px" }}>
+                      $ {discount * totalPrice}
+                    </p>
                   </div>
                 </div>
                 <div class="d-flex">
@@ -253,13 +297,16 @@ function BookingConfirm(props) {
                       "border-bottom-style": "double",
                     }}
                   >
-                    <b>$ 1900</b>
+                    <b>$ {totalPrice - discount * totalPrice}</b>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="row d-flex justify-content-center bg pb-5">
+          <div
+            class="row d-flex justify-content-center bg pb-5"
+            style={{ "margin-top": "40px" }}
+          >
             <div class="col">
               <b style={{ "font-size": "34px" }}>Choose Your Payment Method</b>
               <div style={{ "margin-right": "100px", "margin-left": "100px" }}>
@@ -336,20 +383,10 @@ function BookingConfirm(props) {
             </div>
           </div>
         </div>
-        <div class="container bg-white rounded">
-          <button
-            class="btn btn-primary btn btn-theme"
-            type="button"
-            style={{
-              width: "112.6625px",
-              height: "50px",
-              "font-size": "20px",
-              "font-weight": "bold",
-              "font-family": "NExa",
-            }}
-          >
-            Back
-          </button>
+        <div
+          class="container bg-white rounded"
+          style={{ "margin-top": "40px" }}
+        >
           <button
             class="btn btn-primary btn btn-theme"
             type="button"
@@ -359,10 +396,11 @@ function BookingConfirm(props) {
               "font-size": "20px",
               "font-weight": "bold",
               "font-family": "NExa",
-              "margin-left": "1042px",
+              "margin-left": "900px",
               "margin-right": "0px",
               "padding-right": "8px",
             }}
+            onClick={submit}
           >
             Checkout
           </button>
