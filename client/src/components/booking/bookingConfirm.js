@@ -26,6 +26,7 @@ function BookingConfirm(props) {
   const [discount, setdiscount] = useState();
   const [bookingId, setbookingId] = useState();
   const [finalPrice, setFinalPrice] = useState(0);
+  const [paymentType, setPaymentType] = useState("");
 
   useEffect(() => {
     fetch("/api/getConfirmDetails", {
@@ -350,6 +351,7 @@ function BookingConfirm(props) {
                             name="ccTypesIcons"
                             aria-describedby="tpl6_fopTemplate_error-message-purchaseForm-paymentForm-ccTypesIcons"
                             type="radio"
+                            onChange={(e) => {console.log(e.target.value)}}
                           />
                           <label htmlFor="tpl6_fopTemplate_widget-input-purchaseForm-paymentForm-ccTypesIcons-ccTypesIcons1">
                             <span className="plnext-sr-only">Visa</span>
