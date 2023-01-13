@@ -88,41 +88,42 @@ function BookingConfirm(props) {
   return (
     <>
       <div>
-        <div class="container bg-white rounded">
-          <div class="row d-flex justify-content-center bg pb-5">
-            <div class="col-sm-4 col-md-4 ml-1">
-              <div class="d-flex flex-row py-4 pl-6">
+        {JSON.stringify(userData)}
+        <div className="container bg-white rounded">
+          <div className="row d-flex justify-content-center bg pb-5">
+            <div className="col-sm-4 col-md-4 ml-1">
+              <div className="d-flex flex-row py-4 pl-6">
                 <h5>
-                  <span class="fa fa-check-square-o"></span>
+                  <span className="fa fa-check-square-o"></span>
                   <b>Safe</b> |{" "}
                 </h5>
-                <span class="pl-2">Pay</span>
+                <span className="pl-2">Pay</span>
               </div>
               <div
-                class="bg-white d-flex flex-column p-2"
-                style={{ "border-radius": "20px", width: "332.513px" }}
+                className="bg-white d-flex flex-column p-2"
+                style={{ "borderRadius": "20px", width: "332.513px" }}
               >
-                <div class="text-center mt-4">
+                <div className="text-center mt-4">
                   <img
-                    class="img-fluid"
+                    className="img-fluid"
                     src={image}
                     width="200"
-                    style={{ "margin-bottom": "16px" }}
+                    style={{ "marginBottom": "16px" }}
                   />
                 </div>
                 <h5
                   style={{
-                    "text-align": "center",
-                    "font-size": "20px",
-                    "font-weight": "bold",
+                    "textAlign": "center",
+                    "fontSize": "20px",
+                    "fontWeight": "bold",
                     height: "20",
-                    "margin-bottom": "0px",
+                    "marginBottom": "0px",
                   }}
                 >
                   {flightDetails ? flightDetails.from[1] : ""} -{" "}
                   {flightDetails ? flightDetails.to[1] : ""}
                 </h5>
-                <p style={{ "text-align": "center", "margin-bottom": "13px" }}>
+                <p style={{ "textAlign": "center", "marginBottom": "13px" }}>
                   {flightDetails ? dept_time.format("dddd DD MMMM") : ""}
                 </p>
                 <b>
@@ -161,18 +162,18 @@ function BookingConfirm(props) {
                   {flightDetails ? flightDetails.details.end_destination : ""})
                 </p>
                 <h4
-                  class="green"
+                  className="green"
                   style={{
                     color: "rgb(0,0,0)",
-                    "font-size": "20px",
-                    "font-family": "Helvetica",
+                    "fontSize": "20px",
+                    "fontFamily": "Helvetica",
                   }}
                 ></h4>
               </div>
               <div
-                class="bg-white d-flex flex-column p-2"
+                className="bg-white d-flex flex-column p-2"
                 style={{
-                  "border-radius": "20px",
+                  "borderRadius": "20px",
                   width: "332.513px",
                   marginTop: "10px",
                 }}
@@ -201,47 +202,47 @@ function BookingConfirm(props) {
                 <p>{seatClass}</p>
               </div>
             </div>
-            <div class="col-sm-5 col-md-6 mobile">
-              <div class="d-flex justify-content-end py-4">
+            <div className="col-sm-5 col-md-6 mobile">
+              <div className="d-flex justify-content-end py-4">
                 <h6
-                  style={{ color: "#08575c", "text-decoration": "underline" }}
+                  style={{ color: "#08575c", "textDecoration": "underline" }}
                 >
-                  <a class="link-href" href="#">
+                  <a className="link-href" href="#">
                     Cancel and return to website
                   </a>
                 </h6>
               </div>
               <div
-                class="bg-white d-flex flex-column p-3"
+                className="bg-white d-flex flex-column p-3"
                 style={{
-                  "border-radius": "14px",
-                  "margin-left": "100px",
-                  "margin-right": "-100px",
+                  "borderRadius": "14px",
+                  "marginLeft": "100px",
+                  "marginRight": "-100px",
                 }}
               >
-                <div class="pt-2">
+                <div className="pt-2">
                   <h5>Passengers</h5>
                 </div>
                 {flightDetails && userSelectedSeats
                   ? userSelectedSeats.map((seat, index) => {
                       return (
-                        <div class="d-flex">
-                          <div class="col-8">
+                        <div className="d-flex">
+                          <div className="col-8">
                             <span>{userData[index].firstName}</span>
                           </div>
-                          <div class="ml-auto">
+                          <div className="ml-auto">
                             <p
                               style={{
-                                "margin-bottom": "-1px",
-                                "text-align": "right",
+                                "marginBottom": "-1px",
+                                "textAlign": "right",
                               }}
                             >
                               S{seat}
                             </p>
                           </div>
                           <div
-                            class="ml-auto"
-                            style={{ "text-align": "right" }}
+                            className="ml-auto"
+                            style={{ "textAlign": "right" }}
                           >
                             <b>$ {flightDetails.details.cost}</b>
                           </div>
@@ -250,51 +251,51 @@ function BookingConfirm(props) {
                     })
                   : ""}
 
-                <div class="pt-2">
+                <div className="pt-2">
                   <h5>Total </h5>
                 </div>
-                <div class="d-flex">
-                  <div class="col-8">
+                <div className="d-flex">
+                  <div className="col-8">
                     <span>Total Price</span>
                   </div>
-                  <div class="ml-auto">
-                    <p style={{ "margin-bottom": "-1px" }}></p>
+                  <div className="ml-auto">
+                    <p style={{ "marginBottom": "-1px" }}></p>
                   </div>
-                  <div class="ml-auto" style={{ "text-align": "right" }}>
-                    <p style={{ "margin-bottom": "0px" }}>$ {totalPrice}</p>
+                  <div className="ml-auto" style={{ "textAlign": "right" }}>
+                    <p style={{ "marginBottom": "0px" }}>$ {totalPrice}</p>
                   </div>
                 </div>
-                <div class="d-flex">
-                  <div class="col-8">
+                <div className="d-flex">
+                  <div className="col-8">
                     <span>Dicount</span>
                   </div>
-                  <div class="ml-auto">
+                  <div className="ml-auto">
                     <p
-                      style={{ "margin-bottom": "-1px", "text-align": "right" }}
+                      style={{ "marginBottom": "-1px", "textAlign": "right" }}
                     >
                       {discount * 100}%
                     </p>
                   </div>
-                  <div class="ml-auto" style={{ "text-align": "right" }}>
-                    <p style={{ "margin-bottom": "0px" }}>
+                  <div className="ml-auto" style={{ "textAlign": "right" }}>
+                    <p style={{ "marginBottom": "0px" }}>
                       $ {discount * totalPrice}
                     </p>
                   </div>
                 </div>
-                <div class="d-flex">
-                  <div class="col-8">
+                <div className="d-flex">
+                  <div className="col-8">
                     <span>Final Price</span>
                   </div>
-                  <div class="ml-auto">
-                    <p style={{ "margin-bottom": "-1px" }}></p>
+                  <div className="ml-auto">
+                    <p style={{ "marginBottom": "-1px" }}></p>
                   </div>
                   <div
-                    class="ml-auto"
+                    className="ml-auto"
                     style={{
-                      "text-align": "right",
-                      "border-top-width": "1px",
-                      "border-top-style": "solid",
-                      "border-bottom-style": "double",
+                      "textAlign": "right",
+                      "borderTopWidth": "1px",
+                      "borderTopStyle": "solid",
+                      "borderBottomStyle": "double",
                     }}
                   >
                     <b>$ {totalPrice - discount * totalPrice}</b>
@@ -304,33 +305,33 @@ function BookingConfirm(props) {
             </div>
           </div>
           <div
-            class="row d-flex justify-content-center bg pb-5"
+            className="row d-flex justify-content-center bg pb-5"
             style={{ "margin-top": "40px" }}
           >
-            <div class="col">
-              <b style={{ "font-size": "34px" }}>Choose Your Payment Method</b>
-              <div style={{ "margin-right": "100px", "margin-left": "100px" }}>
-                <div class="row cc-type-error">
-                  <div id="ccOptions" class="container">
-                    <div class="form-group">
+            <div className="col">
+              <b style={{ "fontSize": "34px" }}>Choose Your Payment Method</b>
+              <div style={{ "marginRight": "100px", "marginLeft": "100px" }}>
+                <div className="row cc-type-error">
+                  <div id="ccOptions" className="container">
+                    <div className="form-group">
                       <fieldset id="tpl6_fopTemplate_widget-input-purchaseForm-paymentForm-ccTypesIcons">
-                        <legend class="legend"></legend>
-                        <div class="radio">
+                        <legend className="legend"></legend>
+                        <div className="radio">
                           <input
                             id="tpl6_fopTemplate_widget-input-purchaseForm-paymentForm-ccTypesIcons-ccTypesIcons1"
                             name="ccTypesIcons"
                             aria-describedby="tpl6_fopTemplate_error-message-purchaseForm-paymentForm-ccTypesIcons"
                             type="radio"
                           />
-                          <label for="tpl6_fopTemplate_widget-input-purchaseForm-paymentForm-ccTypesIcons-ccTypesIcons1">
-                            <span class="plnext-sr-only">Visa</span>
+                          <label htmlFor="tpl6_fopTemplate_widget-input-purchaseForm-paymentForm-ccTypesIcons-ccTypesIcons1">
+                            <span className="plnext-sr-only">Visa</span>
                             <img
                               src="https://book.srilankan.com/plnext/default/plnext_git_22.6.7/static/plnextv2/resources/img/creditCard/card-visa.png"
                               alt="Visa"
                             />
                           </label>
                         </div>
-                        <div class="radio">
+                        <div className="radio">
                           <input
                             id="tpl6_fopTemplate_widget-input-purchaseForm-paymentForm-ccTypesIcons-ccTypesIcons2"
                             name="ccTypesIcons"
@@ -338,14 +339,14 @@ function BookingConfirm(props) {
                             type="radio"
                           />
                           <label for="tpl6_fopTemplate_widget-input-purchaseForm-paymentForm-ccTypesIcons-ccTypesIcons2">
-                            <span class="plnext-sr-only">MasterCard</span>
+                            <span className="plnext-sr-only">MasterCard</span>
                             <img
                               src="https://book.srilankan.com/plnext/default/plnext_git_22.6.7/static/plnextv2/resources/img/creditCard/card-ms.png"
                               alt="MasterCard"
                             />
                           </label>
                         </div>
-                        <div class="radio">
+                        <div className="radio">
                           <input
                             id="tpl6_fopTemplate_widget-input-purchaseForm-paymentForm-ccTypesIcons-ccTypesIcons3"
                             name="ccTypesIcons"
@@ -353,14 +354,14 @@ function BookingConfirm(props) {
                             type="radio"
                           />
                           <label for="tpl6_fopTemplate_widget-input-purchaseForm-paymentForm-ccTypesIcons-ccTypesIcons3">
-                            <span class="plnext-sr-only">Amex</span>
+                            <span className="plnext-sr-only">Amex</span>
                             <img
                               src="https://book.srilankan.com/plnext/default/plnext_git_22.6.7/static/plnextv2/resources/img/creditCard/card-amex.png"
                               alt="Amex"
                             />
                           </label>
                         </div>
-                        <div class="radio">
+                        <div className="radio">
                           <input
                             id="tpl6_fopTemplate_widget-input-purchaseForm-paymentForm-ccTypesIcons-ccTypesIcons4"
                             name="ccTypesIcons"
@@ -368,7 +369,7 @@ function BookingConfirm(props) {
                             type="radio"
                           />
                           <label for="tpl6_fopTemplate_widget-input-purchaseForm-paymentForm-ccTypesIcons-ccTypesIcons4">
-                            <span class="plnext-sr-only">Diners Club</span>
+                            <span className="plnext-sr-only">Diners Club</span>
                             <img
                               src="https://book.srilankan.com/plnext/default/plnext_git_22.6.7/static/plnextv2/resources/img/creditCard/dinersClub.png"
                               alt="Diners Club"
@@ -384,20 +385,20 @@ function BookingConfirm(props) {
           </div>
         </div>
         <div
-          class="container bg-white rounded"
+          className="container bg-white rounded"
           style={{ "margin-top": "40px" }}
         >
           <button
-            class="btn btn-primary btn btn-theme"
+            className="btn btn-primary btn btn-theme"
             type="button"
             style={{
               width: "137.6625px",
               height: "50px",
-              "font-size": "20px",
-              "font-weight": "bold",
-              "font-family": "NExa",
-              "margin-left": "900px",
-              "margin-right": "0px",
+              "fontSize": "20px",
+              "fontWeight": "bold",
+              "fontFamily": "NExa",
+              "marginLeft": "900px",
+              "marginRight": "0px",
               "padding-right": "8px",
             }}
             onClick={submit}
@@ -405,18 +406,18 @@ function BookingConfirm(props) {
             Checkout
           </button>
         </div>
-        <div class="container bg-white rounded">
+        <div className="container bg-white rounded">
           <div
-            class="bg-white d-flex flex-column mt-4 p-3"
-            style={{ "border-radius": "14px" }}
+            className="bg-white d-flex flex-column mt-4 p-3"
+            style={{ "borderRadius": "14px" }}
           >
-            <div class="pt-2">
+            <div className="pt-2">
               <h5>
                 Important
                 <br />
               </h5>
             </div>
-            <div class="pl-2">
+            <div className="pl-2">
               <div>
                 <span>
                   <br />
@@ -427,7 +428,7 @@ function BookingConfirm(props) {
                 </span>
               </div>
             </div>
-            <div class="pt-2">
+            <div className="pt-2">
               <h5>
                 <br />
                 Need help? Contact Us
@@ -435,19 +436,19 @@ function BookingConfirm(props) {
                 <br />
               </h5>
             </div>
-            <div class="d-flex">
-              <div class="col-8">
+            <div className="d-flex">
+              <div className="col-8">
                 <span>Admin</span>
               </div>
-              <div class="ml-auto">
+              <div className="ml-auto">
                 <span>Amila</span>
               </div>
             </div>
-            <div class="d-flex">
-              <div class="col-8">
+            <div className="d-flex">
+              <div className="col-8">
                 <span>No. WhatsApp</span>
               </div>
-              <div class="ml-auto">
+              <div className="ml-auto">
                 <b>+94772626113</b>
               </div>
             </div>

@@ -59,7 +59,6 @@ function SearchBar(props) {
 
   return (
     <div style={{ width: "100%" }}>
-      {JSON.stringify(Form)}
       <div
         id="carouselExampleIndicators"
         class="carousel slide"
@@ -334,7 +333,7 @@ function SearchBar(props) {
                         <input
                           type="number"
                           min="0"
-                          max="9"
+                          max="5"
                           onChange={(e) => {
                             setForm({
                               ...Form,
