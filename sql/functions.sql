@@ -134,8 +134,8 @@ END$$
 DELIMITER 
 
 -- Function to get the number of seats remaining in a flight
-CREATE DEFINER=`root`@`localhost` FUNCTION `num_remaining_seats9`(flight_ID int,seat_t varchar(15)) RETURNS int
-    DETERMINISTIC
+CREATE FUNCTION `num_remaining_seats9`(flight_ID int,seat_t varchar(15)) RETURNS int
+DETERMINISTIC
 BEGIN
   DECLARE num_remaining_seats int;
   IF seat_t = "Bussiness" THEN
@@ -156,8 +156,8 @@ END
 
 -- Flight Scheduling
 
-CREATE DEFINER=`root`@`localhost` FUNCTION `ScheduleFlight2`(aircraft_ID int,start_dest varchar(10),end_dest varchar(10),dep_time varchar(25),arr_time varchar(25),amount float) RETURNS int
-    DETERMINISTIC
+CREATE FUNCTION `ScheduleFlight2`(aircraft_ID int,start_dest varchar(10),end_dest varchar(10),dep_time varchar(25),arr_time varchar(25),amount float) RETURNS int
+DETERMINISTIC
 BEGIN
 	DECLARE path_ID INT;
     

@@ -108,7 +108,9 @@ CREATE TABLE flight (
   departure_time datetime,
   arrival_time datetime,
   status enum("Scheduled", "Departed","Arrived","Cancelled","Delayed"),
-  cost float,
+  platinum_cost float,
+  business_cost float,
+  economy_cost float,
   PRIMARY KEY (ID),
   FOREIGN KEY (path_iD) REFERENCES Paths(ID),
   FOREIGN KEY (aircraft_ID) REFERENCES Aircraft(ID)

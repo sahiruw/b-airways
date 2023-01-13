@@ -1,8 +1,4 @@
-CREATE 
-    ALGORITHM = UNDEFINED 
-    DEFINER = `root`@`localhost` 
-    SQL SECURITY DEFINER
-VIEW `flights_and_aircrafts` AS
+CREATE VIEW `flights_and_aircrafts` AS
     SELECT 
         `f`.`ID` AS `ID`,
         `at`.`platinum_seats` AS `platinum_seats`,
@@ -20,11 +16,7 @@ VIEW `flights_and_aircrafts` AS
 
 
 
-CREATE 
-    ALGORITHM = UNDEFINED 
-    DEFINER = `root`@`localhost` 
-    SQL SECURITY DEFINER
-VIEW `flight_details4` AS
+CREATE VIEW `flight_details4` AS
     SELECT 
         `f`.`ID` AS `ID`,
         `f`.`departure_time` AS `departure_time`,
@@ -46,11 +38,7 @@ VIEW `flight_details4` AS
 
 
 
-CREATE 
-    ALGORITHM = UNDEFINED 
-    DEFINER = `root`@`localhost` 
-    SQL SECURITY DEFINER
-VIEW `revenue` AS
+CREATE VIEW `revenue` AS
     SELECT 
         SUM(`t`.`total`) AS `revenue`, `atp`.`name` AS `name`
     FROM
@@ -66,18 +54,14 @@ VIEW `revenue` AS
 
 create view flight_details_in_profile as
 select f.ID as flight_ID,aft.name as air_craft,pa.start_destination,pa.end_destination,p.seat_no as seat_no,f.departure_time,f.arrival_time,m.ID as member_ID,m.email as email
-from member m inner join passenger p on m.ID = p.ID 
-left join booking b on b.ID = p.booking_ID left join 
+from member m inner join passenger p on m.ID = p.ID left join 
+booking b on b.ID = p.booking_ID left join 
 flight f on b.flight_ID = f.ID left join 
 paths pa on pa.ID = f.path_ID left join 
 aircraft aft on f.aircraft_ID = aft.ID;
 
 -- View joining the tables passengers,paths,fligh and booking
-CREATE 
-    ALGORITHM = UNDEFINED 
-    DEFINER = `root`@`localhost` 
-    SQL SECURITY DEFINER
-VIEW `action1` AS
+CREATE VIEW `action1` AS
     SELECT 
         `pa`.`start_destination` AS `start_destination`,
         `pa`.`end_destination` AS `end_destination`,
@@ -95,11 +79,7 @@ VIEW `action1` AS
     
     -- View containing the details of past flights
 
-    CREATE 
-    ALGORITHM = UNDEFINED 
-    DEFINER = `root`@`localhost` 
-    SQL SECURITY DEFINER
-VIEW `past_flights` AS
+CREATE VIEW `past_flights` AS
     SELECT 
         `fa`.`ID` AS `ID`,
         `fa`.`platinum_seats` AS `platinum_seats`,
@@ -125,11 +105,7 @@ VIEW `past_flights` AS
 
 -- View joining the flights,bookings,passengers,members to simply retrieve details of
 -- flights and passengers
-CREATE 
-    ALGORITHM = UNDEFINED 
-    DEFINER = `root`@`localhost` 
-    SQL SECURITY DEFINER
-VIEW `flight_members` AS
+CREATE VIEW `flight_members` AS
     SELECT 
         `f`.`ID` AS `flight_ID`,
         `b`.`booked_ID` AS `booked_ID`,
@@ -148,11 +124,7 @@ VIEW `flight_members` AS
 -- View joining the flights,bookings,passengers,guests to simply retrieve details of
 -- flights and guests
 
-CREATE 
-    ALGORITHM = UNDEFINED 
-    DEFINER = `root`@`localhost` 
-    SQL SECURITY DEFINER
-VIEW `flight_guest` AS
+CREATE VIEW `flight_guest` AS
     SELECT 
         `f`.`ID` AS `flight_ID`,
         `b`.`booked_ID` AS `booked_ID`,
