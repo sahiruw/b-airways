@@ -25,6 +25,8 @@ import Link from '@mui/material/Link';
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import FlightIcon from '@mui/icons-material/Flight';
 import Groups2Icon from '@mui/icons-material/Groups2';
+import AirplaneTicketIcon from '@mui/icons-material/AirplaneTicket';
+import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
 
 
 const drawerWidth = 240;
@@ -95,8 +97,9 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 );
 
 const Options = ['Past Flights', 'Bookings',"Action1", 'Action4','Revenue'];
-const Icons = [<FlightIcon />, <MailIcon />, <Groups2Icon/>,<MailIcon />,<MonetizationOnIcon />];
-const links = ["past_flights","bookings_by_passenger_type","action1","passenger_details","revenue"]
+const Icons = [<FlightIcon />, <AirplaneTicketIcon />, <Groups2Icon/>,<FlightTakeoffIcon />,<MonetizationOnIcon />];
+const links = ["past_flights","bookings_by_passenger_type","action1","passenger_details","revenue"];
+
 function MiniDrawer(props) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -152,17 +155,18 @@ function MiniDrawer(props) {
                     minWidth: 0,
                     mr: open ? 3 : 'auto',
                     justifyContent: 'center',
+                    color : "#075257"
                   }}
                 >
                   {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
                   {<AccountCircleIcon/>}
                 </ListItemIcon>
-                <ListItemText primary={props.Name} sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText  style={{color : "#075257"}} primary={props.Name} sx={{ opacity: open ? 1 : 0 }} />
               </MenuItem>
             </ListItem>
           
           {Options.map((text, index) => (
-            <Link href={links[index]} underline="none">
+            <Link href={links[index]} underline="none" style={{color : "#075257"}}>
             
             
             <ListItem key={text} disablePadding sx={{ display: 'block' }}>
@@ -178,6 +182,7 @@ function MiniDrawer(props) {
                     minWidth: 0,
                     mr: open ? 3 : 'auto',
                     justifyContent: 'center',
+                    color : "#075257"
                   }}
                 >
                   
@@ -198,7 +203,7 @@ function MiniDrawer(props) {
 
         <List>
           {['Logout'].map((text, index) => (
-            <Link href="/" underline="none">
+            <Link href="/" underline="none"  style={{color : "#075257"}}>
             <ListItem key={text} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
                 sx={{
@@ -212,6 +217,7 @@ function MiniDrawer(props) {
                     minWidth: 0,
                     mr: open ? 3 : 'auto',
                     justifyContent: 'center',
+                    color : "#075257"
                   }}
                 >
                   <LogoutIcon />

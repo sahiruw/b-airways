@@ -176,4 +176,13 @@ CREATE TABLE Transaction (
   FOREIGN KEY (booking_ID) REFERENCES booking(ID)
 );
 
+CREATE TABLE admin(
+  ID int AUTO_INCREMENT,
+  email varchar(255),
+  password varchar(12),
+  Name varchar(100),
+  ContactNo varchar(20),
+  Country varchar(20)
+);
+
 

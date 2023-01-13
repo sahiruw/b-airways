@@ -32,44 +32,11 @@ function PassengerDetails() {
       .then((data) => {
         // console.log(data.flightdataMembers);
         // console.log(data.flightdataGuest);
-        for (let i = 0; i < data.flightdataMembers.length; i++) {
-          let A = moment();
-          let B = moment(data.flightdataMembers[i].member_bday);
-          let age = A.diff(B, "years"); // => 1
-          if (age >= 18) {
-            setMemberDetailsAbove18([
-              ...member_details_above18,
-              data.flightdataMembers[i],
-            ]);
-            console.log(data.flightdataMembers[i].fname, "above 18 member");
-          }
-          if (age < 18) {
-            console.log(data.flightdataMembers[i].fname, "below 18 member");
-            setMemberDetailsBelow18([
-              ...member_details_below18,
-              data.flightdataMembers[i],
-            ]);
-          }
-        }
-        for (let i = 0; i < data.flightdataGuest.length; i++) {
-          let A = moment();
-          let B = moment(data.flightdataGuest[i].guest_bday);
-          let age = A.diff(B, "years"); // => 1
-          if (age >= 18) {
-            console.log(data.flightdataGuest[i].fname, "above 18 guest");
-            setGuestDetailsAbove18([
-              ...guest_details_above18,
-              data.flightdataGuest[i],
-            ]);
-          }
-          if (age < 18) {
-            console.log(data.flightdataMembers[i].fname, "below 18 guest");
-            setGuestDetailsBelow18([
-              ...guest_details_below18,
-              data.flightdataGuest[i],
-            ]);
-          }
-        }
+        setMemberDetailsAbove18(data.member_details_above18);
+        setGuestDetailsAbove18(data.guest_details_above18);
+        setMemberDetailsBelow18(data.member_details_below18);
+        setGuestDetailsBelow18(data.guest_details_below18);
+        
       });
 
     // let A = moment('2023-01-11');
@@ -78,21 +45,120 @@ function PassengerDetails() {
     // let age = A.diff(B, 'years');// => 1
     // console.log(age);
   };
-  {JSON.stringify(member_details_above18)}
+
+  let member_details_above18_size = member_details_above18.length;
+  let member_details_below18_size = member_details_below18.length;
+  let guest_details_above18_size = guest_details_above18.length;
+  let guest_details_below18_size = guest_details_below18.length;
+
+  let display_above18 = (member_details_above18_size == 0 && guest_details_above18_size == 0 )? "none" : "flex";
+  let display_below18 = (member_details_below18_size == 0 && guest_details_below18_size == 0)? "none" : "flex";
+
+  
+  
   return (
+    
     <div>
-      <h1>Passenger Details in the next immediate flight</h1>
+        <div className="shadow-lg p-3 mb-5 bg-light rounded" style={{"justify-content" : "center",width : 800,marginLeft:300}}>
+      <h3 style={{"font-weight": "bold"}}>Passenger Details in the next immediate flight</h3>
+      <br></br>
+      <label style={{"font-weight": "bold"}}>Flight ID : </label>
       <input
         type="number"
         min="1"
         max="9"
-        style={{ marginLeft: 100 }}
+        style={{ marginLeft: 5 ,marginRight : 15,width : 100}}
         onChange={(e) => {
           setFlightID(e.target.value);
         }}
       ></input>
-      <button onClick={(e) => get_details(e)}>GET</button>
-      {/* <h2>{console.log(member_details_below18)}</h2> */}
+      <button class = "btn btn-outline-secondary" onClick={(e) => get_details(e)} style = {{width:150}}>GET</button>
+
+      </div>
+      
+      <h3 style={{display : display_above18,marginLeft:300,"font-weight": "bold"}}>Passengers Above 18</h3>
+      
+      {/* <div class="shadow-lg p-3 mb-5 bg-light rounded" style={{"justify-content" : "center",width : 800,marginLeft:300,display : display_above18}}> */}
+      
+      
+      <div className="table-responsive shadow-lg p-3 mb-5 bg-light rounded" style={{"justify-content" : "center",width : 800,marginLeft:300,display : display_above18}}>
+          <table
+            className="table table-striped table-hover align-middle"
+            id="table"
+          >
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Age</th>
+                <th scope = "col">Member/Guest</th>
+              </tr>
+            </thead>
+            <tbody className="table-group-divider">
+              {member_details_above18.map((val) => {
+                return (
+                  <tr key={val.fname}>
+                    <th>{val.age}</th>
+                    <td>{val.member_bday}</td>
+                    <td>Member</td>
+                  </tr>
+                );
+              })}
+              {guest_details_above18.map((val) => {
+                return (
+                  <tr key={val.fname}>
+                    <th>{val.age}</th>
+                    <td>{val.member_bday}</td>
+                    <td>Guest</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+        
+
+        
+       
+        <h3 style={{display : display_below18,marginLeft:300,"font-weight": "bold"}}>Passengers Below 18</h3>
+        
+    
+                
+            <div className="table-responsive shadow-lg p-3 mb-5 bg-light rounded" style={{"justify-content" : "center",width : 800,marginLeft:300,display : display_below18}}>
+            <table
+            className="table table-striped table-hover align-middle"
+            id="table"
+            >
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Age</th>
+                <th scope = "col">Member/Guest</th>
+              </tr>
+            </thead>
+            <tbody className="table-group-divider">
+              {member_details_below18.map((val) => {
+                return (
+                  <tr key={val.fname}>
+                    <th>{val.age}</th>
+                    <td>{val.member_bday}</td>
+                    <td>Member</td>
+                  </tr>
+                );
+              })}
+              {guest_details_below18.map((val) => {
+                return (
+                  <tr key={val.fname}>
+                    <th>{val.age}</th>
+                    <td>{val.member_bday}</td>
+                    <td>Guest</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+        
+      
     </div>
   );
 }
