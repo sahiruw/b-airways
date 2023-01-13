@@ -8,6 +8,7 @@ import Action1 from "../components/Action1";
 import PassengerDetails from "../components/passenger_detaiils";
 import Bookings_by_Passenger_Type from "../components/bookings_by_passenger_type";
 import Past_Flights from "../components/past_flights";
+import Logo from "../components/Logo.png";
 
 
 const router = createBrowserRouter([
@@ -41,7 +42,8 @@ function Start(){
         <div>
             
             {/* <OffCanvasMenue mail = {location.state.useMail}/> */}
-            <MiniDrawer Name = {location.state.useMail}/>
+            {/* {/* <MiniDrawer Name = {location.state.useMail}/> */}
+            <img src={Logo} alt="Logo" style={{width: "1000px", height: "500px",marginLeft:260}}/> 
             
         </div>
     )
