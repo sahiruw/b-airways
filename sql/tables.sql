@@ -81,6 +81,7 @@ CREATE TABLE member (
   dob date,
   country varchar(15),
   tele_no varchar(12),
+  passport_number varchar(20);
   PRIMARY KEY (ID),
   FOREIGN KEY (mem_cat_id) REFERENCES member_category(mem_cat_id),
   FOREIGN KEY (ID) REFERENCES customer(ID)
@@ -88,10 +89,13 @@ CREATE TABLE member (
 
 CREATE TABLE guest (
   ID int,
-  name varchar(15),
+  firstname varchar(15),
+  lastname varchar(15),
+  email varchar(25),
   dob date,
   country varchar(15),
   tele_no varchar(15),
+  passport_number varchar(20);
   PRIMARY KEY (ID),
   FOREIGN KEY (ID) REFERENCES customer(ID)
 );
@@ -145,6 +149,7 @@ CREATE TABLE booking (
   booked_time datetime,
   booking_status enum("Booked","Completed","Cancelled", "TimedOut"),
   seat_type enum("Platinum","Bussiness","Economy"),
+  seat_count int;
   PRIMARY KEY (ID),
   FOREIGN KEY (flight_ID) REFERENCES flight(ID)
 );
@@ -163,7 +168,7 @@ CREATE TABLE Passenger (
   flied boolean,
   PRIMARY KEY (ID,booking_ID),
   FOREIGN KEY (ID) REFERENCES customer(ID),
-  FOREIGN KEY (ID) REFERENCES booking(ID)
+  FOREIGN KEY (booking_ID) REFERENCES booking(ID)
 );
 
 

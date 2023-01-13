@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import SeatSelection from "./seatSelection";
 import DetailForm from "./detailForm";
-import { Link, useNavigate , useLocation} from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 function Booking(props) {
   //this receives data from flight table and cards
@@ -17,14 +17,49 @@ function Booking(props) {
   const [userData, setUserData] = useState({});
   const [isloggeduserpassenger, setisloggeduserpassenger] = useState(false);
 
-
   const navigate = useNavigate();
 
   const toBookingConfirm = () => {
-    navigate("/confirmbooking", { state: { userSelectedSeats: userSelectedSeats, userData: userData, flightID:flightID, isloggeduserpassenger:isloggeduserpassenger } });
+    let msg = "";
+    let isUserdataFilled = true;
+    let isallseatsslected = userSelectedSeats.length == seatCount;
+
+    for (let entry of Object.entries(userData)) {
+      if (entry[1]) {
+        for (let entry2 of Object.entries(entry[1])) {
+          if (entry2[0] != "isRegistered" && !entry2[1]) {
+            isUserdataFilled = false;
+            break;
+          }
+        }
+      }
+      if (!isUserdataFilled) {
+        break;
+      }
+    }
+
+    if (!isUserdataFilled) {
+      msg = "Fill details";
+    } else if (!isallseatsslected) {
+      msg = `Select ${seatCount - userSelectedSeats.length} more seats`;
+    }
+
+    if (isUserdataFilled && isallseatsslected) {
+      navigate("/confirmbooking", {
+        state: {
+          userSelectedSeats: userSelectedSeats,
+          userData: userData,
+          flightID: flightID,
+          isloggeduserpassenger: isloggeduserpassenger,
+          seatClass: seatClass,
+          loggedUser: loggedUser,
+        },
+      });
+    } else {
+      alert(msg);
+    }
   };
 
-  
   useEffect(() => {
     fetch("/api/isLogged")
       .then((res) => res.json())
@@ -51,13 +86,9 @@ function Booking(props) {
 
     fetch("/api/book", {
       method: "POST",
-      body: JSON.stringify({flightID, dataforbackend}),
+      body: JSON.stringify({ flightID, dataforbackend }),
       headers: { "Content-Type": "application/json" },
-    }).then((res) =>
-      res.json().then((data) => {
-
-      })
-    );
+    }).then((res) => res.json().then((data) => {}));
   };
 
   const style_card = {
@@ -107,7 +138,9 @@ function Booking(props) {
         type="submit"
         className="btn btn-primary btn-lg btn-block"
         // onClick={(e) => submit(e)}
-        onClick={()=>{toBookingConfirm()}}
+        onClick={() => {
+          toBookingConfirm();
+        }}
       >
         Fuck you
       </button>

@@ -1,5 +1,5 @@
 const flight = require("../models/flightModel");
-
+const user = require("../models/userModel");
 const detailsforBookingConfim = async (req, res) => {
   if (!req.body.flightID) {
     res.json({ status: 0 });
@@ -11,7 +11,7 @@ const detailsforBookingConfim = async (req, res) => {
   const flightDetails = await flight.getFlightDetailsByID(req.body.flightID);
   let aircraftDetails = await flight.getAircraftDetailsByFlightID(req.body.flightID);
   aircraftDetails = aircraftDetails[0]
-  console.log(aircraftDetails)
+
   if (!aircraftDetails) {
     res.json({ status: 0 });
     return;
@@ -30,9 +30,18 @@ const detailsforBookingConfim = async (req, res) => {
     aircraftDetails: {name: aircraftDetails.aircraft_name, type: aircraftDetails.aircraft_type}
   };
 
-  let userData = req.body.userData;
+  let loggedUserDetails = req.body.loggedUserDetails;
+  let discount = 0;
+  if (loggedUserDetails[1]) {
+    let loggedUserData = await user.getUserbyUsername(loggedUserDetails[0]);
+    let memCategory = loggedUserData[0].mem_cat_id;
+    let memcatData = await user.getDiscountByMemCatID(memCategory);
+    discount = memcatData[0].discount_precentage;
 
-  res.json({ status: 1, flightdata: flightData });
+  }
+
+
+  res.json({ status: 1, flightdata: flightData , discount: discount});
 };
 
 module.exports = detailsforBookingConfim;

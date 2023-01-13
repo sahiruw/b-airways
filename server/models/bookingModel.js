@@ -1,37 +1,28 @@
-const connection = require("../routes/db-config");
+const db = require("../routes/db-config");
 const userModel = require("./userModel");
 
-const mysql = require('mysql2/promise')
-
-
-
 class bookingModel {
-  static async addBooking(data) {
-    let queries = []
-    let values = []
 
-    try {
-      connection.beginTransaction()
-    
-    for (let entry of Object.entries(data)) {
-      entry = entry[1];
-      let seatID = entry[0]
-      let userData = entry[1]
-
-      if (!userData.isRegistered){
-        queries.push('SELECT insert_guest(?, ?, ?, ?, ?, ?, ?)')
-        values.push([userData.firstName, userData.lastName, userData.email, userData.birthday, userData.country, userData.phone, userData.passport])
-        connection.query('SELECT insert_guest(?, ?, ?, ?, ?, ?, ?)',[userData.firstName, userData.lastName, userData.email, userData.birthday, userData.country, userData.phone, userData.passport], function(result, err){
-          console.log(result);
+    static async addBooking(data){
+        let sts = await new Promise((resolve,reject) => {
+            const sqlStatement = `call add_booking ('${data.addedIds[0]}','${data.addedIds[1]}','${data.addedIds[2]}','${data.addedIds[3]}','${data.addedIds[4]}','${data.userSelectedSeats[0]}','${data.userSelectedSeats[1]}','${data.userSelectedSeats[2]}','${data.userSelectedSeats[3]}','${data.userSelectedSeats[4]}','${data.flightID}','${data.bookedTime}','${data.seatClass}','${data.userCount}', @code)`;
+            db.query(sqlStatement,(err,result) => {
+                if (err) reject (err);
+                else resolve(result);
+            })
         })
-      }
-    }
+
+        let bID = await new Promise((resolve,reject) => {
+          const sqlStatement = `select @code;`;
+          db.query(sqlStatement,(err,result) => {
+              if (err) reject (err);
+              else resolve(result);
+          })
+      })
+
+        return bID;
     }
 
-    catch (err) {
-      connection.rollback()
-    }
-    
-  }}
+}
 
 module.exports = bookingModel;
