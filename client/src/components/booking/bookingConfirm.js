@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import image from "../assets/img/AirBus1.jpg";
 import "../assets/css/bkconfirm.css";
+import moment from "moment";
 
 function BookingConfirm(props) {
   //this receives data from flight table and cards
@@ -10,8 +11,8 @@ function BookingConfirm(props) {
 
   const [userSelectedSeats, setUserSelectedSeats] = useState([]);
   const [userData, setUserData] = useState({});
-  const [flightID, setFlightID] = useState({});
-  const [isloggeduserpassenger, setisloggeduserpassenger] = useState({});
+  const [flightID, setFlightID] = useState();
+  const [isloggeduserpassenger, setisloggeduserpassenger] = useState();
 
   const [flightDetails, setflightDetails] = useState();
 
@@ -20,10 +21,13 @@ function BookingConfirm(props) {
       method: "POST",
       body: JSON.stringify({ flightID, userData, isloggeduserpassenger }),
       headers: { "Content-Type": "application/json" },
-    }).then((res) => res.json().then((data) => {
+    }).then((res) =>
+      res.json().then((data) => {
         setflightDetails(data.flightdata);
-    }));
-  }, []);
+        console.log(data.flightdata);
+      })
+    );
+  }, [flightID, userData, isloggeduserpassenger]);
 
   useEffect(() => {
     setUserSelectedSeats(location.state.userSelectedSeats);
@@ -40,20 +44,20 @@ function BookingConfirm(props) {
     // }).then((res) => res.json().then((data) => {}));
   };
 
-  const style_card = {
-    marginTop: 30,
-    marginLeft: 100,
-    marginRight: 100,
-    paddingTop: 5,
-  };
+  const dept_time = moment(flightDetails? new Date(flightDetails.details.departure_time): new Date());
+  const arr_time = moment(flightDetails?new Date(flightDetails.details.arrival_time): new Date());
 
+  const isNextDayArriving = dept_time.startOf('day').isSame(arr_time.startOf('day'))
+  // const duration = 
   return (
     <>
       {/* {JSON.stringify(userSelectedSeats)}
       {JSON.stringify(userData)}
       {JSON.stringify(flightID)} */}
-        {JSON.stringify(flightDetails)}
+
       <div>
+        {JSON.stringify(flightDetails)}
+        {/* {flightDetails? new Date(flightDetails.details.arrival_time).toLocaleString():""} */}
         <div class="container bg-white rounded">
           <div class="row d-flex justify-content-center bg pb-5">
             <div class="col-sm-4 col-md-4 ml-1">
@@ -85,30 +89,41 @@ function BookingConfirm(props) {
                     "margin-bottom": "0px",
                   }}
                 >
-                  Colombo - New York
+                  {flightDetails ? flightDetails.from[1] : ""} -{" "}
+                  {flightDetails ? flightDetails.to[1] : ""}
                 </h5>
                 <p style={{ "text-align": "center", "margin-bottom": "13px" }}>
-                  Wednesday 11 January 2023
+                  {flightDetails ? dept_time.format("dddd DD MMMM") : ""}
                 </p>
                 <b>
                   <span style={{ color: "rgb(63, 63, 63)" }}>
-                    23:00 Colombo
+                    {/* {flightDetails ? dept_time.format() : ""} &nbsp; */}
+                    {flightDetails ? flightDetails.from[1] : ""}
                   </span>
                   <br />
                 </b>
                 <p>
                   <span style={{ color: "rgb(63, 63, 63)" }}>
-                    Bandaranaike International (CMB)
+                    {flightDetails ? flightDetails.from[0] : ""} (
+                    {flightDetails
+                      ? flightDetails.details.start_destination
+                      : ""}
+                    )
                   </span>
                   <br />
                 </p>
                 <b>
                   <span style={{ color: "rgb(63, 63, 63)" }}>
                     04:00 (+1Day) Abu Dhabi
+                    {/* {flightDetails ? arr_time.format("HH:") : ""} &nbsp; */}
+                    {/* {flightDetails ? flightDetails.to[1] : ""} */}
                   </span>
                   <br />
                 </b>
-                <p>Abu Dhabi Airport (AUH)</p>
+                <p>
+                  {flightDetails ? flightDetails.to[0] : ""} (
+                  {flightDetails ? flightDetails.details.end_destination : ""})
+                </p>
                 <h4
                   class="green"
                   style={{
@@ -134,7 +149,7 @@ function BookingConfirm(props) {
                   <span style={{ color: "rgb(63, 63, 63)" }}>Air Craft</span>
                   <br />
                 </b>
-                <p>Air Bus 3045</p>
+                <p>{flightDetails?flightDetails.aircraftDetails.name:""}&nbsp; ({flightDetails?flightDetails.aircraftDetails.type:""})</p>
                 <b>
                   <span style={{ color: "rgb(63, 63, 63)" }}>Cabin</span>
                   <br />

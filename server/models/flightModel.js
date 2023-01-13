@@ -47,7 +47,7 @@ class flightModel{
 
     static async getAirportLocations(){
         let data = await new Promise((resolve,reject) => {
-            const getAirportLoc = "SELECT DISTINCT * FROM airport ORDER BY code ASC;";
+            const getAirportLoc = "SELECT distinct code, a.name as airport_name, l.name as city FROM airport a join location l on a.location_id=l.location_id ORDER BY code ASC;";
             db.query(getAirportLoc,(err,result) => {
                 if (err) reject (err);
                 else resolve(result);
@@ -60,7 +60,7 @@ class flightModel{
 
     static async getAircraftDetailsByFlightID(id){
         let data = await new Promise((resolve,reject) => {
-            const getFlighbyLoc = `SELECT * FROM aircraft a join aircraft_type att on a.type_ID = att.ID join flight f on f.aircraft_ID=a.id where f.id=${id};`
+            const getFlighbyLoc = `SELECT a.name as 'aircraft_name', att.name as 'aircraft_type', a.*,att.*,f.* FROM aircraft a join aircraft_type att on a.type_ID = att.ID join flight f on f.aircraft_ID=a.id where f.id=${id};`
             db.query(getFlighbyLoc,(err,result) => {
                 if (err) reject (err);
                 else resolve(result);

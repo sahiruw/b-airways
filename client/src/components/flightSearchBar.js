@@ -11,11 +11,15 @@ function SearchBar(props) {
   const [Airports, setAirports] = useState([]);
   const [FlightList, setFlightList] = useState([]);
 
-  const [Form, setForm] = useState({});
+  const [Form, setForm] = useState({seat_type:"Economy", passengerCount:1});
 
   useEffect(() => {
-    setForm(props.selectedValues);
+    if (props.selectedValues) {
+      setForm(props.selectedValues);
+      console.log(props.selectedValues)
+    }
   }, [props.selectedValues]);
+
 
   useEffect(() => {
     fetch("/api/departure")
@@ -31,6 +35,7 @@ function SearchBar(props) {
 
   const ShowBySearch = (e) => {
     e.preventDefault();
+    console.log(Form);
 
     if (!Form || !Form.from || !Form.to || !Form.date) {
       alert("Please fill all the fields");
@@ -38,16 +43,15 @@ function SearchBar(props) {
 
       return;
     }
-    if (!Form.passengerCount) {
-      setForm({ ...Form, passengerCount: 1 });
-    }
 
-    if (!Form.seat_type){
-      setForm({ ...Form, seat_type: "Economy" })
+    let passengerCountT = Form.passengerCount;
+    if (!passengerCountT) {
+      setForm({ ...Form, passengerCount: 1 });
+      passengerCountT = 1;
     }
 
     fetch(
-      `/api/Flights?from=${Form.from}&to=${Form.to}&departureDate=${Form.date}&seat_type=${Form.seat_type}&passengers=${Form.passengerCount}`
+      `/api/Flights?from=${Form.from}&to=${Form.to}&departureDate=${Form.date}&seat_type=${Form.seat_type}&passengers=${passengerCountT}`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -58,8 +62,6 @@ function SearchBar(props) {
         });
       });
   };
-
-
 
   return (    
     <div style={{width:"100%"}}>
