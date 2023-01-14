@@ -37,95 +37,7 @@ BEGIN
 END$$
 DELIMITER ;
 
--- function to get difference between booked and total platinum seats
-DELIMITER $$
-CREATE FUNCTION num_remaining_platinum_seats2(flight_ID int)
-RETURNS INT
-DETERMINISTIC
-BEGIN
- 
- DECLARE total_platinum_seats INT;
- DECLARE booked_seats INT;
- 
- SELECT platinum_seats into total_platinum_seats
- FROM flights_and_aircrafts WHERE ID = flight_ID;
- 
- SELECT COUNT(seat_type) into booked_seats
- FROM flight_details4
- WHERE ID = flight_ID AND seat_type = 'Platinum';
-	
 
- RETURN total_platinum_seats - booked_seats;
-  
-END$$
-DELIMITER 
-
--- function to get difference between booked and total bussiness seats
-DELIMITER $$
-CREATE FUNCTION num_remaining_bussiness_seats2(flight_ID int)
-RETURNS INT
-DETERMINISTIC
-BEGIN
- 
- DECLARE total_bussiness_seats INT;
- DECLARE booked_seats INT;
- 
- SELECT Bussiness_seats into total_bussiness_seats
- FROM flights_and_aircrafts WHERE ID = flight_ID;
- 
- SELECT COUNT(seat_type) into booked_seats
- FROM flight_details4
- WHERE ID = flight_ID AND seat_type = 'Bussiness';
-	
-
- RETURN total_bussiness_seats - booked_seats;
-  
-END$$
-DELIMITER 
-
--- function to get difference between booked and total economy seats
-DELIMITER $$
-CREATE FUNCTION num_remaining_economy_seats2(flight_ID int)
-RETURNS INT
-DETERMINISTIC
-BEGIN
- 
- DECLARE total_economy_seats INT;
- DECLARE booked_seats INT;
- 
- SELECT Economy_seats into total_economy_seats
- FROM flights_and_aircrafts WHERE ID = flight_ID;
- 
- SELECT COUNT(seat_type) into booked_seats
- FROM flight_details4
- WHERE ID = flight_ID AND seat_type = 'Economy';
-	
-
- RETURN total_economy_seats - booked_seats;
-  
-END$$
-DELIMITER 
-
-
-
-DELIMITER $$
-CREATE FUNCTION SetFlyingStaff(flight_ID int, staff_member_name varchar(15))
-RETURNS INT
-DETERMINISTIC
-BEGIN
-	
-    DECLARE staff_member_id INT;
-    SELECT ID into staff_member_id
-    from staff
-    where name = staff_member_name;
-    
-    INSERT into flying_staff(staff_ID,flight_ID) values (staff_member_id,flight_ID);
-    
-    return 1;
-	
-  
-END$$
-DELIMITER 
 
 
 DELIMITER $$
@@ -165,21 +77,3 @@ BEGIN
 
 END
 
--- Flight Scheduling
-
-CREATE FUNCTION `ScheduleFlight2`(aircraft_ID int,start_dest varchar(10),end_dest varchar(10),dep_time varchar(25),arr_time varchar(25),amount float) RETURNS int
-DETERMINISTIC
-BEGIN
-	DECLARE path_ID INT;
-    
-    SELECT ID into path_ID
-    from paths
-    where start_destination = start_dest and end_destination = end_dest;
-    
-    insert into flight(aircraft_ID,path_ID,departure_time,arrival_time,status,cost)
-    values (aircraft_ID,path_ID,dep_time,arr_time,"Scheduled",amount);
-    
-    RETURN LAST_INSERT_ID();
-	
-  
-END

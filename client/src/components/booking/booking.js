@@ -100,7 +100,6 @@ function Booking(props) {
 
   return (
     <div className="shadow-lg p-3 mb-5 bg-white rounded" style={style_card}>
-      {JSON.stringify(location.state)}
       {loggedUser ? (
         <div className="form-check form-switch">
           <label class="form-check-label" htmlfor="flexSwitchCheckChecked">
@@ -143,7 +142,7 @@ function Booking(props) {
           toBookingConfirm();
         }}
       >
-        Fuck you
+        Continue to Checkout
       </button>
     </div>
   );
