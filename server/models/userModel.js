@@ -55,6 +55,19 @@ class userModel {
     return userData;
   }
 
+  static async getProfileData(email) {
+    let userData = await new Promise((resolve, reject) =>
+      db.query(
+        `SELECT * FROM flight_details_in_profile WHERE email = '${email}'`,
+        (err, result) => {
+          if (err) reject(err);
+          else resolve(result);
+        }
+      )
+    );
+
+    return userData;
+  }
   static async getDiscountByMemCatID(id) {
     let memcatData = await new Promise((resolve, reject) =>
       db.query(
@@ -69,5 +82,6 @@ class userModel {
     return memcatData;
   }
 }
+
 
 module.exports = userModel;

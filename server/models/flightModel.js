@@ -18,23 +18,27 @@ class flightModel{
     static async searchFlightbyLocation(from,to,flight_class,passengers,departure_date){
         let data = await new Promise((resolve,reject) => {
 
-            var getFlighbyLoc = "";
+            //var getFlighbyLoc = "";
             
-            if (flight_class == "Platinum") {
-                getFlighbyLoc = `SELECT DISTINCT ID,start_destination,end_destination,departure_time,arrival_time
+            // if (flight_class == "Platinum") {
+            //     getFlighbyLoc = `SELECT DISTINCT ID,start_destination,end_destination,departure_time,arrival_time
+            //     FROM flight_details4
+            //     WHERE start_destination = '${from}' AND end_destination = '${to}' AND departure_time >= '${departure_date}' AND num_remaining_platinum_seats2(ID) >= ${passengers} AND flight_status = "Scheduled";`
+            // }
+            // else if(flight_class == "Bussiness"){
+            //     getFlighbyLoc = `SELECT DISTINCT ID,start_destination,end_destination,departure_time,arrival_time
+            //     FROM flight_details4
+            //     WHERE start_destination = '${from}' AND end_destination = '${to}' AND departure_time >= '${departure_date}' AND num_remaining_bussiness_seats2(ID) >= ${passengers} AND flight_status = "Scheduled";`
+            // }
+            // else{
+            //     getFlighbyLoc = `SELECT DISTINCT ID,start_destination,end_destination,departure_time,arrival_time
+            //     FROM flight_details4
+            //     WHERE start_destination = '${from}' AND end_destination = '${to}' AND departure_time >= '${departure_date}' AND num_remaining_economy_seats2(ID) >= ${passengers} AND flight_status = "Scheduled";`
+            // }
+            var getFlighbyLoc = `SELECT DISTINCT ID,start_destination,end_destination,departure_time,arrival_time
                 FROM flight_details4
-                WHERE start_destination = '${from}' AND end_destination = '${to}' AND departure_time >= '${departure_date}' AND num_remaining_platinum_seats2(ID) >= ${passengers} AND flight_status = "Scheduled";`
-            }
-            else if(flight_class == "Bussiness"){
-                getFlighbyLoc = `SELECT DISTINCT ID,start_destination,end_destination,departure_time,arrival_time
-                FROM flight_details4
-                WHERE start_destination = '${from}' AND end_destination = '${to}' AND departure_time >= '${departure_date}' AND num_remaining_bussiness_seats2(ID) >= ${passengers} AND flight_status = "Scheduled";`
-            }
-            else{
-                getFlighbyLoc = `SELECT DISTINCT ID,start_destination,end_destination,departure_time,arrival_time
-                FROM flight_details4
-                WHERE start_destination = '${from}' AND end_destination = '${to}' AND departure_time >= '${departure_date}' AND num_remaining_economy_seats2(ID) >= ${passengers} AND flight_status = "Scheduled";`
-            }
+                WHERE start_destination = '${from}' AND end_destination = '${to}' AND departure_time >= '${departure_date}' AND num_remaining_seats9(ID,'${flight_class}') >= ${passengers} AND flight_status = "Scheduled";`
+
             
             db.query(getFlighbyLoc,(err,result) => {
                 if (err) reject (err);
@@ -117,6 +121,20 @@ class flightModel{
             })
         })
         return data[0];
+    }
+
+    static async getTodayFlights(seat_type,passengers){
+        let data = await new Promise((resolve,reject) => {
+            const getTodayFlightdetails = `SELECT DISTINCT ID,start_destination,end_destination,departure_time,arrival_time
+            FROM flight_details4
+            WHERE  departure_time BETWEEN DATE_ADD(DATE_FORMAT(NOW(), '%Y-%m-%d'), INTERVAL 0 DAY) AND DATE_ADD(DATE_FORMAT(NOW(), '%Y-%m-%d'), INTERVAL 1 DAY) AND num_remaining_seats9(ID,'${seat_type}') >= ${passengers} AND flight_status = "Scheduled";`
+            db.query(getTodayFlightdetails,(err,result) => {
+                if (err) reject (err);
+                else resolve(result);
+            })
+        })
+
+        return data;
     }
 
 

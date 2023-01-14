@@ -42,7 +42,7 @@ function Start(){
         <div>
             
             {/* <OffCanvasMenue mail = {location.state.useMail}/> */}
-            {/* {/* <MiniDrawer Name = {location.state.useMail}/> */}
+            <MiniDrawer Name = {location.state.useMail}/>
             <img src={Logo} alt="Logo" style={{width: "1000px", height: "500px",marginLeft:260}}/> 
             
         </div>

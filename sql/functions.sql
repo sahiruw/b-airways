@@ -143,3 +143,43 @@ BEGIN
   
 END$$
 DELIMITER 
+
+-- Function to get the number of seats remaining in a flight
+CREATE FUNCTION `num_remaining_seats9`(flight_ID int,seat_t varchar(15)) RETURNS int
+DETERMINISTIC
+BEGIN
+  DECLARE num_remaining_seats int;
+  IF seat_t = "Bussiness" THEN
+    RETURN num_remaining_bussiness_seats2(flight_ID);
+    
+  ELSEIF seat_t = "Platinum" THEN
+    RETURN num_remaining_platinum_seats2(flight_ID);
+    
+  ELSE
+    RETURN num_remaining_economy_seats2(flight_ID);
+   
+  END IF;
+   
+  RETURN NULL;
+
+
+END
+
+-- Flight Scheduling
+
+CREATE FUNCTION `ScheduleFlight2`(aircraft_ID int,start_dest varchar(10),end_dest varchar(10),dep_time varchar(25),arr_time varchar(25),amount float) RETURNS int
+DETERMINISTIC
+BEGIN
+	DECLARE path_ID INT;
+    
+    SELECT ID into path_ID
+    from paths
+    where start_destination = start_dest and end_destination = end_dest;
+    
+    insert into flight(aircraft_ID,path_ID,departure_time,arrival_time,status,cost)
+    values (aircraft_ID,path_ID,dep_time,arr_time,"Scheduled",amount);
+    
+    RETURN LAST_INSERT_ID();
+	
+  
+END
