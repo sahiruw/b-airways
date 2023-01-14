@@ -33,11 +33,11 @@ function SearchBar(props) {
   const navigate = useNavigate();
 
   const ShowBySearch = (e) => {
-    e.preventDefault();
+  
     
 
     var checkbox = document.getElementById("flexSwitchCheckChecked");
-    checkbox.addEventListener("change", function(){
+    
     if(checkbox.checked){
       console.log("Checkbox is selected.");
       fetch(`/api/FlightsToday?seat_type=${Form.seat_type}&passengers=${Form.passengerCount}`)
@@ -71,7 +71,7 @@ function SearchBar(props) {
         });
     }
 
-  });
+  
   
     
   };
