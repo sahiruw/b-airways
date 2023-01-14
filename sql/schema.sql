@@ -600,7 +600,66 @@ DELIMITER ;
 */
 --------------------------------------- PROCEDURES SCHEMA---------------------------------------------------------------------------------------
 
+DROP PROCEDURE `flight`.`add_booking`;
 
+DELIMITER $$
+CREATE PROCEDURE add_booking (
+
+IN id1 varchar(5),
+IN id2 varchar(5),
+IN id3 varchar(5),
+IN id4 varchar(5),
+IN id5 varchar(5),
+
+IN seat1 varchar(5),
+IN seat2 varchar(5),
+IN seat3 varchar(5),
+IN seat4 varchar(5),
+IN seat5 varchar(5),
+
+IN flight_ID int,
+IN booked_time datetime,
+IN seat_type varchar(20),
+IN seat_count int,
+OUT bookID varchar(100)
+
+)
+
+BEGIN
+    DECLARE bookingID int;
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION 
+        BEGIN
+            ROLLBACK;
+            RESIGNAL;
+            set bookID = "-";
+        END;
+    
+    
+    START TRANSACTION;
+        insert into booking (booked_ID, flight_ID, booked_time, booking_status, seat_type, seat_count) values(id1, flight_ID, booked_time, 'Booked', seat_type, seat_count);
+        set bookingID = LAST_INSERT_ID();
+
+        if id1 <> "" then
+            insert into passenger (ID, booking_ID, seat_no, flied) values(id1,bookingID , seat1, 0);
+        END IF;
+        if id2 <> "" then
+            insert into passenger (ID, booking_ID, seat_no, flied) values(id2,bookingID , seat2, 0);
+        END IF;
+        if id3 <> "" then
+            insert into passenger (ID, booking_ID, seat_no, flied) values(id3,bookingID , seat3, 0);
+        END IF;
+        if id4 <> "" then
+            insert into passenger (ID, booking_ID, seat_no, flied) values(id4,bookingID , seat4, 0);
+        END IF;
+        if id5 <> "" then
+            insert into passenger (ID, booking_ID, seat_no, flied) values(id5,bookingID , seat5, 0);
+        END IF;
+		COMMIT;
+        set bookID = bookingID;
+    END$$
+DELIMITER ;
+
+select @code;
 
 
 
