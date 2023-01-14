@@ -83,7 +83,7 @@ function NavBar() {
             </a>
           </li>
           <li className="nav-item" style={{ marginRight: "62px" }}>
-            <a href="#footer">
+            <a href="#div3">
             <button className="btn btn-primary nav-button" type="button">
               Our Fleet
             </button>

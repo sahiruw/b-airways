@@ -37,7 +37,7 @@ function SearchBar(props) {
     
 
     var checkbox = document.getElementById("flexSwitchCheckChecked");
-    
+    checkbox.addEventListener("change", function(){
     if(checkbox.checked){
       console.log("Checkbox is selected.");
       fetch(`/api/FlightsToday?seat_type=${Form.seat_type}&passengers=${Form.passengerCount}`)
@@ -71,7 +71,7 @@ function SearchBar(props) {
         });
     }
 
-
+  });
   
     
   };
@@ -82,6 +82,11 @@ function SearchBar(props) {
       document.getElementById("from").disabled = true;
       document.getElementById("to").disabled = true;
       document.getElementById("date").disabled = true;
+    }
+    else{
+      document.getElementById("from").disabled = false;
+      document.getElementById("to").disabled = false;
+      document.getElementById("date").disabled = false;
     }
   }
 
@@ -200,6 +205,7 @@ function SearchBar(props) {
           >
 
             <li class="searchbutton-mid">
+              
               <a
                 class="searchlink-mid"
                 href="#"
@@ -224,12 +230,8 @@ function SearchBar(props) {
                   "padding-right": "45px",
                 }}
               >
-                <input
-            className="form-check-input"
-            type="checkbox"
-            id="flexSwitchCheckChecked"
-            onChange={handleCheckLoggedUserisPassenger}
-          />
+               
+                
                 Book
                 <i
                   class="fa fa-plane"
@@ -248,7 +250,7 @@ function SearchBar(props) {
               </a>
             </li>
           </ul>
-          <div
+          <div  id="div1"
             class="tab-content"
             style={{
               "font-size": "100%",
@@ -259,6 +261,25 @@ function SearchBar(props) {
               background: "#fff",
             }}
           >
+            <span>
+            
+          <div class="row">
+
+            <div class="col-sm-1">
+            <input
+            className="form-check-input"
+            type="checkbox"
+            id="flexSwitchCheckChecked"
+            onChange={handleCheckLoggedUserisPassenger}
+           />
+          </div>
+          <div class="col-sm-11">
+          <p style={{
+                color: "black"}}>Flights for today</p>
+            </div>
+            </div>
+
+            </span>
             <div
               class="tab-active-book"
               style={{

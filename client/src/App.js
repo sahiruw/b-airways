@@ -12,6 +12,7 @@ import UnderConstruction from "./screens/under_construction";
 import ConfirmBooking from "./components/booking/bookingConfirm";
 import Carousal from "./components/carousal";
 import PaymentWindow from "./components/booking/paymentWindow";
+import OurFleet from "./components/OurFleet";
 
 const router = createBrowserRouter([
   {
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
   {
     path: "payment",
     element: <PaymentWindow />,
+  },
+  {
+    path: "ourFleet",
+    element : <OurFleet />
   }
 ]);
 
