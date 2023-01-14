@@ -1,3 +1,14 @@
+DELIMITER $$
+CREATE FUNCTION confirm_transaction (p_bookingid int, p_finalprice float, p_time date, p_ptype varchar(15))
+RETURNS INT
+DETERMINISTIC
+BEGIN
+
+  INSERT INTO transaction (booking_id, time, total, payment_method)
+  VALUES (p_bookingid, p_time, p_finalprice, p_ptype);
+  RETURN LAST_INSERT_ID();
+END$$
+DELIMITER ;
 
 -- function to insert members
 DELIMITER $$

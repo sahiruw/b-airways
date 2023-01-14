@@ -1,0 +1,70 @@
+@font-face {
+  font-family: "myFirstFont";
+}
+
+.tkt-heading {
+  background-color: #053d41;
+  padding: 10px;
+  border-radius: 25px 25px 0 0;
+}
+
+.tkt-footer {
+  height: 35px;
+  background-color: #053d41;
+  padding: 10px;
+  border-radius: 0 0 25px 25px;
+}
+
+.tkt-body {
+  /* background: url("../../assets/img/Slider01.png") no-repeat 21% 100%; */
+  background-color: #b3c8c9f5;
+  padding: 10px;
+  border-radius: 0;
+}
+
+.tkt-h3 {
+  color: #f6f8fd;
+  font-family: nexa;
+  font-weight: 800;
+  margin-top: 10px;
+}
+
+.tkt-det-row {
+  background-color: #b3c8c906;
+  height: 36px;
+  border-radius: 5px;
+  font-family: nexa;
+  font-weight: 900;
+  margin: 0px 0px 6px 0px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(63,63,63,0.17);
+}
+
+.text-filled {
+  --bs-text-opacity: 1;
+  color: #6c757d!important;
+  font-size: 20px;
+}
+
+.text-q{
+  --bs-text-opacity: 1;
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.col-tear {
+  font-size: 24px;
+  font-weight: lighter;
+}
+
+.div-ticket {
+  width: 80%;
+  margin-left: 150px;
+  margin-right: 60px;
+}
+
+.sub_div {
+  bottom: 0px;
+}
+
