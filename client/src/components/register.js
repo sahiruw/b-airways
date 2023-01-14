@@ -7,6 +7,7 @@ import "./assets/css/Sakae-Simple-Section.css";
 
 import MuiPhoneNumber from "material-ui-phone-number";
 import CountrySelection from "./booking/countrySelect";
+import Alert from '@mui/material/Alert';
 
 const Register = () => {
   useEffect(() => {
@@ -28,19 +29,20 @@ const Register = () => {
 
   const [alert, setAlert] = useState({
     atype: "",
-    aalert: { display: "none" },
+    aalert: false,
     amessage: "",
   });
 
-  const sendMessage = (text, type = "danger", time = 5) => {
+  const sendMessage = (text, type = "error", time = 5) => {
+
     setAlert({
       atype: type,
-      aalert: { display: "block" },
+      aalert: true,
       amessage: text,
     });
 
     setTimeout(() => {
-      setAlert({ ...alert, aalert: { display: "none" } });
+      setAlert({ ...alert, aalert: false });
       if (type === "success") document.location.replace("/login");
     }, time * 1000);
   };
@@ -59,6 +61,7 @@ const Register = () => {
       res.json().then((data) => {
         if (data.status) {
           sendMessage(data.message, "success");
+          document.location.replace("/login");
         } else {
           sendMessage(data.message);
         }
@@ -71,13 +74,15 @@ const Register = () => {
     <div
       className="container"
       style={{ marginBottom: "12px", fontFamily: "nexa" }}
-    >
+    > 
+    
       <div id="main-wrapper" className="container">
         <div className="row justify-content-center">
               <div className="card-body p-0">
                 <div className="row no-gutters">
                   <div className="col-lg-6">
                     <div className="p-5">
+                    
                       <div className="mb-5">
                         <h3 style={{"font-weight": "600", "font-size": "35px"}}>
                           REGISTER
@@ -226,6 +231,7 @@ const Register = () => {
                         <button className="btn-theme" type="submit" onClick={(e) => submit(e)}>
                           Register
                         </button>
+                        {alert.aalert?<Alert severity={alert.atype}>{alert.amessage}</Alert>:null}
                         <p className="text-center text-muted">
                           Already have an account?{" "}
                           <a className="text-primary ml-1" href="login.html">

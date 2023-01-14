@@ -26,7 +26,7 @@ const Revenue = require("./revenue");
 const Payment = require("./payment");
 const profileData = require("./profileData");
 const FlightsToday = require("./FlightsToday");
-
+const delayedFlightHandle = require("./submitDelayedFlight");
 
 router.post("/register", register);
 router.post("/login", login);
@@ -35,6 +35,7 @@ router.post("/book", Booking);
 router.post("/pay", Payment);
 router.post("/schedule", Schedule);
 router.post("/getConfirmDetails",DetailsforBookingConfim)
+router.post("/delayedFlightHandle",delayedFlightHandle)
 
 router.get("/isLogged", isLogged);
 router.get("/departure", show_departure);
