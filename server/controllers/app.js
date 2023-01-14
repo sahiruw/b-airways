@@ -24,6 +24,7 @@ const AdminLogin = require("./adminLogin");
 const Flight_Details_Members = require("./Member_Flight_Details");
 const Revenue = require("./revenue");
 const profileData = require("./profileData");
+const FlightsToday = require("./FlightsToday");
 
 
 router.post("/register", register);
@@ -49,6 +50,7 @@ router.get("/adminLogin",AdminLogin);
 router.get("/Flight_Details_Members",Flight_Details_Members );
 router.get("/Revenue",Revenue);
 router.get("/profileData",profileData);
+router.get("/FlightsToday",FlightsToday);
 
 
 module.exports = router;

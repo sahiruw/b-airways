@@ -123,6 +123,20 @@ class flightModel{
         return data[0];
     }
 
+    static async getTodayFlights(seat_type,passengers){
+        let data = await new Promise((resolve,reject) => {
+            const getTodayFlightdetails = `SELECT DISTINCT ID,start_destination,end_destination,departure_time,arrival_time
+            FROM flight_details4
+            WHERE  departure_time BETWEEN DATE_ADD(DATE_FORMAT(NOW(), '%Y-%m-%d'), INTERVAL 0 DAY) AND DATE_ADD(DATE_FORMAT(NOW(), '%Y-%m-%d'), INTERVAL 1 DAY) AND num_remaining_seats9(ID,'${seat_type}') >= ${passengers} AND flight_status = "Scheduled";`
+            db.query(getTodayFlightdetails,(err,result) => {
+                if (err) reject (err);
+                else resolve(result);
+            })
+        })
+
+        return data;
+    }
+
 
 }
 
