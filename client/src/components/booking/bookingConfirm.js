@@ -26,7 +26,6 @@ function BookingConfirm(props) {
   const [discount, setdiscount] = useState();
   const [bookingId, setbookingId] = useState();
   const [finalPrice, setFinalPrice] = useState(0);
-  const [paymentType, setPaymentType] = useState("");
 
   useEffect(() => {
     fetch("/api/getConfirmDetails", {
@@ -80,18 +79,24 @@ function BookingConfirm(props) {
       }
     }));
 
-    const toPayment = (bID) => {
-      
-        navigate("/payment", {
-          state: {
-            flightID: flightID,
-            bookingId: bID,
-            finalPrice: finalPrice,
-          },
-        });
-
-    };
+    
+    
   };
+
+  const toPayment = (bID) => {
+    navigate("/payment", {
+      state: {
+        flightID: flightID,
+        bookingId: bID,
+        finalPrice: finalPrice,
+        userSelectedSeats: userSelectedSeats,
+        userData: userData,
+        seatClass: seatClass,
+        flightDetails: flightDetails,
+      },
+    });
+
+};
 
   const dept_time = moment(
     flightDetails

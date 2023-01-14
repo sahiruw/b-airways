@@ -23,6 +23,17 @@ class bookingModel {
         return bID;
     }
 
+    static async addTransaction(data){
+        console.log(data);
+        let sts = await new Promise((resolve,reject) => {
+            const sqlStatement = `select confirm_transaction ('${data.bookingID}', '${data.finalPrice}', '${data.timeNow}', 'credit') `;
+            db.query(sqlStatement,(err,result) => {
+                if (err) reject (err);
+                else resolve(result);
+            })
+        })
+    }
+
 }
 
 module.exports = bookingModel;

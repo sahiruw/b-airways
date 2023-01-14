@@ -23,12 +23,13 @@ const DetailsforBookingConfim = require("./detailsforBookingConfim");
 const AdminLogin = require("./adminLogin");
 const Flight_Details_Members = require("./Member_Flight_Details");
 const Revenue = require("./revenue");
-
+const Payment = require("./payment");
 
 router.post("/register", register);
 router.post("/login", login);
 router.post("/logout", logout);
 router.post("/book", Booking);
+router.post("/pay", Payment);
 router.post("/schedule", Schedule);
 router.post("/getConfirmDetails",DetailsforBookingConfim)
 

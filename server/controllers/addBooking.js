@@ -4,19 +4,18 @@ const booking = require("../models/bookingModel");
 const user = require("../models/userModel")
 const flight = require("../models/flightModel");
 
-const register = async (req, res) => {
+const addBooking = async (req, res) => {
   let addedIds = []
   let userSelectedSeats = req.body.userSelectedSeats;
 
   let bookedSeats = await flight.getReservedSeatsByID(req.body.flightID);
   bookedSeats = bookedSeats.map((seat) => seat.seat_no);
-  console.log(bookedSeats)
-  for (let seat of userSelectedSeats) {
-    if (bookedSeats.includes(seat)) {
-      res.send({status: 0, msg: "Seat already booked"});
-      return;
-    }
-  }
+  // for (let seat of userSelectedSeats) {
+  //   if (bookedSeats.includes(seat)) {
+  //     res.send({status: 0, msg: "Seat already booked"});
+  //     return;
+  //   }
+  // }
 
   for (let entry of Object.entries(req.body.userData)) {
     if (entry[1].isRegistered) {
@@ -73,4 +72,4 @@ const register = async (req, res) => {
 
 
 
-module.exports = register;
+module.exports = addBooking;
