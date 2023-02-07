@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from "react";
 import logo from "./assets/img/Logo.png";
 import "./assets/css/Footer-KEET-and-OHO.css"
+
+import ia320 from "./assets/img/A320.png";
+import ia380 from "./assets/img/A380.png";
+import ib737 from "./assets/img/B737.png";
+import ib757 from "./assets/img/B757.png";
+
+
 function Footer() {
   return (
     <div class="footer-basic">
@@ -18,7 +25,7 @@ function Footer() {
           <a href="https://www.facebook.com/photo.php?fbid=680275139594000&set=pb.100028345601357.-2207520000.&type=3" style={{ "border-color": "#08575c" }}>
             <i class="fa fa-twitter" style={{ color: "#08575c" }}></i>
           </a>
-          <a href="https://www.facebook.com/photo.php?fbid=261264910873256&set=pb.100009692474415.-2207520000.&type=3" style={{ "border-color": "#08575c" }}>
+          <a href="\underconstruction" style={{ "border-color": "#08575c" }}>
             <i class="fa fa-facebook-f" style={{ color: "#08575c" }}></i>
           </a>
         </div>

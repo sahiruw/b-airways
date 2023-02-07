@@ -11,6 +11,7 @@ import Footer from "./components/footer";
 import UnderConstruction from "./screens/under_construction";
 import ConfirmBooking from "./components/booking/bookingConfirm";
 import Carousal from "./components/carousal";
+import Carousal1 from "./components/carousal1";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
   {
     path: "carousal",
     element: <Carousal />,
+  },
+  {
+    path: "carousal1",
+    element: <Carousal1 />,
   },
 ]);
 
