@@ -23,14 +23,19 @@ const DetailsforBookingConfim = require("./detailsforBookingConfim");
 const AdminLogin = require("./adminLogin");
 const Flight_Details_Members = require("./Member_Flight_Details");
 const Revenue = require("./revenue");
-
+const Payment = require("./payment");
+const profileData = require("./profileData");
+const FlightsToday = require("./FlightsToday");
+const delayedFlightHandle = require("./submitDelayedFlight");
 
 router.post("/register", register);
 router.post("/login", login);
 router.post("/logout", logout);
 router.post("/book", Booking);
+router.post("/pay", Payment);
 router.post("/schedule", Schedule);
 router.post("/getConfirmDetails",DetailsforBookingConfim)
+router.post("/delayedFlightHandle",delayedFlightHandle)
 
 router.get("/isLogged", isLogged);
 router.get("/departure", show_departure);
@@ -47,6 +52,8 @@ router.get("/Past_Flights",Past_Flights);
 router.get("/adminLogin",AdminLogin);
 router.get("/Flight_Details_Members",Flight_Details_Members );
 router.get("/Revenue",Revenue);
+router.get("/profileData",profileData);
+router.get("/FlightsToday",FlightsToday);
 
 
 module.exports = router;

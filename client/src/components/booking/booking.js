@@ -20,16 +20,44 @@ function Booking(props) {
   const navigate = useNavigate();
 
   const toBookingConfirm = () => {
-    navigate("/confirmbooking", {
-      state: {
-        userSelectedSeats: userSelectedSeats,
-        userData: userData,
-        flightID: flightID,
-        isloggeduserpassenger: isloggeduserpassenger,
-        seatClass: seatClass,
-        loggedUser: loggedUser
-      },
-    });
+    let msg = "";
+    let isUserdataFilled = true;
+    let isallseatsslected = userSelectedSeats.length == seatCount;
+
+    for (let entry of Object.entries(userData)) {
+      if (entry[1]) {
+        for (let entry2 of Object.entries(entry[1])) {
+          if (entry2[0] != "isRegistered" && !entry2[1]) {
+            isUserdataFilled = false;
+            break;
+          }
+        }
+      }
+      if (!isUserdataFilled) {
+        break;
+      }
+    }
+
+    if (!isUserdataFilled) {
+      msg = "Fill details";
+    } else if (!isallseatsslected) {
+      msg = `Select ${seatCount - userSelectedSeats.length} more seats`;
+    }
+
+    if (isUserdataFilled && isallseatsslected) {
+      navigate("/confirmbooking", {
+        state: {
+          userSelectedSeats: userSelectedSeats,
+          userData: userData,
+          flightID: flightID,
+          isloggeduserpassenger: isloggeduserpassenger,
+          seatClass: seatClass,
+          loggedUser: loggedUser,
+        },
+      });
+    } else {
+      alert(msg);
+    }
   };
 
   useEffect(() => {
@@ -114,7 +142,7 @@ function Booking(props) {
           toBookingConfirm();
         }}
       >
-        Fuck you
+        Continue to Checkout
       </button>
     </div>
   );

@@ -11,6 +11,7 @@ import Past_Flights from "./components/past_flights";
 import background from "./b7.jpg";
 import MiniDrawer from "./components/drawer";
 import Revenue from "./components/revenue";
+import Delayed_Flight from "./components/delayed_flights";
 
 
 const router = createBrowserRouter([
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
       {
         path : "revenue",
         element : <Revenue />
+      },
+      {
+        path : "delayedFlights",
+        element : <Delayed_Flight />
       }
   
 

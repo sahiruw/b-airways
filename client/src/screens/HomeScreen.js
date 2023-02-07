@@ -5,6 +5,7 @@ import FlightCard from "../components/flight_card";
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import Blog from "../components/blogs";
+import OurFleet from "../components/OurFleet";
 
 function HomeScreen() {
   const [recentFlights, setRecentFlights] = useState([]);
@@ -29,12 +30,12 @@ function HomeScreen() {
   return (
     <div>
       <div id="section1">
-        <div id="div1">
+        <div style={{ marginleft: 40, marginBottom:"40px"}}>
         <SearchBar />
         </div>
         
-        <div className="row" style={{ marginleft: 40}} id="div3">
-          <div style={{marginTop : 10}}>
+        <div className="row" style={{ marginleft: 40, marginTop:"60px"}}>
+          <div style={{marginTop : "0px"}}>
             <div class="container">
             {/* sombra borderedondo */}
               <div className="row" style={{paddingLeft : 40,marginLeft : 50}}>
@@ -51,8 +52,15 @@ function HomeScreen() {
             </div>
           </div>
         </div>
-        <div className="div1" id = "div2">
+        <div id = "div2">
         <Blog />
+        </div>
+        <div>
+          <div  id = "div3">
+          <h1 style={{color : "#075257",marginLeft : "50px"}}>Our Fleet</h1>
+          </div>
+          
+        <OurFleet/>
         </div>
         
       </div>

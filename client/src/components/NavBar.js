@@ -83,7 +83,7 @@ function NavBar() {
             </a>
           </li>
           <li className="nav-item" style={{ marginRight: "62px" }}>
-            <a href="#footer">
+            <a href="#div3">
             <button className="btn btn-primary nav-button" type="button">
               Our Fleet
             </button>
@@ -100,7 +100,7 @@ function NavBar() {
                   <a
                     className="nav-link"
                     style={{ fontFamily: "nexa", color: "#ffffff", fontSize: "20px" }}
-                    href="#"
+                    href="carousal"
                   >
                     <i
                       className="fa fa-user"

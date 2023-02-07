@@ -33,33 +33,65 @@ function SearchBar(props) {
   const navigate = useNavigate();
 
   const ShowBySearch = (e) => {
-    e.preventDefault();
-    console.log(Form);
+  
+    
 
-    if (!Form || !Form.from || !Form.to || !Form.date || !Form.seat_type || !Form.passengerCount) {
-      alert("Please fill all the fields");
-      console.log("Please fill all the fields");
-
-      return;
-    }
-
-
-    fetch(
-      `/api/Flights?from=${Form.from}&to=${Form.to}&departureDate=${Form.date}&seat_type=${Form.seat_type}&passengers=${Form.passengerCount}`
-    )
+    var checkbox = document.getElementById("flexSwitchCheckChecked");
+    
+    if(checkbox.checked){
+      console.log("Checkbox is selected.");
+      fetch(`/api/FlightsToday?seat_type=${Form.seat_type}&passengers=${Form.passengerCount}`)
       .then((res) => res.json())
       .then((data) => {
-        setFlightList(data.flightdata);
+        setFlightList(data.flightsToday);
 
         navigate("/table", {
-          state: { Tabledata: data.flightdata, form: Form },
+          state: { Tabledata: data.flightsToday, form: Form },
         });
-      });
+      })
+    }else{
+      if (!Form || !Form.from || !Form.to || !Form.date || !Form.seat_type || !Form.passengerCount) {
+        alert("Please fill all the fields");
+        console.log("Please fill all the fields");
+  
+        return;
+      }
+  
+  
+      fetch(
+        `/api/Flights?from=${Form.from}&to=${Form.to}&departureDate=${Form.date}&seat_type=${Form.seat_type}&passengers=${Form.passengerCount}`
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          setFlightList(data.flightdata);
+  
+          navigate("/table", {
+            state: { Tabledata: data.flightdata, form: Form },
+          });
+        });
+    }
+
+  
+  
+    
   };
+
+  const handleCheckLoggedUserisPassenger = (e) => {
+
+    if(e.target.checked){
+      document.getElementById("from").disabled = true;
+      document.getElementById("to").disabled = true;
+      document.getElementById("date").disabled = true;
+    }
+    else{
+      document.getElementById("from").disabled = false;
+      document.getElementById("to").disabled = false;
+      document.getElementById("date").disabled = false;
+    }
+  }
 
   return (
     <div style={{ width: "100%" }}>
-      {JSON.stringify(Form)}
       <div
         id="carouselExampleIndicators"
         class="carousel slide"
@@ -171,7 +203,9 @@ function SearchBar(props) {
               "border-top-right-radius": "20px",
             }}
           >
+
             <li class="searchbutton-mid">
+              
               <a
                 class="searchlink-mid"
                 href="#"
@@ -196,6 +230,8 @@ function SearchBar(props) {
                   "padding-right": "45px",
                 }}
               >
+               
+                
                 Book
                 <i
                   class="fa fa-plane"
@@ -214,7 +250,7 @@ function SearchBar(props) {
               </a>
             </li>
           </ul>
-          <div
+          <div  id="div1"
             class="tab-content"
             style={{
               "font-size": "100%",
@@ -225,6 +261,25 @@ function SearchBar(props) {
               background: "#fff",
             }}
           >
+            <span>
+            
+          <div class="row">
+
+            <div class="col-sm-1">
+            <input
+            className="form-check-input"
+            type="checkbox"
+            id="flexSwitchCheckChecked"
+            onChange={handleCheckLoggedUserisPassenger}
+           />
+          </div>
+          <div class="col-sm-11">
+          <p style={{
+                color: "black"}}>Flights for today</p>
+            </div>
+            </div>
+
+            </span>
             <div
               class="tab-active-book"
               style={{
@@ -262,7 +317,7 @@ function SearchBar(props) {
                     <div class="bk-search-block-1">
                       <div class="bk-search-block-2">
                         <span class="t-class-info">From</span>
-                        <select
+                        <select id = "from"
                           onChange={(e) => {
                             setForm({ ...Form, from: e.target.value });
                           }}
@@ -289,6 +344,7 @@ function SearchBar(props) {
                       <div class="bk-search-block-2">
                         <span class="t-class-info">To</span>
                         <select
+                          id = "to"
                           onChange={(e) => {
                             setForm({ ...Form, to: e.target.value });
                           }}
@@ -315,6 +371,7 @@ function SearchBar(props) {
                       <div class="bk-search-block-2">
                         <input
                           class="t-day-check-in"
+                          id = "date"
                           type="date"
                           onChange={(e) => {
                             setForm({ ...Form, date: e.target.value });
@@ -334,7 +391,7 @@ function SearchBar(props) {
                         <input
                           type="number"
                           min="0"
-                          max="9"
+                          max="5"
                           onChange={(e) => {
                             setForm({
                               ...Form,

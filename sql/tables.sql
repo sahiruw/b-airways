@@ -58,7 +58,7 @@ CREATE TABLE staff (
 
 CREATE TABLE member_category (
   mem_cat_id int AUTO_INCREMENT,
-  category_type enum("gold","frequent","general"),
+  category_type enum("gold","frequent"),
   min_booking int,
   discount_precentage float,
   PRIMARY KEY (mem_cat_id)
@@ -81,6 +81,7 @@ CREATE TABLE member (
   dob date,
   country varchar(15),
   tele_no varchar(12),
+  passport_number varchar(20);
   PRIMARY KEY (ID),
   FOREIGN KEY (mem_cat_id) REFERENCES member_category(mem_cat_id),
   FOREIGN KEY (ID) REFERENCES customer(ID)
@@ -88,10 +89,13 @@ CREATE TABLE member (
 
 CREATE TABLE guest (
   ID int,
-  name varchar(15),
+  firstname varchar(15),
+  lastname varchar(15),
+  email varchar(25),
   dob date,
   country varchar(15),
   tele_no varchar(15),
+  passport_number varchar(20);
   PRIMARY KEY (ID),
   FOREIGN KEY (ID) REFERENCES customer(ID)
 );
@@ -104,7 +108,9 @@ CREATE TABLE flight (
   departure_time datetime,
   arrival_time datetime,
   status enum("Scheduled", "Departed","Arrived","Cancelled","Delayed"),
-  cost float,
+  platinum_cost float,
+  business_cost float,
+  economy_cost float,
   PRIMARY KEY (ID),
   FOREIGN KEY (path_iD) REFERENCES Paths(ID),
   FOREIGN KEY (aircraft_ID) REFERENCES Aircraft(ID)
@@ -145,6 +151,7 @@ CREATE TABLE booking (
   booked_time datetime,
   booking_status enum("Booked","Completed","Cancelled", "TimedOut"),
   seat_type enum("Platinum","Bussiness","Economy"),
+  seat_count int;
   PRIMARY KEY (ID),
   FOREIGN KEY (flight_ID) REFERENCES flight(ID)
 );

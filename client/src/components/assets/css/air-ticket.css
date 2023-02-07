@@ -1,6 +1,5 @@
 @font-face {
   font-family: "myFirstFont";
-  src: url(Gotham-Black.woff);
 }
 
 .tkt-heading {
@@ -17,7 +16,7 @@
 }
 
 .tkt-body {
-  background: url("../../assets/img/Slider01.png") no-repeat 21% 100%;
+  /* background: url("../../assets/img/Slider01.png") no-repeat 21% 100%; */
   background-color: #b3c8c9f5;
   padding: 10px;
   border-radius: 0;

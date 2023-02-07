@@ -96,9 +96,9 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-const Options = ['Past Flights', 'Bookings',"Action1", 'Action4','Revenue'];
+const Options = ['Past Flights', 'Bookings',"Action1", 'Action4','Revenue',"Delayed Flights"];
 const Icons = [<FlightIcon />, <AirplaneTicketIcon />, <Groups2Icon/>,<FlightTakeoffIcon />,<MonetizationOnIcon />];
-const links = ["past_flights","bookings_by_passenger_type","action1","passenger_details","revenue"];
+const links = ["past_flights","bookings_by_passenger_type","action1","passenger_details","revenue","delayedFlights"];
 
 function MiniDrawer(props) {
   const theme = useTheme();

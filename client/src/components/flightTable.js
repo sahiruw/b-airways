@@ -16,42 +16,14 @@ const DisplayTable = (props) => {
     });
   };
 
-  if (!props.tableData[0]) return <div>Hi</div>;
+  if (!props.tableData[0]) return (<div>
+          <div class="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            No data to display
+          </div>
+    </div>);
 
   return (
-    // <div className="table-responsive">
-
-    //   <table className="table table-striped table-hover align-middle">
-    //     <thead>
-    //       <tr>
-    //         <th scope="col">#</th>
-    //         <th scope="col">From</th>
-    //         <th scope="col">To</th>
-    //         <th scope="col">Depature</th>
-    //         <th scope="col">Arrival</th>
-    //         <th scope="col">Book</th>
-    //       </tr>
-    //     </thead>
-    //     <tbody className="table-group-divider">
-    //       {props.tableData.map((val, index) => {
-    //         return (
-    //           <tr key={val.ID}>
-    //             <th>{val.ID}</th>
-    //             <td>{val.start_destination}</td>
-    //             <td>{val.end_destination}</td>
-    //             <td>{val.departure_time}</td>
-    //             <td>{val.arrival_time}</td>
-    //             <td>
-    //               <button className="btn btn-outline-secondary" onClick={()=>{toBooking(val.ID)}}>
-    //                 Book
-    //               </button>
-    //             </td>
-    //           </tr>
-    //         );
-    //       })}
-    //     </tbody>
-    //   </table>
-    // </div>
 
     <div class="container" style={{ "margin-bottom": "20px" }}>
       <div
@@ -62,14 +34,6 @@ const DisplayTable = (props) => {
           "padding-bottom": "0px",
         }}
       >
-        <div class="form-group pull-right col-lg-4">
-          <input
-            class="search form-control"
-            type="text"
-            placeholder="Search by typing here.."
-            style={{ opacity: "0.60" }}
-          />
-        </div>
         <span class="counter pull-right"></span>
         <div
           class="table-responsive table table-hover table-bordered results"

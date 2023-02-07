@@ -3,6 +3,7 @@ import { useState } from "react";
 
 import background from "./assets/img/Vish_high_quality_realistic_inside_a_aeroplan_business_class_ca_cbde7130-06ff-4ddd-aad0-85fdcdeed2ce.png";
 import logo from "./assets/img/Logo.png";
+import Alert from '@mui/material/Alert';
 
 const Login = () => {
   const [form, setForm] = useState({
@@ -12,20 +13,21 @@ const Login = () => {
 
   const [alert, setAlert] = useState({
     atype: "",
-    aalert: { display: "none" },
+    aalert: false,
     amessage: "",
   });
 
-  const sendMessage = (text, type = "danger", time = 5) => {
+  const sendMessage = (text, type = "error", time = 5) => {
+
     setAlert({
       atype: type,
-      aalert: { display: "block" },
+      aalert: true,
       amessage: text,
     });
 
-    if (type === "success") document.location.replace("/");
     setTimeout(() => {
-      setAlert({ ...alert, aalert: { display: "none" } });
+      setAlert({ ...alert, aalert: false });
+      if (type === "success") document.location.replace("/login");
     }, time * 1000);
   };
 
@@ -42,6 +44,7 @@ const Login = () => {
       res.json().then((data) => {
         if (data.status) {
           sendMessage(data.message, "success");
+          document.location.replace("/");
         } else {
           sendMessage(data.message);
         }
@@ -149,6 +152,7 @@ const Login = () => {
                 >
                   Log In
                 </button>
+                {alert.aalert?<Alert severity={alert.atype}>{alert.amessage}</Alert>:null}
               </form>
               <p class="mt-3 mb-0">
                 <a

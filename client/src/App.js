@@ -11,7 +11,10 @@ import Footer from "./components/footer";
 import UnderConstruction from "./screens/under_construction";
 import ConfirmBooking from "./components/booking/bookingConfirm";
 import Carousal from "./components/carousal";
-import Carousal1 from "./components/carousal1";
+import PaymentWindow from "./components/booking/paymentWindow";
+import OurFleet from "./components/OurFleet";
+import Tickets from "./components/booking/ticketPage";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -51,9 +54,17 @@ const router = createBrowserRouter([
     element: <Carousal />,
   },
   {
-    path: "carousal1",
-    element: <Carousal1 />,
+    path: "payment",
+    element: <PaymentWindow />,
   },
+  {
+    path: "tickets",
+    element: <Tickets />,
+  },
+  {
+    path: "ourFleet",
+    element : <OurFleet />
+  }
 ]);
 
 function App() {

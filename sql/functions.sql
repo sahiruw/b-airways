@@ -1,3 +1,14 @@
+DELIMITER $$
+CREATE FUNCTION confirm_transaction (p_bookingid int, p_finalprice float, p_time date, p_ptype varchar(15))
+RETURNS INT
+DETERMINISTIC
+BEGIN
+
+  INSERT INTO transaction (booking_id, time, total, payment_method)
+  VALUES (p_bookingid, p_time, p_finalprice, p_ptype);
+  RETURN LAST_INSERT_ID();
+END$$
+DELIMITER ;
 
 -- function to insert members
 DELIMITER $$
@@ -26,95 +37,7 @@ BEGIN
 END$$
 DELIMITER ;
 
--- function to get difference between booked and total platinum seats
-DELIMITER $$
-CREATE FUNCTION num_remaining_platinum_seats2(flight_ID int)
-RETURNS INT
-DETERMINISTIC
-BEGIN
- 
- DECLARE total_platinum_seats INT;
- DECLARE booked_seats INT;
- 
- SELECT platinum_seats into total_platinum_seats
- FROM flights_and_aircrafts WHERE ID = flight_ID;
- 
- SELECT COUNT(seat_type) into booked_seats
- FROM flight_details4
- WHERE ID = flight_ID AND seat_type = 'Platinum';
-	
 
- RETURN total_platinum_seats - booked_seats;
-  
-END$$
-DELIMITER 
-
--- function to get difference between booked and total bussiness seats
-DELIMITER $$
-CREATE FUNCTION num_remaining_bussiness_seats2(flight_ID int)
-RETURNS INT
-DETERMINISTIC
-BEGIN
- 
- DECLARE total_bussiness_seats INT;
- DECLARE booked_seats INT;
- 
- SELECT Bussiness_seats into total_bussiness_seats
- FROM flights_and_aircrafts WHERE ID = flight_ID;
- 
- SELECT COUNT(seat_type) into booked_seats
- FROM flight_details4
- WHERE ID = flight_ID AND seat_type = 'Bussiness';
-	
-
- RETURN total_bussiness_seats - booked_seats;
-  
-END$$
-DELIMITER 
-
--- function to get difference between booked and total economy seats
-DELIMITER $$
-CREATE FUNCTION num_remaining_economy_seats2(flight_ID int)
-RETURNS INT
-DETERMINISTIC
-BEGIN
- 
- DECLARE total_economy_seats INT;
- DECLARE booked_seats INT;
- 
- SELECT Economy_seats into total_economy_seats
- FROM flights_and_aircrafts WHERE ID = flight_ID;
- 
- SELECT COUNT(seat_type) into booked_seats
- FROM flight_details4
- WHERE ID = flight_ID AND seat_type = 'Economy';
-	
-
- RETURN total_economy_seats - booked_seats;
-  
-END$$
-DELIMITER 
-
-
-
-DELIMITER $$
-CREATE FUNCTION SetFlyingStaff(flight_ID int, staff_member_name varchar(15))
-RETURNS INT
-DETERMINISTIC
-BEGIN
-	
-    DECLARE staff_member_id INT;
-    SELECT ID into staff_member_id
-    from staff
-    where name = staff_member_name;
-    
-    INSERT into flying_staff(staff_ID,flight_ID) values (staff_member_id,flight_ID);
-    
-    return 1;
-	
-  
-END$$
-DELIMITER 
 
 
 DELIMITER $$
@@ -132,3 +55,25 @@ BEGIN
   
 END$$
 DELIMITER 
+
+-- Function to get the number of seats remaining in a flight
+CREATE FUNCTION `num_remaining_seats9`(flight_ID int,seat_t varchar(15)) RETURNS int
+DETERMINISTIC
+BEGIN
+  DECLARE num_remaining_seats int;
+  IF seat_t = "Bussiness" THEN
+    RETURN num_remaining_bussiness_seats2(flight_ID);
+    
+  ELSEIF seat_t = "Platinum" THEN
+    RETURN num_remaining_platinum_seats2(flight_ID);
+    
+  ELSE
+    RETURN num_remaining_economy_seats2(flight_ID);
+   
+  END IF;
+   
+  RETURN NULL;
+
+
+END
+
